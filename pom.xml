@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.dominicfeliton.chatpolls</groupId>
+  <artifactId>ChatPolls</artifactId>
+  <version>1.0.0</version>
+  <packaging>pom</packaging>
+
+  <name>ChatPolls</name>
+  <description>Better polls for Minecraft!</description>
+
+  <modules>
+    <module>common</module>
+    <module>bukkit-core</module>
+    <module>spigot</module>
+    <module>paper</module>
+    <module>folia</module>
+  </modules>
+
+  <properties>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>5.11.4</version>
+        <scope>test</scope>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
+      <dependency>
+        <groupId>com.zaxxer</groupId>
+        <artifactId>HikariCP</artifactId>
+        <version>6.2.1</version>
+      </dependency>
+      <dependency>
+        <groupId>com.mysql</groupId>
+        <artifactId>mysql-connector-j</artifactId>
+        <version>9.1.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+        <version>42.7.4</version>
+      </dependency>
+      <dependency>
+        <groupId>org.mongodb</groupId>
+        <artifactId>mongodb-driver-sync</artifactId>
+        <version>5.2.1</version>
+      </dependency>
+      <dependency>
+        <groupId>com.dominicfeliton.yamltranslator</groupId>
+        <artifactId>YAMLTranslator</artifactId>
+        <version>1.3.0</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <repositories>
+    <!-- This adds the Spigot Maven repository to the build -->
+    <repository>
+      <id>spigot-repo</id>
+      <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+    </repository>
+    <repository>
+      <!-- for adventure development builds -->
+      <id>sonatype-oss-snapshots</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+    </repository>
+    <repository>
+      <id>papermc</id>
+      <url>https://repo.papermc.io/repository/maven-public/</url>
+    </repository>
+    <repository>
+      <id>dominicfeliton-yamltranslator</id>
+      <url>https://raw.github.com/dominicfeliton/YAMLTranslator/maven-repo</url>
+    </repository>
+    <repository>
+      <id>dominicfeliton-foliasmartinvs</id>
+      <url>https://raw.github.com/dominicfeliton/SmartInvs/folia-maven-repo</url>
+    </repository>
+    <repository>
+      <id>dominicfeliton-bukkitsmartinvs</id>
+      <url>https://raw.github.com/dominicfeliton/SmartInvs/bukkit-maven-repo</url>
+    </repository>
+    <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </repository>
+  </repositories>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.github.ekryd.sortpom</groupId>
+        <artifactId>sortpom-maven-plugin</artifactId>
+        <version>4.0.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>sort</goal>
+            </goals>
+            <phase>verify</phase>
+          </execution>
+          <!-- Execution for clean phase -->
+          <execution>
+            <id>sort-on-clean</id>
+            <goals>
+              <goal>sort</goal>
+            </goals>
+            <phase>clean</phase>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
