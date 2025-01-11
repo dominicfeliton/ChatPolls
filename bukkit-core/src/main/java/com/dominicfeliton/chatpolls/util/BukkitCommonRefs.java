@@ -1,0 +1,253 @@
+package com.dominicfeliton.chatpolls.util;
+
+import com.dominicfeliton.chatpolls.ChatPolls;
+
+import java.text.MessageFormat;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.IllegalPluginAccessException;
+
+public class BukkitCommonRefs extends CommonRefs {
+
+    /* Important vars */
+    protected static ChatPolls main = ChatPolls.instance;
+
+    /**
+     * Sends a debug message to console. Will only work when debug mode is set to true in the Console.
+     *
+     * @param inMessage - The debug message that will be sent to the Console.
+     */
+    @Override
+    public void debugMsg(String inMessage) {
+        if (main.getConfigManager() == null) {
+            return;
+        }
+
+        if (main.getConfigManager().getMainConfig().getBoolean("General.enableDebugMode")) {
+            main.getLogger().warning("DEBUG: " + inMessage);
+        }
+    }
+
+    @Override
+    public String getPlainMsg(String messageName) {
+        return serial(getCompMsg(messageName, new String[]{}, "", null));
+    }
+
+    @Override
+    public String getPlainMsg(String messageName, GenericCommandSender sender) {
+        return serial(getCompMsg(messageName, new String[]{}, "", sender));
+    }
+
+    @Override
+    public String getPlainMsg(String messageName, String replacement) {
+        return serial(getCompMsg(messageName, new String[]{replacement}, "", null));
+    }
+
+    @Override
+    public String getPlainMsg(String messageName, String replacement, String resetCode) {
+        return serial(getCompMsg(messageName, new String[]{replacement}, resetCode, null));
+    }
+
+    @Override
+    public String getPlainMsg(String messageName, String replacement, GenericCommandSender sender) {
+        return serial(getCompMsg(messageName, new String[]{replacement}, "", sender));
+    }
+
+    @Override
+    public String getPlainMsg(String messageName, String[] replacements, GenericCommandSender sender) {
+        return serial(getCompMsg(messageName, replacements, "", sender));
+    }
+
+    @Override
+    public String getPlainMsg(String messageName, String replacement, String resetCode, GenericCommandSender sender) {
+        return serial(getCompMsg(messageName, new String[]{replacement}, resetCode, sender));
+    }
+
+    @Override
+    public String getPlainMsg(String messageName, String[] replacements, String resetCode) {
+        return serial(getCompMsg(messageName, replacements, resetCode, null));
+    }
+
+    /**
+     * Gets a plaintext message from the config with proper formatting
+     *
+     * @param messageName
+     * @param replacements
+     * @param resetCode
+     * @param sender
+     * @return
+     */
+    @Override
+    public String getPlainMsg(String messageName, String[] replacements, String resetCode, GenericCommandSender sender) {
+        return serial(getCompMsg(messageName, replacements, resetCode, sender));
+    }
+
+    /**
+     * Gets a message from the currently selected messages-XX.yml.
+     *
+     * @param messageName  - The name of the message from messages-XX.yml.
+     * @param replacements - The list of replacement values that replace variables in the selected message. There is no sorting system; the list must be already sorted.
+     * @param resetCode    - The color code sequence (&4&l, etc.) that the rest of the message should use besides the replacement values.
+     * @param sender       - The person/entity to be sent this message. Can be null for nobody in particular.
+     * @return String - The formatted message from messages-XX.yml. A warning will be returned instead if messageName is missing from messages-XX.yml.
+     */
+    @Override
+    public TextComponent getCompMsg(String messageName, String[] replacements, String resetCode, GenericCommandSender sender) {
+        YamlConfiguration messagesConfig = main.getConfigManager().getMsgsConfig();
+        String code = "";
+        String globalCode = main.getConfigManager().getMainConfig().getString("General.pluginLang");
+        if (sender instanceof Player && main.isPlayerRecord((Player) sender)) {
+            code = main.getPlayerRecord((Player) sender, false).getLocalizationCode();
+            if (!code.isEmpty()) {
+                messagesConfig = main.getConfigManager().getCustomMessagesConfig(code);
+            }
+        }
+
+        for (int i = 0; i < replacements.length; i++) {
+            // Translate color codes in replacements
+            replacements[i] = ChatColor.translateAlternateColorCodes('&', replacements[i] + resetCode);
+        }
+
+        /* Get message from messages.yml */
+        String convertedOriginalMessage = resetCode;
+        if (messagesConfig.getString("Overrides." + ChatColor.stripColor(messageName)) != null) {
+            convertedOriginalMessage += ChatColor.translateAlternateColorCodes('&', messagesConfig.getString("Overrides." + ChatColor.stripColor(messageName)));
+        } else {
+            if (messagesConfig.getString("Messages." + ChatColor.stripColor(messageName)) == null) {
+                if (code.isEmpty()) {
+                    main.getLogger().severe("Bad message (" + messageName + ")! Please fix your messages-" + globalCode + ".yml.");
+                    return Component.text().content(ChatColor.RED + "Bad message (" + messageName + ")! Please fix your messages-" + globalCode + ".yml.").build();
+                } else {
+                    main.getLogger().severe("Bad message (" + messageName + ")! Please fix your messages-" + code + ".yml.");
+                    return Component.text().content(ChatColor.RED + "Bad message (" + messageName + ")! Please fix your messages-" + code + ".yml.").build();
+                }
+            }
+            convertedOriginalMessage += messagesConfig.getString("Messages." + ChatColor.stripColor(messageName));
+        }
+
+        // Translate color codes in the original message
+        convertedOriginalMessage = ChatColor.translateAlternateColorCodes('&', convertedOriginalMessage);
+
+        // Escape single quotes for MessageFormat
+        convertedOriginalMessage = convertedOriginalMessage.replace("'", "''").trim();
+
+        // Return fixedMessage with replaced vars
+        return Component.text().content(MessageFormat.format(convertedOriginalMessage, (Object[]) replacements)).build();
+    }
+
+    @Override
+    public void sendMsg(String messageName, GenericCommandSender sender) {
+        sendMsg(sender, getCompMsg(messageName, new String[]{}, "&r&d", sender), true);
+    }
+
+    @Override
+    public void sendMsg(String messageName, String[] replacements, GenericCommandSender sender) {
+        // Default WWC color is usually LIGHT_PURPLE (&d)
+        sendMsg(sender, getCompMsg(messageName, replacements, "&r&d", sender), true);
+    }
+
+    @Override
+    public void sendMsg(String messageName, String replacement, GenericCommandSender sender) {
+        sendMsg(sender, getCompMsg(messageName, new String[]{replacement}, "&r&d", sender), true);
+    }
+
+    @Override
+    public void sendMsg(String messageName, String replacement, String resetCode, GenericCommandSender sender) {
+        sendMsg(sender, getCompMsg(messageName, new String[]{replacement}, "&r" + resetCode, sender), true);
+    }
+
+    @Override
+    public void sendMsg(String messageName, String[] replacements, String resetCode, GenericCommandSender sender) {
+        sendMsg(sender, getCompMsg(messageName, replacements, "&r" + resetCode, sender), true);
+    }
+
+    /**
+     * Sends the user a properly formatted message through our adventure instance.
+     *
+     * @param sender          - The target sender. Can be any entity that can receive messages. CANNOT BE NULL.
+     * @param originalMessage - The unformatted Component that should be sent to sender.
+     * @param addPrefix       - Whether the plugin prefix should be appended or not.
+     * @return
+     */
+    @Override
+    public void sendMsg(GenericCommandSender sender, Component originalMessage, boolean addPrefix) {
+
+        try {
+            Audience adventureSender = main.adventure().sender(((BukkitCommandSender) sender).getBukkitSender());
+            final TextComponent outMessage;
+            if (addPrefix) {
+                outMessage = Component.text().append(main.getPluginPrefix().asComponent())
+                        .append(Component.space())
+                        .append(originalMessage.asComponent())
+                        .build();
+            } else {
+                outMessage = Component.text().append(originalMessage.asComponent()).build();
+            }
+            adventureSender.sendMessage(outMessage);
+        } catch (IllegalStateException e) {
+        }
+    }
+
+    @Override
+    public void sendMsg(GenericCommandSender sender, Component originalMessage) { sendMsg(sender, originalMessage, true); }
+
+    @Override
+    public void sendMsg(GenericCommandSender sender, String stringMsg) {
+        sendMsg(sender, deserial(stringMsg), true);
+    }
+
+    @Override
+    public void sendMsg(GenericCommandSender sender, String stringMsg, boolean addPrefix) {
+        sendMsg(sender, deserial(stringMsg), addPrefix);
+    }
+
+    /**
+     * Shorthand for component to str
+     *
+     * @param comp - TextComponent
+     * @return string version
+     */
+    public String serial(Component comp) {
+        return LegacyComponentSerializer.legacyAmpersand().serialize(comp);
+    }
+
+    /**
+     * Shorthand for str to component
+     *
+     * @param str - String
+     * @return textcomponent version
+     */
+    public Component deserial(String str) {
+        return LegacyComponentSerializer.legacyAmpersand().deserialize(str);
+    }
+
+    public boolean serverIsStopping() {
+        boolean stopping = !main.isEnabled();
+        debugMsg("Bukkit initial stop check: " + stopping);
+        if (stopping) return true;
+
+        try {
+            Bukkit.getScheduler().runTaskLater(main, () -> {
+            }, 0L);
+        } catch (IllegalPluginAccessException | IllegalStateException e) {
+            debugMsg("Server is stopping! Don't run a task/do any weird stuff.");
+            return true;
+        }
+
+        debugMsg("Bukkit final stop check: false");
+        return false;
+    }
+}
