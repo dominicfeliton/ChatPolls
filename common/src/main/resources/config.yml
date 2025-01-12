@@ -1,0 +1,17 @@
+# ChatPolls Configuration
+#  ____ _           _   ____       _ _
+# / ___| |__   __ _| |_|  _ \ ___ | | |___
+#| |   | '_ \ / _` | __| |_) / _ \| | / __|
+#| |___| | | | (_| | |_|  __/ (_) | | \__ \
+# \____|_| |_|\__,_|\__|_|   \___/|_|_|___/
+# HOW TO SETUP: https://github.com/dominicfeliton/ChatPolls/wiki/Default-Explained-config.yml
+General:
+  prefixName: ChP
+  enablebStats: true
+  pluginLang: en
+  updateCheckerDelay: 86400
+  syncUserDataDelay: 7200
+  fatalAsyncTaskTimeout: 10
+  enableDebugMode: false
+  syncUserLocalization: true
+  enableSounds: true

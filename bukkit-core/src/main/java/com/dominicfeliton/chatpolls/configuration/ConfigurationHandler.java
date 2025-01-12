@@ -6,14 +6,14 @@ import com.dominicfeliton.chatpolls.util.CommonRefs;
 import com.dominicfeliton.chatpolls.util.GenericRunnable;
 import com.dominicfeliton.chatpolls.util.SupportedLang;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static com.dominicfeliton.chatpolls.ChatPollsHelper.SchedulerType.ASYNC;
@@ -21,15 +21,34 @@ import static com.dominicfeliton.chatpolls.util.CommonRefs.supportedPluginLangCo
 
 public class ConfigurationHandler {
 
-    private ChatPolls main = ChatPolls.instance;
-    private CommonRefs refs = main.getCommonRefs();
-    private ChatPollsHelper chpHelper = main.getHelper();
+    private final ChatPolls main = ChatPolls.instance;
+    private final CommonRefs refs = main.getCommonRefs();
+    private final ChatPollsHelper chpHelper = main.getHelper();
     private ConfigurationGenerator configGen = new ConfigurationGenerator(this);
 
     private File configFile;
     private YamlConfiguration mainConfig;
 
     private final ConcurrentHashMap<String, YamlConfiguration> pluginLangConfigs = new ConcurrentHashMap<>();
+
+    /* Init Main Config Method */
+    public void initMainConfig() {
+        /* Init config file */
+        String name = "config.yml";
+        configFile = new File(main.getDataFolder(), name);
+        mainConfig = configGen.setupConfig(configFile);
+        saveMainConfig(false);
+        YamlConfiguration templateConfig = YamlConfiguration.loadConfiguration(new InputStreamReader(Objects.requireNonNull(main.getResource(name)), StandardCharsets.UTF_8));
+
+        /* Get plugin lang */
+        if (refs.isSupportedLang(mainConfig.getString("General.pluginLang"), CommonRefs.LangType.LOCAL)) {
+            main.getLogger().info(ChatColor.LIGHT_PURPLE + "Detected language " + mainConfig.getString("General.pluginLang") + ".");
+            return;
+        }
+
+        mainConfig.set("General.pluginLang", "en");
+        main.getLogger().warning("Unable to detect a valid language in your config.yml. Defaulting to en...");
+    }
 
     /* Init Messages Method */
     public void initMessagesConfigs() {
@@ -53,16 +72,18 @@ public class ConfigurationHandler {
     }
 
     public YamlConfiguration generateMessagesConfig(String inLocalLang) {
+        File msgFolder = new File(main.getDataFolder(), "locals");
+
         /* Init config file */
-        File msgFile = new File(main.getDataFolder(), "messages-" + inLocalLang + ".yml");
-        if (main.getResource("messages-" + inLocalLang + ".yml") == null) {
+        File msgFile = new File(msgFolder, "messages-" + inLocalLang + ".yml");
+        if (main.getResource("locals" + File.separator + "messages-" + inLocalLang + ".yml") == null) {
             refs.debugMsg("!!! Skipping " + inLocalLang + ", not found in default resources??");
             return null;
         }
 
         /* Save default messages file if it does not exist */
         if (!msgFile.exists()) {
-            main.saveResource("messages-" + inLocalLang + ".yml", true);
+            main.saveResource("locals" + File.separator + "messages-" + inLocalLang + ".yml", true);
 
             YamlConfiguration tempConfig = YamlConfiguration.loadConfiguration(msgFile);
 
@@ -81,7 +102,7 @@ public class ConfigurationHandler {
 
             /* Copy overrides section */
             if (msgConfig.getConfigurationSection("Overrides") != null) {
-                for (String eaKey : msgConfig.getConfigurationSection("Overrides").getKeys(true)) {
+                for (String eaKey : Objects.requireNonNull(msgConfig.getConfigurationSection("Overrides")).getKeys(true)) {
                     oldOverrides.put(eaKey, msgConfig.getString("Overrides." + eaKey));
                 }
             }
@@ -112,6 +133,16 @@ public class ConfigurationHandler {
         }
 
         return msgConfig;
+    }
+
+    /* Load Main Settings Method */
+    public void loadMainSettings() {
+        /* General Settings */
+        // Debug Mode
+        // Not stored in main, since we want debug MSGs ASAP
+        if (mainConfig.getBoolean("General.enableDebugMode")) {
+            main.getLogger().warning(refs.getPlainMsg("wwcConfigEnabledDebugMode"));
+        }
     }
 
     /* Main config save method */

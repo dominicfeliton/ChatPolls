@@ -1,0 +1,7 @@
+# HOW TO SETUP: https://github.com/dominicfeliton/ChatPolls/wiki/Default-Explained-messages-XX.yml
+# DO NOT TOUCH THE VERSION ENTRY!
+Overrides:
+  chpExampleMessage: 'Overridden message! This will display over the corresponding default entry below.'
+Messages:
+  chpEnabled: 'Enabled ChatPolls version {0}.'
+  chpDisabled: 'Disabled ChatPolls version {0}. Goodbye!'

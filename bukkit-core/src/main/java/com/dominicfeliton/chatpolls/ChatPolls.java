@@ -57,6 +57,8 @@ public class ChatPolls extends JavaPlugin {
 
     private Map<String, PlayerRecord> playerRecords = new ConcurrentHashMap<>();
 
+    private volatile String globalState = "Starting";
+
     public @NotNull BukkitAudiences adventure() {
         if (adventure == null) {
             throw new IllegalStateException("Tried to access Adventure when the plugin was disabled!");
@@ -100,6 +102,8 @@ public class ChatPolls extends JavaPlugin {
         // Should run first
         initStableObjs();
 
+        doStartupTasks();
+
         // We made it!
         getLogger().info(refs.getPlainMsg("chpEnabled",
                 "&6" + getPluginVersion(),
@@ -108,12 +112,31 @@ public class ChatPolls extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        doTakedownTasks();
+
         getLogger().info(refs.getPlainMsg("chpDisabled",
                 "&6" + getPluginVersion(),
                 "&a"));
 
         // Run last
         takedownStableObjs();
+    }
+
+    public void doStartupTasks() {
+        // Assuming config manager object != null
+        configurationManager.initMainConfig();
+        configurationManager.initMessagesConfigs();
+
+        configurationManager.loadMainSettings();
+        //configurationManager.loadStorageSettings();
+
+        globalState = "Enabled";
+    }
+
+    public void doTakedownTasks() {
+        globalState = "Stopping";
+
+        // TODO: Everything
     }
 
     // Setters

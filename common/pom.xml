@@ -112,13 +112,12 @@
           <skipTests>true</skipTests>
         </configuration>
       </plugin>
-      <!---
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <version>3.5.0</version>
         <configuration>
-          <mainClass>com.dominicfeliton.chatpolls.YAMLTranslator</mainClass>
+          <mainClass>com.dominicfeliton.yamltranslator.YAMLTranslator</mainClass>
           <cleanupDaemonThreads>false</cleanupDaemonThreads>
           <skip>${yamltranslator.skip}</skip>
         </configuration>
@@ -131,7 +130,6 @@
           </execution>
         </executions>
       </plugin>
-      -->
     </plugins>
   </build>
 

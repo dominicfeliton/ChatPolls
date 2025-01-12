@@ -47,6 +47,32 @@ public abstract class CommonRefs {
         supportedPluginLangCodes.putAll(fixedMap);
     }
 
+    public enum LangType {
+        INPUT("in"),
+        OUTPUT("out"),
+        ALL("all"),
+        LOCAL("local");
+
+        private final String type;
+
+        LangType(String type) {
+            this.type = type;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public static LangType fromString(String type) {
+            for (LangType langType : LangType.values()) {
+                if (langType.type.equalsIgnoreCase(type)) {
+                    return langType;
+                }
+            }
+            throw new IllegalArgumentException("Unknown langType: " + type);
+        }
+    }
+
     /**
      * Sends a debug message to the console.
      * Implementation depends on the platform.
@@ -255,6 +281,42 @@ public abstract class CommonRefs {
      * @return boolean - If the server is stopping or not
      */
     public abstract boolean serverIsStopping();
+
+    /**
+     * Compares two strings to check if they are the same language under the current translator.
+     *
+     * @param first    - A valid language name
+     * @param second   - A valid language name
+     * @param langType - 'local' for local langs
+     * @return Boolean - Whether languages are the same or not
+     */
+    public abstract boolean isSameLang(String first, String second, LangType langType);
+
+    /**
+     * Gets a supported language under the current translator.
+     *
+     * @param langName - A valid language name
+     * @param langType - 'local' for local langs
+     * @return SupportedLanguageObject - Will be completely empty if the language is invalid
+     */
+    public abstract SupportedLang getSupportedLang(String langName, LangType langType);
+
+    /**
+     * Checks if a language is supported under the current translator.
+     *
+     * @param in       - A valid language name
+     * @param langType - 'local' for local langs
+     * @return true if supported, false otherwise
+     */
+    public abstract boolean isSupportedLang(String in, LangType langType);
+
+    /**
+     * Gets a list of properly formatted, supported language codes.
+     *
+     * @param langType - 'local' for local langs
+     * @return String - Formatted language codes
+     */
+    public abstract String getFormattedLangCodes(String langType);
 
     /**
      * Returns a SupportedLang obj with nativeLang/langName fields filled out

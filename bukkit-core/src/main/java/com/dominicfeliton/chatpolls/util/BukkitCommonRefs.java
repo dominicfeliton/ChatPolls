@@ -6,6 +6,7 @@ import java.text.MessageFormat;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeSet;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -249,5 +250,113 @@ public class BukkitCommonRefs extends CommonRefs {
 
         debugMsg("Bukkit final stop check: false");
         return false;
+    }
+
+    /**
+     * Compares two strings to check if they are the same language under the current translator.
+     *
+     * @param first    - A valid language name
+     * @param second   - A valid language name
+     * @param langType - 'local' for local langs
+     * @return Boolean - Whether languages are the same or not
+     */
+    public boolean isSameLang(String first, String second, LangType langType) {
+        return isSupportedLang(first, langType) && isSupportedLang(second, langType)
+                && getSupportedLang(first, langType).equals(getSupportedLang(second, langType));
+    }
+
+    /**
+     * Gets a supported language under the current translator.
+     *
+     * @param langName - A valid language name
+     * @param langType - 'local' for local langs
+     * @return SupportedLanguageObject - Will be completely empty if the language is invalid
+     */
+    public SupportedLang getSupportedLang(String langName, LangType langType) {
+        // Setup vars
+        SupportedLang invalidLang = new SupportedLang("", "", "");
+        SupportedLang outLang;
+
+        // Return None if none
+        /*
+        if (langName.equalsIgnoreCase("None") || langName.equalsIgnoreCase("auto")) {
+            outLang = new SupportedLang("auto", "None", "None");
+            return outLang;
+        }
+         */
+
+        // Check langType using enum
+        switch (langType) {
+            case LOCAL:
+                outLang = supportedPluginLangCodes.get(langName);
+                break;
+            default:
+                debugMsg("Invalid langType for getSupportedTranslatorLang()! langType: " + langType + " ...returning invalid, not checking language. Fix this!!!");
+                outLang = null;
+                break;
+        }
+
+        if (outLang == null) {
+            debugMsg("Lang " + langName + " not found in " + langType + "!");
+            return invalidLang;
+        }
+
+        return outLang;
+    }
+
+    /**
+     * Checks if a language is supported under the current translator.
+     *
+     * @param in       - A valid language name
+     * @param langType - 'local' for local langs
+     * @return true if supported, false otherwise
+     */
+    public boolean isSupportedLang(String in, LangType langType) {
+        return !getSupportedLang(in, langType).getLangCode().isEmpty();
+    }
+
+    /**
+     * Gets a list of properly formatted, supported language codes.
+     *
+     * @param langType - 'local' for local langs
+     * @return String - Formatted language codes
+     */
+    public String getFormattedLangCodes(String langType) {
+        /* Setup vars */
+        Map<String, SupportedLang> langMap;
+        StringBuilder out = new StringBuilder("\n");
+
+        /* Check langType */
+        switch (langType.toLowerCase()) {
+            case "local":
+                langMap = CommonRefs.supportedPluginLangCodes;
+                break;
+            default:
+                debugMsg("Invalid langType for getFormattedValidLangCodes()! langType: " + langType + " ...returning invalid, not checking language. Fix this!!!");
+                return "&cInvalid language type specified";
+        }
+
+        /* Use a TreeSet to eliminate duplicates and sort */
+        TreeSet<SupportedLang> sortedUniqueLangs = new TreeSet<>(langMap.values());
+
+        /* Format the output nicely */
+        for (SupportedLang lang : sortedUniqueLangs) {
+            if (lang == null) {
+                debugMsg("Lang codes not set for " + langType + "! FIX THIS");
+                out.append("N/A");
+                break;
+            }
+            out.append("&b").append(lang.getLangCode())
+                    .append(" &f- ")
+                    .append("&e").append(lang.getLangName()).append("&6/&e").append(lang.getNativeLangName())
+                    .append("&r, ");
+        }
+
+        // Remove the last comma and space if present
+        if (out.length() > 2) {
+            out.setLength(out.length() - 2);
+        }
+
+        return out.toString();
     }
 }
