@@ -79,15 +79,18 @@ public class AdapterFactory {
             serverPlatform = "Spigot";
         }
 
+        /*
+        // TODO
         if (serverPlatform.equals("Paper")) {
             try {
-                Class.forName("com.dominicfeliton.worldwidechat.PaperWorldwideChatHelper");
+                Class.forName("com.dominicfeliton.chatpolls.PaperChatPollsHelper");
             } catch (ClassNotFoundException e) {
                 // On paper but using the spigot JAR
                 // sendmsg(?) using spigot on paper, you are missing out on features...
                 serverPlatform = "Spigot";
             }
         }
+         */
 
         return Pair.of(serverPlatform, serverVersion);
     }
@@ -119,7 +122,8 @@ public class AdapterFactory {
         HashMap<String, String> commonRefsDefs = new HashMap<String, String>();
         commonRefsDefs.put("Spigot", packageName + ".util.BukkitCommonRefs");
         commonRefsDefs.put("Bukkit", packageName + ".util.BukkitCommonRefs");
-        commonRefsDefs.put("Paper", packageName + ".util.PaperCommonRefs");
+        //commonRefsDefs.put("Paper", packageName + ".util.PaperCommonRefs");
+        commonRefsDefs.put("Paper", packageName + ".util.BukkitCommonRefs");
         commonRefsDefs.put("Folia", packageName + ".util.FoliaCommonRefs");
 
         return (CommonRefs) getInstance(commonRefsDefs);
@@ -139,7 +143,8 @@ public class AdapterFactory {
         HashMap<String, String> chpHelperDefs = new HashMap<String, String>();
         chpHelperDefs.put("Spigot", packageName + ".BukkitChatPollsHelper");
         chpHelperDefs.put("Bukkit", packageName + ".BukkitChatPollsHelper");
-        chpHelperDefs.put("Paper", packageName + ".PaperChatPollsHelper");
+        //chpHelperDefs.put("Paper", packageName + ".PaperChatPollsHelper");
+        chpHelperDefs.put("Paper", packageName + ".BukkitChatPollsHelper");
         chpHelperDefs.put("Folia", packageName + ".FoliaChatPollsHelper");
 
         return (ChatPollsHelper) getInstance(chpHelperDefs);

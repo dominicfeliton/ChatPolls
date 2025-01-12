@@ -5,3 +5,4 @@ Overrides:
 Messages:
   chpEnabled: 'Enabled ChatPolls version {0}.'
   chpDisabled: 'Disabled ChatPolls version {0}. Goodbye!'
+  chpVersion: 'ChatPolls, version'

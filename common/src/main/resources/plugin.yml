@@ -1,0 +1,23 @@
+name: ChatPolls
+version: 1.0.0
+api-version: 1.13
+description: Poll your players!
+author: Dominic Feliton
+main: com.dominicfeliton.chatpolls.ChatPolls
+folia-supported: false
+commands:
+  chp:
+    description: Prints ChatPolls version.
+    aliases: [ chatpolls ]
+    usage: §4/chp
+    permission: chatpolls.chp
+    permission-message: §4You do not have permission to run this command.
+permissions:
+  chatpolls.*:
+    description: Gives access to all ChatPolls commands.
+    children:
+      chatpolls.chp: true
+    default: op
+  chatpolls.chp:
+    description: Gives access to /chp.
+    default: true

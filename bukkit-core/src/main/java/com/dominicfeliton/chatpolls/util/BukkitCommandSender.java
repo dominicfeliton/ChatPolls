@@ -1,5 +1,6 @@
 package com.dominicfeliton.chatpolls.util;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
 /**
@@ -7,6 +8,10 @@ import org.bukkit.command.CommandSender;
  */
 public class BukkitCommandSender implements GenericCommandSender {
     private final CommandSender bukkitSender;
+
+    public BukkitCommandSender() {
+        bukkitSender = Bukkit.getServer().getConsoleSender();
+    }
 
     public BukkitCommandSender(CommandSender bukkitSender) {
         this.bukkitSender = bukkitSender;

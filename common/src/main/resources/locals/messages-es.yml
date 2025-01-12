@@ -1,0 +1,4 @@
+Messages:
+  chpEnabled: Se habilitó la versión {0} de ChatPolls.
+  chpDisabled: Se ha desactivado la versión {0} de ChatPolls. ¡Adiós!
+  chpVersion: ChatPolls, versión

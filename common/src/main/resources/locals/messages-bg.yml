@@ -1,0 +1,4 @@
+Messages:
+  chpEnabled: Активирана версия на ChatPolls {0}.
+  chpDisabled: Деактивирана версия на ChatPolls {0}. Сбогом!
+  chpVersion: ChatPolls, версия

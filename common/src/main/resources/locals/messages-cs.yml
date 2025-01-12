@@ -1,0 +1,4 @@
+Messages:
+  chpEnabled: Povolená verze ChatPolls {0}.
+  chpDisabled: Zakázána verze ChatPolls {0}. Sbohem!
+  chpVersion: ChatPolls, verze

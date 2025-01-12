@@ -114,7 +114,7 @@ public class ConfigurationHandler {
             }
 
             /* Copy newest config */
-            main.saveResource("messages-" + inLocalLang + ".yml", true);
+            main.saveResource("locals" + File.separator + "messages-" + inLocalLang + ".yml", true);
             msgConfig = YamlConfiguration.loadConfiguration(msgFile);
             msgConfig.set("DoNotTouchThis.Version", ChatPolls.messagesConfigVersion);
 

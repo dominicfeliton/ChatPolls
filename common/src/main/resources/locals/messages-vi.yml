@@ -1,0 +1,4 @@
+Messages:
+  chpEnabled: Đã bật phiên bản ChatPolls {0}.
+  chpDisabled: Đã vô hiệu hóa phiên bản ChatPolls {0}. Tạm biệt!
+  chpVersion: ChatPolls, phiên bản

@@ -1,6 +1,7 @@
 package com.dominicfeliton.chatpolls;
 
 import com.dominicfeliton.chatpolls.configuration.ConfigurationHandler;
+import com.dominicfeliton.chatpolls.util.BukkitCommandSender;
 import com.dominicfeliton.chatpolls.util.GenericCommandSender;
 import com.dominicfeliton.chatpolls.util.CommonRefs;
 import com.dominicfeliton.chatpolls.util.PlayerRecord;
@@ -10,6 +11,9 @@ import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.apache.maven.artifact.versioning.ComparableVersion;
+import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
@@ -22,7 +26,7 @@ public class ChatPolls extends JavaPlugin {
 
     public static final int bStatsID = 00000;
 
-    public static final String messagesConfigVersion = "010524-1";
+    public static final String messagesConfigVersion = "011124-1";
 
     public static ChatPolls instance;
 
@@ -44,8 +48,6 @@ public class ChatPolls extends JavaPlugin {
     private String platformType;
 
     private ComparableVersion platformVersion;
-
-    private CommonRefs commonRefs;
 
     private AdapterFactory adapterFactory;
 
@@ -102,6 +104,9 @@ public class ChatPolls extends JavaPlugin {
         // Should run first
         initStableObjs();
 
+        // TODO: Move adventure init to ChatPollsHelper, spigot only
+        this.adventure = BukkitAudiences.create(this);
+
         doStartupTasks();
 
         // We made it!
@@ -113,6 +118,12 @@ public class ChatPolls extends JavaPlugin {
     @Override
     public void onDisable() {
         doTakedownTasks();
+
+        // TODO: Move to Helper, spigot only
+        if (this.adventure != null) {
+            this.adventure.close();
+            this.adventure = null;
+        }
 
         getLogger().info(refs.getPlainMsg("chpDisabled",
                 "&6" + getPluginVersion(),
@@ -139,6 +150,29 @@ public class ChatPolls extends JavaPlugin {
         // TODO: Everything
     }
 
+    /* Init all commands */
+    @Override
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        /* Commands that run regardless of translator settings, but not during restarts */
+        if (globalState.equals("Enabled")) {
+            switch (command.getName()) {
+                case "chp":
+                    // ChP version
+                    BukkitCommandSender s = new BukkitCommandSender(sender);
+                    final TextComponent versionNotice = Component.text()
+                            .content(refs.getPlainMsg("chpVersion", s)).color(NamedTextColor.RED)
+                            .append((Component.text().content(" " + getPluginVersion())).color(NamedTextColor.LIGHT_PURPLE))
+                            .append((Component.text().content(" (Made with love by ")).color(NamedTextColor.GOLD))
+                            .append((Component.text().content("Dominic Feliton")).color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD))
+                            .append((Component.text().content(")").resetStyle()).color(NamedTextColor.GOLD)).build();
+                    refs.sendMsg(s, versionNotice, true);
+                    //refs.playSound(WWC_VERSION, sender);
+                    return true;
+            }
+        }
+        return true;
+    }
+
     // Setters
     public void addPlayerRecord(PlayerRecord i) {
         playerRecords.put(i.getUUID(), i);
@@ -162,7 +196,7 @@ public class ChatPolls extends JavaPlugin {
     }
 
     public CommonRefs getCommonRefs() {
-        return commonRefs;
+        return refs;
     }
 
     public GenericCommandSender getCommandSender() {
