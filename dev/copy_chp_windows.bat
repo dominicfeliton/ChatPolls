@@ -2,10 +2,10 @@
 REM ======================================
 REM  copy_chp_windows.bat
 REM  1) Ensures each server folder has
-REM     run_mcserver.bat from GitHub
+REM     run.bat from GitHub
 REM  2) Copies plugin jars
 REM  3) Injects or overwrites environment
-REM     variables in run_mcserver.bat
+REM     variables in run.bat
 REM  4) Starts only the main server
 REM ======================================
 
@@ -43,9 +43,9 @@ if not exist "%SERVER_DIR%" (
     mkdir "%SERVER_DIR%"
 )
 
-REM 2) If run_mcserver.bat not found, clone fresh script from GitHub
-if not exist "%SERVER_DIR%\run_mcserver.bat" (
-    echo [setup_mc_script] run_mcserver.bat NOT found => cloning fresh script...
+REM 2) If run.bat not found, clone fresh script from GitHub
+if not exist "%SERVER_DIR%\run.bat" (
+    echo [setup_mc_script] run.bat NOT found => cloning fresh script...
     set "TMPDIR=%TEMP%\tempclone_%RANDOM%"
     mkdir "%TMPDIR%"
     git clone --depth=1 https://github.com/dominicfeliton/minecraft-server-script "%TMPDIR%"
@@ -64,8 +64,8 @@ if not "%MC_VERSION%"=="" (
     echo %MC_VERSION% > "%SERVER_DIR%\current_version.txt"
 )
 
-REM 4) Inject/overwrite environment variables inside run_mcserver.bat
-call :inject_env_vars "%SERVER_DIR%\run_mcserver.bat" "%PROJECT_NAME%" "%SERVER_DIR%"
+REM 4) Inject/overwrite environment variables inside run.bat
+call :inject_env_vars "%SERVER_DIR%\run.bat" "%PROJECT_NAME%" "%SERVER_DIR%"
 
 goto :eof
 
@@ -75,7 +75,7 @@ goto :eof
 ::   Removes any old set PROJECT_NAME / SERVER_DIR,
 ::   then inserts them near the top (after @echo off).
 ::
-::   %1 = path to run_mcserver.bat
+::   %1 = path to run.bat
 ::   %2 = PROJECT_NAME
 ::   %3 = SERVER_DIR
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -177,7 +177,7 @@ copy /Y "%CHP_PAPER_JAR%" "%CHP_SERVER_1132%\plugins"
 
 echo --- Finally, launching the MAIN server only ---
 echo Starting server at: %CHP_SERVER%
-call "%CHP_SERVER%\run_mcserver.bat"
+call "%CHP_SERVER%\run.bat"
 
 echo Done!
 exit /b 0
