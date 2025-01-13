@@ -6,11 +6,11 @@
 # Adjust these paths as you like.
 
 # Server folders
-SPIGOT_DIR="/Users/$USER/Documents/spigot_wwc_test_server"
-MAGMA_DIR="/Users/$USER/Documents/magma_wwc_test_server"
-PAPER1132_DIR="/Users/$USER/Documents/paper1132_wwc_test_server"
-PAPER_LATEST_DIR="/Users/$USER/Documents/wwc_test_server"
-FOLIA_DIR="/Users/$USER/Documents/folia_wwc_test_server"
+SPIGOT_DIR="/Users/$USER/Documents/spigot_chp_test_server"
+MAGMA_DIR="/Users/$USER/Documents/magma_chp_test_server"
+PAPER1132_DIR="/Users/$USER/Documents/paper1132_chp_test_server"
+PAPER_LATEST_DIR="/Users/$USER/Documents/chp_test_server"
+FOLIA_DIR="/Users/$USER/Documents/folia_chp_test_server"
 
 # Plugin jar locations
 CHATPOLLS_SPIGOT_JAR="/Users/$USER/Documents/GitHub/ChatPolls/spigot-output/ChatPolls-spigot.jar"
@@ -28,7 +28,7 @@ CHATPOLLS_FOLIA_JAR="/Users/$USER/Documents/GitHub/ChatPolls/folia-output/ChatPo
 #   4) Injects or overwrites "export PROJECT_NAME=..."
 ###################################
 setup_mc_script() {
-  local server_dir="$1"      # e.g. /Users/you/Documents/magma_wwc_test_server
+  local server_dir="$1"      # e.g. /Users/you/Documents/magma_chp_test_server
   local project_name="$2"    # e.g. "spigot", "paper", "folia"
   local mc_version="$3"      # e.g. "1.13.2"
 
@@ -55,24 +55,35 @@ setup_mc_script() {
     echo "[setup_mc_script] Copied fresh script files into $server_dir."
   fi
 
-  # Set the version in current_version.txt
-  if [[ -n "$mc_version" ]]; then
-    echo "$mc_version" > "$server_dir/current_version.txt"
+  # --- Overwrite or insert our exports in run.sh (macOS/Linux friendly) ---
+
+  # 1) Remove any old lines that set these exports (avoid duplicates).
+  sed -i.bak '/^export PROJECT_NAME=/d' "$server_dir/run.sh"
+  sed -i.bak '/^export SERVER_DIR=/d'    "$server_dir/run.sh"
+
+  # 2) Figure out where to insert:
+  #    If there's a shebang as the first line, we insert after line 1.
+  #    Otherwise, we insert at line 1.
+  if grep -q '^#!' "$server_dir/run.sh"; then
+    # Insert after line 1
+    sed -i.bak "2 i\\
+  export PROJECT_NAME=\"$project_name\"\\
+  export SERVER_DIR=\"$server_dir\"\\
+  " "$server_dir/run.sh"
+  else
+    # Insert at top of file
+    sed -i.bak "1 i\\
+  export PROJECT_NAME=\"$project_name\"\\
+  export SERVER_DIR=\"$server_dir\"\\
+  " "$server_dir/run.sh"
   fi
 
-  # Inject or overwrite "export PROJECT_NAME=..."
-  if [[ -f "$server_dir/run.sh" ]]; then
-    if ! grep -q '^export PROJECT_NAME=' "$server_dir/run.sh"; then
-      # Insert at the top
-      sed -i.bak "1s;^;export PROJECT_NAME=\"$project_name\"\n;" "$server_dir/run.sh"
-    else
-      # Or forcibly replace
-      sed -i.bak "s|^export PROJECT_NAME=.*|export PROJECT_NAME=\"$project_name\"|" "$server_dir/run.sh"
-    fi
-    rm -f "$server_dir/run.sh.bak"
-  else
-    echo "[setup_mc_script] WARNING: run.sh still missing in $server_dir after clone/copy."
-  fi
+  # 3) macOS quirk:
+  #    On macOS, `sed -i.bak "2 i\..."` works best with a backslash+newline.
+  #    If using GNU sed on Linux, it should also be fine.
+  #    Make sure you keep those backslashes + newlines exactly.
+
+  rm -f "$server_dir/run.sh.bak"
 }
 
 ###################################
@@ -90,16 +101,16 @@ else
 fi
 
 # 1) Setup each server folder
-setup_mc_script "$SPIGOT_DIR"       "spigot" "1.21.4"
-setup_mc_script "$PAPER1132_DIR"    "paper"  "1.13.2"
+#setup_mc_script "$SPIGOT_DIR"       "spigot" "1.21.4"
+#setup_mc_script "$PAPER1132_DIR"    "paper"  "1.13.2"
 setup_mc_script "$PAPER_LATEST_DIR" "paper"  "1.21.4"
-setup_mc_script "$FOLIA_DIR"        "folia"  "1.21.4"
+#setup_mc_script "$FOLIA_DIR"        "folia"  "1.21.4"
 
 # 2) Copy plugin jars
-mkdir -p "$SPIGOT_DIR/plugins"       2>/dev/null
-mkdir -p "$PAPER1132_DIR/plugins"    2>/dev/null
-mkdir -p "$PAPER_LATEST_DIR/plugins" 2>/dev/null
-mkdir -p "$FOLIA_DIR/plugins"        2>/dev/null
+mkdir -p "$SPIGOT_DIR/plugins"        2>/dev/null
+mkdir -p "$PAPER1132_DIR/plugins"     2>/dev/null
+mkdir -p "$PAPER_LATEST_DIR/plugins"  2>/dev/null
+mkdir -p "$FOLIA_DIR/plugins"         2>/dev/null
 
 cp -v "$CHATPOLLS_SPIGOT_JAR" "$SPIGOT_DIR/plugins"
 cp -v "$CHATPOLLS_SPIGOT_JAR" "$PAPER1132_DIR/plugins"
