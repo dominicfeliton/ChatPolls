@@ -18,7 +18,7 @@ This cleans our POM, runs our MockBukkit unit tests, runs YAMLTranslator, and th
 
 If you cannot run YAMLTranslator because you do not have access to Amazon Translate, use this command instead:
 
-```clean package -Dyamltranslator.skip=true```
+```clean package -D"yamltranslator.skip"=true```
 
 Once you are done, you can kill the MongoDB/MySQL/PostgreSQL containers via ```takedown-dev-env.sh``` on macOS/linux,
 and ```takedown-dev-env.bat``` on Windows.
