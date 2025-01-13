@@ -23,5 +23,11 @@ If you cannot run YAMLTranslator because you do not have access to Amazon Transl
 Once you are done, you can kill the MongoDB/MySQL/PostgreSQL containers via ```takedown-dev-env.sh``` on macOS/linux,
 and ```takedown-dev-env.bat``` on Windows.
 
+# Setting up a test server for ChP
+
+First, take a look at `copy_wwc_macos_linux.sh` or `copy_wwc_windows.bat`. Adjust the paths to the correct ones on your current machine.
+
+Once that's done and you've ran a successfully mvn build, just run these scripts and a server on `localhost:25565` will be available to join via the classic Minecraft client.
+
 Let me know if you have any questions!
 _- Dominic Feliton_
