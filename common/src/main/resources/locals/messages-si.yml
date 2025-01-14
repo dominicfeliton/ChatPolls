@@ -2,3 +2,11 @@ Messages:
   chpEnabled: චැට්පෝල්ස් අනුවාදය සක්රීය කර ඇත {0}
   chpDisabled: අක්රීය චැට්පෝල් අනුවාදය {0}. ආයුබෝවන්!
   chpVersion: චැට්පෝල්ස්, අනුවාදය
+  chpConfigDebugEnabled: DEBUG මාදිලිය සක්රීය කර ඇත. ඔබ සංවර්ධකයෙකු හෝ දෝශ නිරාකරණය
+    කරන්නෙකු නොවේ නම්, ඔබ බොහෝ විට මෙය ක්රියා විරහිත කළ යුතුය.
+  chpUpdaterUpToDate: චැට්පෝල්ස් යාවත්කාලීන වේ.
+  chpUpdaterFailedGeneric: යාවත්කාලීන කිරීම් පරීක්ෂා කිරීමට අපොහොසත් විය. අපි පසුව
+    නැවත උත්සාහ කරමු.
+  chpUpdaterFutureDate: ඔබ ChatPolls හි බීටා බිල්ඩුවක් ක්රියාත්මක කරයි.
+  chpUpdaterOutOfDate: 'ChatPolls හි නව අනුවාදයක් ලබා ගත හැකිය ({0}). එය මෙතැනින්
+    බාගන්න:'

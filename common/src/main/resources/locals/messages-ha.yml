@@ -2,3 +2,9 @@ Messages:
   chpEnabled: An kunna sigar ChatPolls {0}.
   chpDisabled: Nakasa sigar ChatPolls {0}. Barkwanci!
   chpVersion: ChatPolls, sigar
+  chpConfigDebugEnabled: An kunna yanayin DEBUG. Idan ba ku mai haɓakawa ko mai matsala
+    ba, tabbas yakamata ku kashe wannan.
+  chpUpdaterUpToDate: ChatPolls na yau da kullun.
+  chpUpdaterFailedGeneric: An kasa bincika sabuntawa. Za mu sake gwada daga baya.
+  chpUpdaterFutureDate: Kuna gudanar da ginin beta na ChatPolls.
+  chpUpdaterOutOfDate: 'Ana samun sabon sigar ChatPolls ({0}). Zazzage shi anan:'

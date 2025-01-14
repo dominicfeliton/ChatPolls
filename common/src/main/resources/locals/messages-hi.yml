@@ -2,3 +2,10 @@ Messages:
   chpEnabled: चैटपोल संस्करण {0} को सक्षम किया गया।
   chpDisabled: अक्षम चैटपोल संस्करण {0}। अलविदा!
   chpVersion: चैटपोल, संस्करण
+  chpConfigDebugEnabled: डिबग मोड चालू किया गया। यदि आप डेवलपर या समस्या निवारक नहीं
+    हैं, तो आपको शायद इसे बंद कर देना चाहिए।
+  chpUpdaterUpToDate: चैटपोल अप-टू-डेट है।
+  chpUpdaterFailedGeneric: अपडेट की जांच करने में विफल। हम बाद में फिर से कोशिश करेंगे।
+  chpUpdaterFutureDate: आप ChatPolls का बीटा बिल्ड चला रहे हैं।
+  chpUpdaterOutOfDate: 'ChatPolls का नया संस्करण उपलब्ध है ({0})। इसे यहां डाउनलोड
+    करें:'

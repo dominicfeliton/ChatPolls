@@ -7,10 +7,10 @@ import org.bukkit.command.CommandSender;
  * Adapts Bukkit's CommandSender to our platform-agnostic CommandSender interface.
  */
 public class BukkitCommandSender implements GenericCommandSender {
-    private final CommandSender bukkitSender;
+    private CommandSender bukkitSender;
 
     public BukkitCommandSender() {
-        bukkitSender = Bukkit.getServer().getConsoleSender();
+        setConsoleCommandSender();
     }
 
     public BukkitCommandSender(CommandSender bukkitSender) {
@@ -23,5 +23,10 @@ public class BukkitCommandSender implements GenericCommandSender {
      */
     public CommandSender getBukkitSender() {
         return bukkitSender;
+    }
+
+    @Override
+    public void setConsoleCommandSender() {
+        bukkitSender = Bukkit.getServer().getConsoleSender();
     }
 }

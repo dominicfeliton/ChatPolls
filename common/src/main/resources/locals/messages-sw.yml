@@ -2,3 +2,9 @@ Messages:
   chpEnabled: Imewezeshwa toleo la ChatPolls {0}.
   chpDisabled: Toleo la ChatPolls imezimwa {0}. Kweli!
   chpVersion: ChatPolls, toleo
+  chpConfigDebugEnabled: Hali ya DEBUG iliyowezesha. Ikiwa wewe sio msanidi programu
+    au mtazamo wa kutatua, labda unapaswa kuzima hii.
+  chpUpdaterUpToDate: ChatPolls ni ya kisasa.
+  chpUpdaterFailedGeneric: Imeshindwa kuangalia sasisho. Tutajaribu tena baadaye.
+  chpUpdaterFutureDate: Unaendesha ujenzi wa beta wa ChatPolls.
+  chpUpdaterOutOfDate: 'Toleo jipya la ChatPolls linapatikana ({0}). Pakua hapa:'

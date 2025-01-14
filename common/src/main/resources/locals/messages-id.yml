@@ -2,3 +2,9 @@ Messages:
   chpEnabled: Diaktifkan ChatPolls versi {0}.
   chpDisabled: ChatPolls dinonaktifkan versi {0}. Selamat tinggal!
   chpVersion: ChatPolls, versi
+  chpConfigDebugEnabled: Mode DEBUG diaktifkan. Jika Anda bukan pengembang atau pemecah
+    masalah, Anda mungkin harus menonaktifkannya.
+  chpUpdaterUpToDate: ChatPolls terbaru.
+  chpUpdaterFailedGeneric: Gagal memeriksa pembaruan. Kami akan mencoba lagi nanti.
+  chpUpdaterFutureDate: Anda menjalankan versi beta dari ChatPolls.
+  chpUpdaterOutOfDate: 'Versi baru ChatPolls tersedia ({0}). Unduh di sini:'

@@ -2,3 +2,11 @@ Messages:
   chpEnabled: ChatPolls хувилбарыг идэвхжүүлсэн {0}.
   chpDisabled: Хөгжлийн бэрхшээлтэй ChatPolls хувилбар {0}. Баяртай!
   chpVersion: ChatPolls, хувилбар
+  chpConfigDebugEnabled: DEBUG горимыг идэвхжүүлсэн. Хэрэв та хөгжүүлэгч эсвэл алдааг
+    олж засварлагч биш бол магадгүй үүнийг унтраах хэрэгтэй.
+  chpUpdaterUpToDate: ChatPolls нь хамгийн сүүлийн үеийн.
+  chpUpdaterFailedGeneric: Шинэчлэлтийг шалгаж чадаагүй. Бид дараа нь дахин оролдох
+    болно.
+  chpUpdaterFutureDate: Та ChatPolls-ийн бета бүтээлийг ажиллуулж байна.
+  chpUpdaterOutOfDate: 'ChatPolls-ийн шинэ хувилбар авах боломжтой ({0}). Эндээс татаж
+    аваарай:'

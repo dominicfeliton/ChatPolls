@@ -2,3 +2,11 @@ Messages:
   chpEnabled: Nooca ChatPolls la ogoleyay {0}.
   chpDisabled: Nooca ChatPolls naafta {0}. Daawo!
   chpVersion: ChatPolls, nooca
+  chpConfigDebugEnabled: Qaabka DEBUG la ogoleyay. Haddii aad ahayn horumar ama dhaqaalka,
+    waa in waa in aad arrintan u joogto.
+  chpUpdaterUpToDate: ChatPolls waa soo saaray.
+  chpUpdaterFailedGeneric: Fashilmay in la hubiyo cusboonayaasha Markale waxaan isku
+    dayi doonnaa dambe.
+  chpUpdaterFutureDate: Waxaad ku maraynaa dhismaha beta ee ChatPolls.
+  chpUpdaterOutOfDate: 'Nooca cusub ee ChatPolls waxaa la heli lahaa ({0}). Halkan
+    ka degso:'

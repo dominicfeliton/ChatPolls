@@ -2,3 +2,11 @@ Messages:
   chpEnabled: فعال کردن چت پولز نسخه {0}.
   chpDisabled: غیرفعال کردن چت پولز نسخه {0}. خداحافظ
   chpVersion: چت نظرسنجی، نسخه
+  chpConfigDebugEnabled: حالت اشکال زدایی فعال اگر شما یک توسعه دهنده یا عیب یابی
+    نیستید، احتمالاً باید این را خاموش کنید.
+  chpUpdaterUpToDate: ChatPolls به روز است.
+  chpUpdaterFailedGeneric: نتوانست به روز رسانی ها را بررسی کند. بعدا دوباره امتحان
+    خواهیم کرد.
+  chpUpdaterFutureDate: شما در حال اجرا یک نسخه بتا از ChatPolls هستید.
+  chpUpdaterOutOfDate: 'نسخه جدیدی از ChatPolls در دسترس است ({0}). آن را از اینجا
+    بارگیری کنید:'

@@ -2,3 +2,11 @@ Messages:
   chpEnabled: Abilitata la versione {0} di ChatPolls.
   chpDisabled: ChatPolls disabilitato versione {0}. Arrivederci!
   chpVersion: ChatPolls, versione
+  chpConfigDebugEnabled: Modalità DEBUG abilitata. Se non sei uno sviluppatore o un
+    risolutore di problemi, probabilmente dovresti disattivarla.
+  chpUpdaterUpToDate: ChatPolls è aggiornato.
+  chpUpdaterFailedGeneric: Impossibile verificare la disponibilità di aggiornamenti.
+    Riproveremo più tardi.
+  chpUpdaterFutureDate: Stai eseguendo una versione beta di ChatPolls.
+  chpUpdaterOutOfDate: 'È disponibile una nuova versione di ChatPolls ({0}). Scaricala
+    qui:'

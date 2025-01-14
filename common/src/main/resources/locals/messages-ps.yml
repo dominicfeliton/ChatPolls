@@ -2,3 +2,10 @@ Messages:
   chpEnabled: فعال شوي چټپول نسخه {0}.
   chpDisabled: غیر فعال د چټپول نسخه {0}. الوداع!
   chpVersion: چیټپول، نسخه
+  chpConfigDebugEnabled: فعال شوي ډیبګ حالت. که تاسو یو پرمختګ یا ستونزې حل کوونکی
+    نه یاست، نو تاسو باید شاید دا بند کړئ.
+  chpUpdaterUpToDate: چیټپول تازه دی.
+  chpUpdaterFailedGeneric: د تازه معلومات لپاره د کتنې کې ناکامه شو. موږ به وروسته
+    بیا هڅه وکړو.
+  chpUpdaterFutureDate: تاسو د ChatPolls بیٹا جوړولو چلوئ.
+  chpUpdaterOutOfDate: 'د ChatPolls نوی نسخه شتون لري ({0}). دا دلته ډاونلوډ کړئ:'

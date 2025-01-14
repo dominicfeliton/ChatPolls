@@ -2,3 +2,9 @@ Messages:
   chpEnabled: የቻትፖልስ ስሪት {0} ያንቃል።
   chpDisabled: የተሰናከለ የቻትፖሎች ስሪት {0}። ደህና!
   chpVersion: ቻትፖልስ፣ ስሪት
+  chpConfigDebugEnabled: የንቁ የዲባግ ሁነታ። ገንቢ ወይም የመላ ችግር መከላከያ ካልሆኑ ምናልባት ይህንን ማጥፋት
+    አለብዎት።
+  chpUpdaterUpToDate: ቻትፖልስ ወቅታዊ ነው።
+  chpUpdaterFailedGeneric: ዝማኔዎችን ማረጋገጥ አልተሳካም። በኋላ እንደገና እንሞክራለን።
+  chpUpdaterFutureDate: የ ChatPolls የቤታ ግንባታ እያካሄዱ ነው።
+  chpUpdaterOutOfDate: 'አዲስ የ ChatPolls ስሪት ይገኛል ({0})። እዚህ ያውርዱት:'

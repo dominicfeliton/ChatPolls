@@ -2,3 +2,11 @@ Messages:
   chpEnabled: Lubatud ChatPolls versioon {0}.
   chpDisabled: Keelatud ChatPolli versioon {0}. Hüvasti!
   chpVersion: ChatPolls, versioon
+  chpConfigDebugEnabled: Lubatud DEBUG režiim. Kui te ei ole arendaja ega tõrkeotsingu,
+    peaksite selle tõenäoliselt välja lülitama.
+  chpUpdaterUpToDate: ChatPolls on ajakohane.
+  chpUpdaterFailedGeneric: Värskenduste kontrollimine ebaõnnestus. Proovime hiljem
+    uuesti.
+  chpUpdaterFutureDate: Te kasutate ChatPolli beetaversiooni.
+  chpUpdaterOutOfDate: 'Saadaval on ChatPollsi uus versioon ({0}). Laadige see alla
+    siit:'

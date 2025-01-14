@@ -2,3 +2,11 @@ Messages:
   chpEnabled: Đã bật phiên bản ChatPolls {0}.
   chpDisabled: Đã vô hiệu hóa phiên bản ChatPolls {0}. Tạm biệt!
   chpVersion: ChatPolls, phiên bản
+  chpConfigDebugEnabled: Đã bật chế độ DEBUG. Nếu bạn không phải là nhà phát triển
+    hoặc người khắc phục sự cố, có lẽ bạn nên tắt tính năng này.
+  chpUpdaterUpToDate: ChatPolls được cập nhật.
+  chpUpdaterFailedGeneric: Không thể kiểm tra các bản cập nhật. Chúng tôi sẽ thử lại
+    sau.
+  chpUpdaterFutureDate: Bạn đang chạy bản beta của ChatPolls.
+  chpUpdaterOutOfDate: 'Một phiên bản mới của ChatPolls đã có sẵn ({0}). Tải xuống
+    tại đây:'

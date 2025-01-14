@@ -2,3 +2,10 @@ Messages:
   chpEnabled: Virkt ChatPolls útgáfa {0}.
   chpDisabled: Óvirk ChatPolls útgáfa {0}. Kveðja!
   chpVersion: ChatPolls, útgáfa
+  chpConfigDebugEnabled: Virkt DEBUG ham. Ef þú ert ekki verktaki eða úrræðaleiki
+    ættirðu líklega að slökkva á þessu.
+  chpUpdaterUpToDate: ChatPolls er uppfærð.
+  chpUpdaterFailedGeneric: Ekki tókst að athuga uppfærslur. Við munum reyna aftur
+    síðar.
+  chpUpdaterFutureDate: Þú ert að keyra beta smíði af ChatPolls.
+  chpUpdaterOutOfDate: 'Ný útgáfa af ChatPolls er fáanleg ({0}). Sæktu það hér:'

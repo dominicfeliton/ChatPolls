@@ -2,3 +2,11 @@ Messages:
   chpEnabled: Iespējota ChatPolls versija {0}.
   chpDisabled: Atspējota ChatPolls versija {0}. Uz redzešanos!
   chpVersion: ChatPolls, versija
+  chpConfigDebugEnabled: Iespējošs DEBUG režīms. Ja neesat izstrādātājs vai problēmu
+    novēršanas rīkotājs, iespējams, tas jāizslēdz.
+  chpUpdaterUpToDate: ChatPolls ir atjaunināts.
+  chpUpdaterFailedGeneric: Neizdevās pārbaudīt atjauninājumus. Mēs mēģināsim vēlreiz
+    vēlāk.
+  chpUpdaterFutureDate: Jūs izmantojat ChatPolls beta versiju.
+  chpUpdaterOutOfDate: 'Ir pieejama jauna ChatPolls versija ({0}). Lejupielādējiet
+    to šeit:'

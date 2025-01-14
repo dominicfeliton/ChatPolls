@@ -2,3 +2,9 @@ Messages:
   chpEnabled: Omogućena verzija ChatPolls {0}.
   chpDisabled: Onemogućena verzija ChatPolls {0}. Zbogom!
   chpVersion: ChatPolls, verzija
+  chpConfigDebugEnabled: Omogućen režim DEBUG. Ako niste programer ili alat za rešavanje
+    problema, verovatno biste to trebali isključiti.
+  chpUpdaterUpToDate: ChatPolls je ažuriran.
+  chpUpdaterFailedGeneric: Provera ažuriranja nije uspela. Pokušaćemo ponovo kasnije.
+  chpUpdaterFutureDate: Izvodite beta verziju ChatPolls.
+  chpUpdaterOutOfDate: 'Dostupna je nova verzija ChatPolls ({0}). Preuzmite ga ovde:'

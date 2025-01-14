@@ -2,3 +2,8 @@ Messages:
   chpEnabled: ChatPolls 버전 {0} 활성화했습니다.
   chpDisabled: 비활성화된 채팅투표 버전 {0}.안녕히 계세요!
   chpVersion: 채팅 설문, 버전
+  chpConfigDebugEnabled: 디버그 모드를 활성화했습니다.개발자나 문제 해결사가 아니라면 이 기능을 꺼야 할 수도 있습니다.
+  chpUpdaterUpToDate: ChatPolls는 최신 버전입니다.
+  chpUpdaterFailedGeneric: 업데이트를 확인하지 못했습니다.나중에 다시 시도하겠습니다.
+  chpUpdaterFutureDate: ChatPolls의 베타 빌드를 실행 중입니다.
+  chpUpdaterOutOfDate: 'ChatPolls의 새 버전을 사용할 수 있습니다 ({0}).여기에서 다운로드하세요:'

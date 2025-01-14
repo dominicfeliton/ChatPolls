@@ -2,3 +2,11 @@ Messages:
   chpEnabled: 'Միացված է ChatPolls տարբերակը {0}:'
   chpDisabled: Անջատված ChatPolls տարբերակը {0}. Հրաժեշտ!
   chpVersion: ChatPolls, տարբերակ
+  chpConfigDebugEnabled: 'Միացված է DEBUG ռեժիմը: Եթե դուք չեք մշակող կամ Troubleshooter,
+    դուք պետք է հավանաբար անջատել այս անջատել.'
+  chpUpdaterUpToDate: 'ChatPolls-ը արդիական է:'
+  chpUpdaterFailedGeneric: 'Թարմացումները ստուգել չհաջողվեց: Մենք նորից կփորձենք ավելի
+    ուշ:'
+  chpUpdaterFutureDate: 'Դուք վարում եք ChatPolls- ի բետա կառուցումը:'
+  chpUpdaterOutOfDate: 'ChatPolls- ի նոր տարբերակը հասանելի է ({0}): Ներբեռնեք այն
+    այստեղ.'

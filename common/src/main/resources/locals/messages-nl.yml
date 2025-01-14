@@ -2,3 +2,11 @@ Messages:
   chpEnabled: ChatPolls versie {0} ingeschakeld.
   chpDisabled: ChatPolls versie {0} uitgeschakeld. Vaarwel!
   chpVersion: ChatPolls, versie
+  chpConfigDebugEnabled: DEBUG-modus ingeschakeld. Als u geen ontwikkelaar of probleemoplosser
+    bent, moet u dit waarschijnlijk uitschakelen.
+  chpUpdaterUpToDate: ChatPolls is up-to-date.
+  chpUpdaterFailedGeneric: Controleren op updates is mislukt. We proberen het later
+    nog eens.
+  chpUpdaterFutureDate: Je gebruikt een bètaversie van ChatPolls.
+  chpUpdaterOutOfDate: 'Er is een nieuwe versie van ChatPolls beschikbaar ({0}). Download
+    het hier:'

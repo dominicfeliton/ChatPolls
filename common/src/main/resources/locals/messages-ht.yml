@@ -2,3 +2,11 @@ Messages:
   chpEnabled: Pèmèt ChatPolls vèsyon {0}.
   chpDisabled: Enfim ChatPolls vèsyon {0}. orevwa!
   chpVersion: ChatPolls, vèsyon
+  chpConfigDebugEnabled: Pèmèt mòd DEBUG. Si ou pa yon pwomotè oswa depanaj, ou ta
+    dwe pwobableman vire sa a koupe.
+  chpUpdaterUpToDate: ChatPolls se monte-a-dat.
+  chpUpdaterFailedGeneric: Echwe pou tcheke pou dènye nouvèl. Nou pral eseye ankò
+    pita.
+  chpUpdaterFutureDate: Ou ap kouri yon bati beta nan ChatPolls.
+  chpUpdaterOutOfDate: 'Yon nouvo vèsyon nan ChatPolls ki disponib ({0}). Telechaje
+    li isit la:'

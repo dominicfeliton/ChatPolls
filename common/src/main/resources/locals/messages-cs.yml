@@ -2,3 +2,11 @@ Messages:
   chpEnabled: Povolená verze ChatPolls {0}.
   chpDisabled: Zakázána verze ChatPolls {0}. Sbohem!
   chpVersion: ChatPolls, verze
+  chpConfigDebugEnabled: Povolený režim DEBUG. Pokud nejste vývojář nebo poradce při
+    potížích, měli byste to pravděpodobně vypnout.
+  chpUpdaterUpToDate: ChatPolls je aktuální.
+  chpUpdaterFailedGeneric: Nepodařilo se zkontrolovat aktualizace. Zkusíme to znovu
+    později.
+  chpUpdaterFutureDate: Používáte beta verzi ChatPolls.
+  chpUpdaterOutOfDate: 'K dispozici je nová verze ChatPolls ({0}). Stáhněte si ji
+    zde:'

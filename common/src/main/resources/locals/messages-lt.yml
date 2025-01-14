@@ -2,3 +2,10 @@ Messages:
   chpEnabled: Įjungta “ChatPolls” versija {0}.
   chpDisabled: Išjungta “ChatPolls” versija {0}. Sudie!
   chpVersion: ChatPolls, versija
+  chpConfigDebugEnabled: Įjungtas DEBUG režimas. Jei nesate kūrėjas ar trikčių šalinimo
+    įrankis, tikriausiai turėtumėte tai išjungti.
+  chpUpdaterUpToDate: “ChatPolls” yra naujausia.
+  chpUpdaterFailedGeneric: Nepavyko patikrinti, ar nėra atnaujinimų. Vėliau bandysime
+    dar kartą.
+  chpUpdaterFutureDate: Jūs naudojate “ChatPolls” beta versiją.
+  chpUpdaterOutOfDate: 'Yra nauja “ChatPolls” versija ({0}). Atsisiųskite jį čia:'

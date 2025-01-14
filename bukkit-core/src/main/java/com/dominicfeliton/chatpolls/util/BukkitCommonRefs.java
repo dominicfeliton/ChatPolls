@@ -17,6 +17,7 @@ import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.IllegalPluginAccessException;
@@ -38,7 +39,7 @@ public class BukkitCommonRefs extends CommonRefs {
         }
 
         if (main.getConfigManager().getMainConfig().getBoolean("General.enableDebugMode")) {
-            main.getLogger().warning("DEBUG: " + inMessage);
+            warnLog("DEBUG: " + inMessage);
         }
     }
 
@@ -129,10 +130,10 @@ public class BukkitCommonRefs extends CommonRefs {
         } else {
             if (messagesConfig.getString("Messages." + ChatColor.stripColor(messageName)) == null) {
                 if (code.isEmpty()) {
-                    main.getLogger().severe("Bad message (" + messageName + ")! Please fix your messages-" + globalCode + ".yml.");
+                    severeLog("Bad message (" + messageName + ")! Please fix your messages-" + globalCode + ".yml.");
                     return Component.text().content(ChatColor.RED + "Bad message (" + messageName + ")! Please fix your messages-" + globalCode + ".yml.").build();
                 } else {
-                    main.getLogger().severe("Bad message (" + messageName + ")! Please fix your messages-" + code + ".yml.");
+                    severeLog("Bad message (" + messageName + ")! Please fix your messages-" + code + ".yml.");
                     return Component.text().content(ChatColor.RED + "Bad message (" + messageName + ")! Please fix your messages-" + code + ".yml.").build();
                 }
             }
@@ -147,6 +148,21 @@ public class BukkitCommonRefs extends CommonRefs {
 
         // Return fixedMessage with replaced vars
         return Component.text().content(MessageFormat.format(convertedOriginalMessage, (Object[]) replacements)).build();
+    }
+
+    @Override
+    public void log(String message) {
+        main.getLogger().info(ChatColor.translateAlternateColorCodes('&', message));
+    }
+
+    @Override
+    public void warnLog(String message) {
+        main.getLogger().warning(ChatColor.translateAlternateColorCodes('&', message));
+    }
+
+    @Override
+    public void severeLog(String message) {
+        main.getLogger().severe(ChatColor.translateAlternateColorCodes('&', message));
     }
 
     @Override

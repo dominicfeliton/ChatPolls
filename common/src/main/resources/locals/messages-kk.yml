@@ -2,3 +2,11 @@ Messages:
   chpEnabled: ChatPolls нұсқасы {0} қосылды.
   chpDisabled: ChatPolls нұсқасы өшірілген {0}. Қош бол!
   chpVersion: ChatPolls, нұсқа
+  chpConfigDebugEnabled: DEBUG режимі қосылған. Егер сіз әзірлеуші немесе ақаулықтарды
+    жоюшы болмасаңыз, мұны өшіруіңіз керек шығар.
+  chpUpdaterUpToDate: ChatPolls жаңартылған.
+  chpUpdaterFailedGeneric: Жаңартуларды тексеру сәтсіз аяқталды. Кейінірек қайталап
+    тырысамыз.
+  chpUpdaterFutureDate: Сіз ChatPolls бета-құрастыруын іске қосып жатырсыз.
+  chpUpdaterOutOfDate: 'ChatPolls жаңа нұсқасы қол жетімді ({0}). Оны мына жерден
+    жүктеп алыңыз:'

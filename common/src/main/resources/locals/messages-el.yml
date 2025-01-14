@@ -2,3 +2,11 @@ Messages:
   chpEnabled: Ενεργοποιημένη έκδοση ChatPolls {0}.
   chpDisabled: Απενεργοποιημένη έκδοση ChatPolls {0}. Αντίο!
   chpVersion: Ψήφοι συνομιλίας, έκδοση
+  chpConfigDebugEnabled: Ενεργοποιημένη λειτουργία DEBUG. Εάν δεν είστε προγραμματιστής
+    ή εργαλείο αντιμετώπισης προβλημάτων, πιθανότατα θα πρέπει να το απενεργοποιήσετε.
+  chpUpdaterUpToDate: Το ChatPolls είναι ενημερωμένο.
+  chpUpdaterFailedGeneric: Αποτυχία ελέγχου για ενημερώσεις. Θα προσπαθήσουμε ξανά
+    αργότερα.
+  chpUpdaterFutureDate: Εκτελείτε μια έκδοση beta του ChatPolls.
+  chpUpdaterOutOfDate: 'Μια νέα έκδοση του ChatPolls είναι διαθέσιμη ({0}). Κατεβάστε
+    το εδώ:'

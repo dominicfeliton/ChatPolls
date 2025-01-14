@@ -2,3 +2,8 @@ Messages:
   chpEnabled: 已启用 ChatPolls 版本 {0}。
   chpDisabled: 已禁用 ChatPolls 版本 {0}.再见！
   chpVersion: ChatPolls，版本
+  chpConfigDebugEnabled: 已启用调试模式。如果您不是开发人员或疑难解答者，则可能应该将其关闭。
+  chpUpdaterUpToDate: ChatPolls 是最新的。
+  chpUpdaterFailedGeneric: 无法检查更新。我们稍后再试。
+  chpUpdaterFutureDate: 你正在运行 ChatPolls 的测试版本。
+  chpUpdaterOutOfDate: 新版本的 ChatPolls 现已推出 ({0})。在这里下载：

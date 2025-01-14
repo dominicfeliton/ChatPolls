@@ -2,3 +2,10 @@ Messages:
   chpEnabled: Käytössä ChatPolls -versio {0}.
   chpDisabled: Poistettu ChatPolls -versio {0}. Näkemiin!
   chpVersion: ChatPolls, versio
+  chpConfigDebugEnabled: Käytössä DEBUG-tila. Jos et ole kehittäjä tai vianmääritys,
+    sinun pitäisi todennäköisesti poistaa tämä käytöstä.
+  chpUpdaterUpToDate: ChatPolls on ajan tasalla.
+  chpUpdaterFailedGeneric: Päivitysten tarkistaminen epäonnistui. Yritämme myöhemmin
+    uudelleen.
+  chpUpdaterFutureDate: Käytät ChatPolls -beta-versiota.
+  chpUpdaterOutOfDate: 'Uusi ChatPolls -versio on saatavilla ({0}). Lataa se täältä:'

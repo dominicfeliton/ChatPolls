@@ -2,3 +2,8 @@ Messages:
   chpEnabled: チャット投票バージョン {0} を有効にしました。
   chpDisabled: チャット投票バージョン {0} を無効にしました。さようなら！
   chpVersion: チャット投票、バージョン
+  chpConfigDebugEnabled: デバッグモードを有効にしました。開発者でもトラブルシューティング担当者でもなければ、このモードはオフにすべきでしょう。
+  chpUpdaterUpToDate: チャット投票は最新です。
+  chpUpdaterFailedGeneric: 更新を確認できませんでした。後でもう一度試します。
+  chpUpdaterFutureDate: ChatPolls のベータビルドを実行しています。
+  chpUpdaterOutOfDate: 'チャット投票の新しいバージョンが利用可能です ({0})。ここからダウンロードしてください:'

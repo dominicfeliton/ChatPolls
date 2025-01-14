@@ -2,3 +2,9 @@ Messages:
   chpEnabled: Etkinleştirilmiş ChatPolls sürümü {0}.
   chpDisabled: Devre dışı ChatPolls sürümü {0}. Hoşçakal!
   chpVersion: ChatPolls, sürüm
+  chpConfigDebugEnabled: HATA AYIKLAMA modu etkinleştirildi. Bir geliştirici veya
+    sorun giderici değilseniz, muhtemelen bunu kapatmalısınız.
+  chpUpdaterUpToDate: ChatPolls güncel.
+  chpUpdaterFailedGeneric: Güncellemeler kontrol edilemedi. Daha sonra tekrar deneyeceğiz.
+  chpUpdaterFutureDate: ChatPolls"ün beta sürümünü çalıştırıyorsunuz.
+  chpUpdaterOutOfDate: 'ChatPolls"ün yeni bir sürümü mevcut ({0}). Buradan indirin:'

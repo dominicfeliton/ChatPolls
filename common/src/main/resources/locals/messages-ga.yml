@@ -2,3 +2,10 @@ Messages:
   chpEnabled: Cumasaithe leagan ChatPolls {0}.
   chpDisabled: Leagan ChatPolls faoi mhíchumas {0}. Slána!
   chpVersion: ChatPolls, leagan
+  chpConfigDebugEnabled: Mód DEBUG cumasaithe. Mura bhforbróir nó fabhtcheartóir tú,
+    is dócha gur chóir duit é seo a mhúchadh.
+  chpUpdaterUpToDate: Tá ChatPolls cothrom le dáta.
+  chpUpdaterFailedGeneric: Theip ar sheiceáil le haghaidh nuashonruithe. Déanfaimid
+    iarracht arís níos déanaí.
+  chpUpdaterFutureDate: Tá tógáil béite de ChatPolls á reáchtáil agat.
+  chpUpdaterOutOfDate: 'Tá leagan nua de ChatPolls ar fáil ({0}). Íoslódáil é anseo:'

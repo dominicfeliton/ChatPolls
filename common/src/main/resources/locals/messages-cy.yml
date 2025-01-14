@@ -2,3 +2,11 @@ Messages:
   chpEnabled: Fersiwn ChatPolls wedi'i alluogi {0}.
   chpDisabled: Fersiwn ChatPolls anabl {0}. Ffarwel!
   chpVersion: ChatPolls, fersiwn
+  chpConfigDebugEnabled: Modd DEBUG wedi'i alluogi. Os nad ydych yn ddatblygwr neu'n
+    ddatrys problemau, mae'n debyg y dylech droi hyn i ffwrdd.
+  chpUpdaterUpToDate: Mae ChatPolls yn gyfredol.
+  chpUpdaterFailedGeneric: Methwyd â gwirio am ddiweddariadau. Byddwn yn ceisio eto
+    yn ddiweddarach.
+  chpUpdaterFutureDate: Rydych chi'n rhedeg adeilad beta o ChatPolls.
+  chpUpdaterOutOfDate: 'Mae fersiwn newydd o ChatPolls ar gael ({0}). Lawrlwythwch
+    ef yma:'

@@ -2,3 +2,8 @@ Messages:
   chpEnabled: 啟用聊天民意調查版本 {0}。
   chpDisabled: 禁用聊天民意調查版本 {0}。再見！
   chpVersion: 聊天民意調查，版本
+  chpConfigDebugEnabled: 啟用調試模式。如果您不是開發人員或疑難排解員，則可能應該關閉此功能。
+  chpUpdaterUpToDate: 聊天民意調查是最新的。
+  chpUpdaterFailedGeneric: 無法檢查更新。我們稍後再試一次。
+  chpUpdaterFutureDate: 您正在運行聊天調查的測試版本。
+  chpUpdaterOutOfDate: 新版本的聊天民意見調查已推出（{0}）。在這裡下載：

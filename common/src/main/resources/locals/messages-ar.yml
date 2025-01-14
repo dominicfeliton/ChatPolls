@@ -2,3 +2,9 @@ Messages:
   chpEnabled: تم تمكين إصدار ChatPolls {0}.
   chpDisabled: تم تعطيل إصدار ChatPolls {0}. إلى اللقاء!
   chpVersion: استطلاعات الدردشة، الإصدار
+  chpConfigDebugEnabled: تم تمكين وضع DEBUG. إذا لم تكن مطورًا أو مستكشف أخطاء ومصلحًا
+    للمشكلات، فمن المحتمل أن تقوم بإيقاف تشغيل هذا.
+  chpUpdaterUpToDate: ChatPolls محدثة.
+  chpUpdaterFailedGeneric: فشلت عملية التحقق من وجود تحديثات. سنحاول مرة أخرى لاحقًا.
+  chpUpdaterFutureDate: أنت تقوم بتشغيل إصدار تجريبي من ChatPolls.
+  chpUpdaterOutOfDate: 'يتوفر إصدار جديد من ChatPolls ({0}). قم بتنزيله هنا:'

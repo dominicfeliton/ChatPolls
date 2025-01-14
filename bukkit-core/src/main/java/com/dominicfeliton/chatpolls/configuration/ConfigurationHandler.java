@@ -42,25 +42,25 @@ public class ConfigurationHandler {
 
         /* Get plugin lang */
         if (refs.isSupportedLang(mainConfig.getString("General.pluginLang"), CommonRefs.LangType.LOCAL)) {
-            main.getLogger().info(ChatColor.LIGHT_PURPLE + "Detected language " + mainConfig.getString("General.pluginLang") + ".");
+            refs.log(ChatColor.LIGHT_PURPLE + "Detected language " + mainConfig.getString("General.pluginLang") + ".");
             return;
         }
 
         mainConfig.set("General.pluginLang", "en");
-        main.getLogger().warning("Unable to detect a valid language in your config.yml. Defaulting to en...");
+        refs.warnLog("Unable to detect a valid language in your config.yml. Defaulting to en...");
     }
 
     /* Init Messages Method */
     public void initMessagesConfigs() {
         // Init ALL message configs
-        main.getLogger().warning("Importing/upgrading localization files...");
+        refs.warnLog("Importing/upgrading localization files...");
         Set<SupportedLang> uniqueLangs = new HashSet<>(supportedPluginLangCodes.values());
         for (SupportedLang eaLang : uniqueLangs) {
             String eaStr = eaLang.getLangCode();
             refs.debugMsg("Checking " + eaStr + "...");
             YamlConfiguration currConfig = generateMessagesConfig(eaStr);
             if (currConfig == null) {
-                main.getLogger().warning(refs.getPlainMsg("chpLangNotLoadedConsole",
+                refs.warnLog(refs.getPlainMsg("chpLangNotLoadedConsole",
                         new String[]{"&c" + eaStr},
                         "&e"));
                 continue;
@@ -68,7 +68,7 @@ public class ConfigurationHandler {
 
             pluginLangConfigs.put(eaStr, generateMessagesConfig(eaStr));
         }
-        main.getLogger().warning("Done.");
+        refs.warnLog("Done.");
     }
 
     public YamlConfiguration generateMessagesConfig(String inLocalLang) {
@@ -87,7 +87,7 @@ public class ConfigurationHandler {
 
             YamlConfiguration tempConfig = YamlConfiguration.loadConfiguration(msgFile);
 
-            tempConfig.set("DoNotTouchThis.Version", ChatPolls.messagesConfigVersion);
+            tempConfig.set("DoNotTouchThis.Version", ChatPollsHelper.messagesConfigVersion);
 
             saveCustomConfig(tempConfig, msgFile, false);
         }
@@ -96,7 +96,7 @@ public class ConfigurationHandler {
         YamlConfiguration msgConfig = YamlConfiguration.loadConfiguration(msgFile);
 
         /* Check if version value is out of date...*/
-        if (msgConfig.getString("DoNotTouchThis.Version") == null || !msgConfig.getString("DoNotTouchThis.Version").equals(ChatPolls.messagesConfigVersion)) {
+        if (msgConfig.getString("DoNotTouchThis.Version") == null || !msgConfig.getString("DoNotTouchThis.Version").equals(ChatPollsHelper.messagesConfigVersion)) {
             refs.debugMsg("Upgrading out-of-date messages config!");
             HashMap<String, String> oldOverrides = new HashMap<>();
 
@@ -116,7 +116,7 @@ public class ConfigurationHandler {
             /* Copy newest config */
             main.saveResource("locals" + File.separator + "messages-" + inLocalLang + ".yml", true);
             msgConfig = YamlConfiguration.loadConfiguration(msgFile);
-            msgConfig.set("DoNotTouchThis.Version", ChatPolls.messagesConfigVersion);
+            msgConfig.set("DoNotTouchThis.Version", ChatPollsHelper.messagesConfigVersion);
 
             /* Paste overrides section */
             if (!oldOverrides.isEmpty()) {
@@ -141,7 +141,7 @@ public class ConfigurationHandler {
         // Debug Mode
         // Not stored in main, since we want debug MSGs ASAP
         if (mainConfig.getBoolean("General.enableDebugMode")) {
-            main.getLogger().warning(refs.getPlainMsg("chpConfigDebugEnabled"));
+            refs.warnLog(refs.getPlainMsg("chpConfigDebugEnabled"));
         }
     }
 

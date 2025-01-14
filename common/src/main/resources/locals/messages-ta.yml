@@ -2,3 +2,10 @@ Messages:
   chpEnabled: சேட்போல்ஸ் பதிப்பு {0} ஐ இயக்கப்பட்டது.
   chpDisabled: முடக்கப்பட்ட ChatPolls பதிப்பு {0}. குட்பை!
   chpVersion: சாட்போல்ஸ், பதிப்பு
+  chpConfigDebugEnabled: இயக்கப்பட்டது தீபக் பயன்முறை. நீங்கள் ஒரு டெவலப்பர் அல்லது
+    சிக்கல் செய்பவர் இல்லையென்றால், நீங்கள் இதை அணைக்க வேண்டும்.
+  chpUpdaterUpToDate: ChatPolls புதுப்பித்த நிலையில் உள்ளது.
+  chpUpdaterFailedGeneric: புதுப்பிப்புகளைச் சரிபார்க்க தோல்வியு பின்னர் மீண்டும்
+    முயற்சிப்போம்.
+  chpUpdaterFutureDate: நீங்கள் ChatPolls இன் பீட்டா உருவாக்கத்தை இயக்குகிறீர்கள்.
+  chpUpdaterOutOfDate: 'ChatPolls இன் புதிய பதிப்பு கிடைக்கிறது ({0}). இங்கே பதிவிறக்கவும்:'

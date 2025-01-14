@@ -1,10 +1,8 @@
 package com.dominicfeliton.chatpolls;
 
 import com.dominicfeliton.chatpolls.configuration.ConfigurationHandler;
-import com.dominicfeliton.chatpolls.util.BukkitCommandSender;
-import com.dominicfeliton.chatpolls.util.GenericCommandSender;
-import com.dominicfeliton.chatpolls.util.CommonRefs;
-import com.dominicfeliton.chatpolls.util.PlayerRecord;
+import com.dominicfeliton.chatpolls.runnables.UpdateChecker;
+import com.dominicfeliton.chatpolls.util.*;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
@@ -22,11 +20,11 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static com.dominicfeliton.chatpolls.ChatPollsHelper.SchedulerType.ASYNC;
+
 public class ChatPolls extends JavaPlugin {
 
     public static final int bStatsID = 00000;
-
-    public static final String messagesConfigVersion = "014124-1";
 
     public static ChatPolls instance;
 
@@ -112,7 +110,7 @@ public class ChatPolls extends JavaPlugin {
         refs.debugMsg(platformType + " | " + platformVersion);
 
         // We made it!
-        getLogger().info(refs.getPlainMsg("chpEnabled",
+        refs.log(refs.getPlainMsg("chpEnabled",
                 "&6" + getPluginVersion(),
                 "&a"));
     }
@@ -127,7 +125,7 @@ public class ChatPolls extends JavaPlugin {
             this.adventure = null;
         }
 
-        getLogger().info(refs.getPlainMsg("chpDisabled",
+        refs.log(refs.getPlainMsg("chpDisabled",
                 "&6" + getPluginVersion(),
                 "&a"));
 
@@ -142,6 +140,15 @@ public class ChatPolls extends JavaPlugin {
 
         configurationManager.loadMainSettings();
         //configurationManager.loadStorageSettings();
+
+        // Check for updates
+        GenericRunnable update = new GenericRunnable() {
+            @Override
+            protected void execute() {
+                new UpdateChecker(refs, getPluginVersion(), new BukkitCommandSender());
+            }
+        };
+        helper.runAsyncRepeating(true, 0, updateCheckerDelay * 20, update, ASYNC, null);
 
         globalState = "Enabled";
     }

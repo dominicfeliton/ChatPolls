@@ -2,3 +2,9 @@ Messages:
   chpEnabled: הפעלת צ'אטסקרי גירסה {0}.
   chpDisabled: גירסת צ'אט-סקרים מושבתת {0}. להתראות!
   chpVersion: צ'אט סקרים, גרסה
+  chpConfigDebugEnabled: מצב DEBUG מופעל. אם אינך מפתח או פותר בעיות, כנראה שכדאי
+    לכבות זאת.
+  chpUpdaterUpToDate: צ'אטפולקס מעודכן.
+  chpUpdaterFailedGeneric: לא הצליחה לבדוק אם קיימים עדכונים. ננסה שוב מאוחר יותר.
+  chpUpdaterFutureDate: אתה מפעיל בניית בטא של ChatPolls.
+  chpUpdaterOutOfDate: 'גרסה חדשה של צ''אטפולקס זמינה ({0}). הורד אותו כאן:'

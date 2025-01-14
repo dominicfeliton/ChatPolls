@@ -7,13 +7,13 @@
 SERVERS_BASE_DIR="/tmp"
 
 # Where your ChatPolls repo is
-CHATPOLLS_BASE_DIR="/home/dominic/ChatPolls"
+CHATPOLLS_BASE_DIR="/Users/dominicfeliton/Documents/GitHub/ChatPolls"
 
 # Default MC version if user doesn't specify one
 LATEST_VERSION="1.21.4"
 
 # If you want to redownload the latest version every time
-NO_UPDATE=false
+NO_UPDATE=true
 
 ###################################
 #       CHATPOLLS JAR PATHS       #

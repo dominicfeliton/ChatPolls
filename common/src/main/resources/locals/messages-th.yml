@@ -2,3 +2,9 @@ Messages:
   chpEnabled: เปิดใช้งาน ChatPolls เวอร์ชัน {0}
   chpDisabled: ปิดใช้งานแชทโพลเวอร์ชัน {0}ลาก่อน!
   chpVersion: แชทโพลส์ เวอร์ชัน
+  chpConfigDebugEnabled: เปิดใช้งานโหมดแก้ไขข้อบกพร่องหากคุณไม่ใช่นักพัฒนาหรือตัวแก้ไขปัญหา
+    คุณควรปิดสิ่งนี้
+  chpUpdaterUpToDate: ChatPolls เป็นปัจจุบัน
+  chpUpdaterFailedGeneric: ไม่สามารถตรวจสอบการอัปเดตได้เราจะลองอีกครั้งในภายหลัง
+  chpUpdaterFutureDate: คุณกำลังเรียกใช้ ChatPolls รุ่นเบต้า
+  chpUpdaterOutOfDate: 'ChatPolls เวอร์ชันใหม่พร้อมใช้งาน ({0})ดาวน์โหลดได้ที่นี่:'

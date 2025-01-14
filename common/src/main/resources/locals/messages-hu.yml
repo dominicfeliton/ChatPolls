@@ -2,3 +2,10 @@ Messages:
   chpEnabled: Engedélyezte a ChatPolls {0} verzióját.
   chpDisabled: Letiltva a ChatPolls verziója {0}. Viszlát!
   chpVersion: ChatPolls, verzió
+  chpConfigDebugEnabled: Engedélyezve a DEBUG módot. Ha nem fejlesztő vagy hibaelhárító,
+    valószínűleg ezt ki kell kapcsolnia.
+  chpUpdaterUpToDate: A ChatPolls naprakész.
+  chpUpdaterFailedGeneric: Nem sikerült ellenőrizni a frissítéseket. Később megpróbáljuk
+    újra.
+  chpUpdaterFutureDate: A ChatPolls béta verzióját futtatja.
+  chpUpdaterOutOfDate: 'A ChatPolls új verziója érhető el ({0}). Töltse le itt:'

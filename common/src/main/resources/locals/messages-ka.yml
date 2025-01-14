@@ -2,3 +2,10 @@ Messages:
   chpEnabled: ჩართულია ChatPolls ვერსია {0}.
   chpDisabled: გამორთული ChatPolls ვერსია {0}. მშვიდობით!
   chpVersion: ChatPolls, ვერსია
+  chpConfigDebugEnabled: ჩართულია DEBUG რეჟიმი. თუ თქვენ არ ხართ დეველოპერი ან პრობლემების
+    შემუშავებელი, ალბათ უნდა გამორთოთ ეს.
+  chpUpdaterUpToDate: ChatPolls განახლებულია.
+  chpUpdaterFailedGeneric: განახლებების შემოწმება ვერ შეძლო. მოგვიანებით კვლავ შევეცდებით.
+  chpUpdaterFutureDate: თქვენ ატარებთ ChatPolls-ის ბეტა შექმნას.
+  chpUpdaterOutOfDate: 'ხელმისაწვდომია ChatPolls— ის ახალი ვერსია ({0}). ჩამოტვირთეთ
+    აქ:'

@@ -180,6 +180,12 @@ public abstract class CommonRefs {
      */
     public abstract Component getCompMsg(String messageName, String[] replacements, String resetCode, GenericCommandSender sender);
 
+    public abstract void log(String message);
+
+    public abstract void warnLog(String message);
+
+    public abstract void severeLog(String message);
+
     /**
      * Sends a message to the specified sender.
      *
