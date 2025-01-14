@@ -2,7 +2,11 @@
 .idea/*
 *.xml.bak
 *.iml
+
+# VSCode Files
+.vscode/
+
+# Other Files
+*-output/
 */target/*
 *yt-settings.yml
-
-*-output/

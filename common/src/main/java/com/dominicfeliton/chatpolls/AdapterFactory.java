@@ -64,7 +64,7 @@ public class AdapterFactory {
                 serverVersion = getBukkitVersionReflectively();
                 break;
             default:
-                serverVersion = "Bukkit"; // Default to Bukkit if N/A
+                serverVersion = "Bukkit"; // TODO: Default to oldest version supported
                 break;
         }
         if (serverVersion == null) {

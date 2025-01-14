@@ -351,7 +351,7 @@ public abstract class CommonRefs {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            //main.getLogger().warning(getPlainMsg("wwcISOJSONFail"));
+            //main.getLogger().warning(getPlainMsg("chpISOJSONFail"));
         }
 
         // Return original
@@ -402,7 +402,7 @@ public abstract class CommonRefs {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            //if (!preInit) main.getLogger().warning(getPlainMsg("wwcISOJSONFail"));
+            //if (!preInit) main.getLogger().warning(getPlainMsg("chpISOJSONFail"));
         }
 
         return in;

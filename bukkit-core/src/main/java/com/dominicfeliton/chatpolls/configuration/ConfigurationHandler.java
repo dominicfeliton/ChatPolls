@@ -141,7 +141,7 @@ public class ConfigurationHandler {
         // Debug Mode
         // Not stored in main, since we want debug MSGs ASAP
         if (mainConfig.getBoolean("General.enableDebugMode")) {
-            main.getLogger().warning(refs.getPlainMsg("wwcConfigEnabledDebugMode"));
+            main.getLogger().warning(refs.getPlainMsg("chpConfigDebugEnabled"));
         }
     }
 

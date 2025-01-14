@@ -156,7 +156,7 @@ public class BukkitCommonRefs extends CommonRefs {
 
     @Override
     public void sendMsg(String messageName, String[] replacements, GenericCommandSender sender) {
-        // Default WWC color is usually LIGHT_PURPLE (&d)
+        // Default CHP color is usually LIGHT_PURPLE (&d)
         sendMsg(sender, getCompMsg(messageName, replacements, "&r&d", sender), true);
     }
 

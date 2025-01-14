@@ -14,7 +14,7 @@ Now import the ChatPolls dir you cloned as a Maven Project in Eclipse/IntelliJ a
 
 ```clean package```
 
-This cleans our POM, runs our MockBukkit unit tests, runs YAMLTranslator, and then cleans+exports WWC for Spigot/Paper.
+This cleans our POM, runs our MockBukkit unit tests, runs YAMLTranslator, and then cleans+exports ChP for Spigot/Paper.
 
 If you cannot run YAMLTranslator because you do not have access to Amazon Translate, use this command instead:
 
@@ -27,7 +27,7 @@ and ```takedown-dev-env.bat``` on Windows.
 
 ### PSA: If you're on windows, use copy_chp_macos_linux_wsl.sh in WSL.
 
-First, take a look at `copy_wwc_macos_linux_wsl.sh`. Adjust the paths to the correct ones on your current machine.
+First, take a look at `copy_chp_macos_linux_wsl.sh`. Adjust the paths to the correct ones on your current machine.
 
 Once that's done and you've ran a successfully mvn build, just run these scripts and a server on `localhost:25565` will be available to join via the classic Minecraft client.
 

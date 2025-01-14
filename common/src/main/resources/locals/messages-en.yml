@@ -6,3 +6,4 @@ Messages:
   chpEnabled: 'Enabled ChatPolls version {0}.'
   chpDisabled: 'Disabled ChatPolls version {0}. Goodbye!'
   chpVersion: 'ChatPolls, version'
+  chpConfigDebugEnabled: 'Enabled DEBUG mode. If you are not a developer or troubleshooter, you should probably turn this off.'

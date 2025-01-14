@@ -26,7 +26,7 @@ public class ChatPolls extends JavaPlugin {
 
     public static final int bStatsID = 00000;
 
-    public static final String messagesConfigVersion = "011124-1";
+    public static final String messagesConfigVersion = "014124-1";
 
     public static ChatPolls instance;
 
@@ -109,6 +109,8 @@ public class ChatPolls extends JavaPlugin {
 
         doStartupTasks();
 
+        refs.debugMsg(platformType + " | " + platformVersion);
+
         // We made it!
         getLogger().info(refs.getPlainMsg("chpEnabled",
                 "&6" + getPluginVersion(),
@@ -166,7 +168,7 @@ public class ChatPolls extends JavaPlugin {
                             .append((Component.text().content("Dominic Feliton")).color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD))
                             .append((Component.text().content(")").resetStyle()).color(NamedTextColor.GOLD)).build();
                     refs.sendMsg(s, versionNotice, true);
-                    //refs.playSound(WWC_VERSION, sender);
+                    //refs.playSound(CHP_VERSION, sender);
                     return true;
             }
         }

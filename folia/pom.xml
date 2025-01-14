@@ -332,6 +332,49 @@
           </execution>
         </executions>
       </plugin>
+      <!--   BEGIN modifying plugin.yml to enable Folia support from common JAR   -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.5.0</version>
+        <executions>
+          <execution>
+            <id>unpack-common-plugin-yml</id>
+            <goals>
+              <goal>unpack-dependencies</goal>
+            </goals>
+            <phase>process-resources</phase>
+            <configuration>
+              <includeArtifactIds>ChatPolls-common</includeArtifactIds>
+              <includes>plugin.yml</includes>
+              <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+              <overWriteReleases>true</overWriteReleases>
+              <overWriteSnapshots>true</overWriteSnapshots>
+              <overWriteIfNewer>true</overWriteIfNewer>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <id>modify-plugin-yml</id>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <phase>process-resources</phase>
+            <configuration>
+              <target>
+                <replaceregexp byline="true" file="${project.build.outputDirectory}/plugin.yml" match="folia-supported: false" replace="folia-supported: true"></replaceregexp>
+              </target>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <!--   END modifying plugin.yml to enable Folia support from common JAR   -->
     </plugins>
     <sourceDirectory>src/main/java</sourceDirectory>
   </build>
