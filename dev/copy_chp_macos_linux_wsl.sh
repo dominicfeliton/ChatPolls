@@ -1,21 +1,28 @@
 #!/usr/bin/env bash
 
 ###################################
-#           CONFIGURATION         #
+#          EASY CONFIG            #
 ###################################
-# Adjust these paths as you like.
+# 1) Change SERVERS_BASE_DIR if you want your servers somewhere else.
+# 2) Change CHATPOLLS_BASE_DIR if you cloned ChatPolls repo to a different location.
 
-# Server folders
-SPIGOT_DIR="/Users/$USER/Documents/spigot_chp_test_server"
-MAGMA_DIR="/Users/$USER/Documents/magma_chp_test_server"
-PAPER1132_DIR="/Users/$USER/Documents/paper1132_chp_test_server"
-PAPER_LATEST_DIR="/Users/$USER/Documents/chp_test_server"
-FOLIA_DIR="/Users/$USER/Documents/folia_chp_test_server"
+SERVERS_BASE_DIR="/tmp"
+CHATPOLLS_BASE_DIR="/home/dominic/ChatPolls"
 
-# Plugin jar locations
-CHATPOLLS_SPIGOT_JAR="/Users/$USER/Documents/GitHub/ChatPolls/spigot-output/ChatPolls-spigot.jar"
-CHATPOLLS_PAPER_JAR="/Users/$USER/Documents/GitHub/ChatPolls/paper-output/ChatPolls-paper.jar"
-CHATPOLLS_FOLIA_JAR="/Users/$USER/Documents/GitHub/ChatPolls/folia-output/ChatPolls-folia.jar"
+###################################
+#         AUTO-DERIVED VARS       #
+###################################
+# Server folders (will look like /Users/<YOU>/Documents/<SERVERNAME>_chp_test_server)
+SPIGOT_DIR="${SERVERS_BASE_DIR}/spigot_chp_test_server"
+MAGMA_DIR="${SERVERS_BASE_DIR}/magma_chp_test_server"
+PAPER1132_DIR="${SERVERS_BASE_DIR}/paper1132_chp_test_server"
+PAPER_LATEST_DIR="${SERVERS_BASE_DIR}/chp_test_server"
+FOLIA_DIR="${SERVERS_BASE_DIR}/folia_chp_test_server"
+
+# Plugin jar locations (all within ChatPolls repo folders).
+CHATPOLLS_SPIGOT_JAR="${CHATPOLLS_BASE_DIR}/spigot-output/ChatPolls-spigot.jar"
+CHATPOLLS_PAPER_JAR="${CHATPOLLS_BASE_DIR}/paper-output/ChatPolls-paper.jar"
+CHATPOLLS_FOLIA_JAR="${CHATPOLLS_BASE_DIR}/folia-output/ChatPolls-folia.jar"
 
 ###################################
 #        HELPER FUNCTION          #
@@ -25,63 +32,81 @@ CHATPOLLS_FOLIA_JAR="/Users/$USER/Documents/GitHub/ChatPolls/folia-output/ChatPo
 #   2) If run.sh is missing, clones the script from GitHub into a temp folder,
 #      then copies it in.
 #   3) Writes MC version to current_version.txt
-#   4) Injects or overwrites "export PROJECT_NAME=..."
+#   4) Injects or overwrites "export PROJECT_NAME=..." and "export SERVER_DIR=..."
 ###################################
+#!/usr/bin/env bash
+
 setup_mc_script() {
-  local server_dir="$1"      # e.g. /Users/you/Documents/magma_chp_test_server
+  local server_dir="$1"      # e.g. /Users/you/Documents/spigot_chp_test_server
   local project_name="$2"    # e.g. "spigot", "paper", "folia"
   local mc_version="$3"      # e.g. "1.13.2"
 
+  # 1) Attempt to create the folder
   if [[ ! -d "$server_dir" ]]; then
     echo "[setup_mc_script] Creating folder: $server_dir"
     mkdir -p "$server_dir"
+    if [[ $? -ne 0 ]]; then
+      echo "[setup_mc_script] ERROR: Could not create directory '$server_dir'. Permission denied or invalid path."
+      return 1
+    fi
     echo "[setup_mc_script] Cloning dominicfeliton/minecraft-server-script => $server_dir ..."
     git clone --depth=1 https://github.com/dominicfeliton/minecraft-server-script "$server_dir"
+    if [[ $? -ne 0 ]]; then
+      echo "[setup_mc_script] ERROR: git clone failed (check permissions, network, or repository existence)."
+      return 1
+    fi
   fi
 
-  # If run.sh not found, do a temp clone and copy
+  # 2) If we still don't have a valid server_dir, bail
+  if [[ ! -d "$server_dir" ]]; then
+    echo "[setup_mc_script] ERROR: '$server_dir' does not exist (creation or clone failed?). Aborting."
+    return 1
+  fi
+
+  # 3) If run.sh not found, do a temp clone and copy
   if [[ ! -f "$server_dir/run.sh" ]]; then
     echo "[setup_mc_script] run.sh not found in $server_dir => clone fresh script to a temp folder..."
     local tempdir
     tempdir="$(mktemp -d)"
     git clone --depth=1 https://github.com/dominicfeliton/minecraft-server-script "$tempdir"
     if [[ $? -ne 0 ]]; then
-      echo "[setup_mc_script] ERROR: git clone failed."
+      echo "[setup_mc_script] ERROR: git clone failed (temp clone)."
       rm -rf "$tempdir"
-      return
+      return 1
     fi
+    # Attempt to copy
     cp -r "$tempdir/"* "$server_dir"/
+    if [[ $? -ne 0 ]]; then
+      echo "[setup_mc_script] ERROR: Failed copying fresh script files into $server_dir."
+      rm -rf "$tempdir"
+      return 1
+    fi
     rm -rf "$tempdir"
     echo "[setup_mc_script] Copied fresh script files into $server_dir."
   fi
 
-  # --- Overwrite or insert our exports in run.sh (macOS/Linux friendly) ---
+  # 4) If run.sh still doesn’t exist, bail
+  if [[ ! -f "$server_dir/run.sh" ]]; then
+    echo "[setup_mc_script] ERROR: run.sh not found after copy. Aborting."
+    return 1
+  fi
 
-  # 1) Remove any old lines that set these exports (avoid duplicates).
+  # 5) Overwrite or insert our exports in run.sh (macOS/Linux friendly)
   sed -i.bak '/^export PROJECT_NAME=/d' "$server_dir/run.sh"
   sed -i.bak '/^export SERVER_DIR=/d'    "$server_dir/run.sh"
 
-  # 2) Figure out where to insert:
-  #    If there's a shebang as the first line, we insert after line 1.
-  #    Otherwise, we insert at line 1.
+  # Insert new lines after the shebang (if present) or at the top.
   if grep -q '^#!' "$server_dir/run.sh"; then
-    # Insert after line 1
     sed -i.bak "2 i\\
-  export PROJECT_NAME=\"$project_name\"\\
-  export SERVER_DIR=\"$server_dir\"\\
-  " "$server_dir/run.sh"
+export PROJECT_NAME=\"$project_name\"\\
+export SERVER_DIR=\"$server_dir\"\\
+" "$server_dir/run.sh"
   else
-    # Insert at top of file
     sed -i.bak "1 i\\
-  export PROJECT_NAME=\"$project_name\"\\
-  export SERVER_DIR=\"$server_dir\"\\
-  " "$server_dir/run.sh"
+export PROJECT_NAME=\"$project_name\"\\
+export SERVER_DIR=\"$server_dir\"\\
+" "$server_dir/run.sh"
   fi
-
-  # 3) macOS quirk:
-  #    On macOS, `sed -i.bak "2 i\..."` works best with a backslash+newline.
-  #    If using GNU sed on Linux, it should also be fine.
-  #    Make sure you keep those backslashes + newlines exactly.
 
   rm -f "$server_dir/run.sh.bak"
 }
@@ -100,24 +125,38 @@ else
   exit 1
 fi
 
-# 1) Setup each server folder
-#setup_mc_script "$SPIGOT_DIR"       "spigot" "1.21.4"
-#setup_mc_script "$PAPER1132_DIR"    "paper"  "1.13.2"
+###################################
+# 1) SETUP EACH SERVER FOLDER
+###################################
+# Example calls: 
+# Uncomment or add new ones for the server(s) you want to manage.
+
+# setup_mc_script "$SPIGOT_DIR"       "spigot" "1.21.4"
+# setup_mc_script "$PAPER1132_DIR"    "paper"  "1.13.2"
 setup_mc_script "$PAPER_LATEST_DIR" "paper"  "1.21.4"
-#setup_mc_script "$FOLIA_DIR"        "folia"  "1.21.4"
+# setup_mc_script "$FOLIA_DIR"        "folia"  "1.21.4"
+# setup_mc_script "$MAGMA_DIR"        "magma"  "1.21.4"  # Example if you want Magma, etc.
 
-# 2) Copy plugin jars
-mkdir -p "$SPIGOT_DIR/plugins"        2>/dev/null
-mkdir -p "$PAPER1132_DIR/plugins"     2>/dev/null
-mkdir -p "$PAPER_LATEST_DIR/plugins"  2>/dev/null
-mkdir -p "$FOLIA_DIR/plugins"         2>/dev/null
+###################################
+# 2) COPY PLUGIN JARS
+###################################
+# Create plugins folder if missing
+mkdir -p "$SPIGOT_DIR/plugins"       2>/dev/null
+mkdir -p "$PAPER1132_DIR/plugins"    2>/dev/null
+mkdir -p "$PAPER_LATEST_DIR/plugins" 2>/dev/null
+mkdir -p "$FOLIA_DIR/plugins"        2>/dev/null
+mkdir -p "$MAGMA_DIR/plugins"        2>/dev/null
 
-cp -v "$CHATPOLLS_SPIGOT_JAR" "$SPIGOT_DIR/plugins"
-cp -v "$CHATPOLLS_SPIGOT_JAR" "$PAPER1132_DIR/plugins"
-cp -v "$CHATPOLLS_PAPER_JAR"  "$PAPER_LATEST_DIR/plugins"
-cp -v "$CHATPOLLS_FOLIA_JAR"  "$FOLIA_DIR/plugins"
+# Copy respective ChatPolls jars
+cp -v "$CHATPOLLS_SPIGOT_JAR" "$SPIGOT_DIR/plugins"       2>/dev/null
+cp -v "$CHATPOLLS_SPIGOT_JAR" "$PAPER1132_DIR/plugins"    2>/dev/null
+cp -v "$CHATPOLLS_PAPER_JAR"  "$PAPER_LATEST_DIR/plugins" 2>/dev/null
+cp -v "$CHATPOLLS_FOLIA_JAR"  "$FOLIA_DIR/plugins"        2>/dev/null
+# cp -v <some-other.jar> "$MAGMA_DIR/plugins"             2>/dev/null
 
-# 3) Finally, start ONLY the main server (PAPER_LATEST_DIR)
+###################################
+# 3) START THE MAIN SERVER
+###################################
 echo "[INFO] Starting main server => $PAPER_LATEST_DIR"
 cd "$PAPER_LATEST_DIR" || exit 1
 ./run.sh start --no-tmux
