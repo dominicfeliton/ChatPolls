@@ -87,7 +87,7 @@ public class ConfigurationHandler {
 
             YamlConfiguration tempConfig = YamlConfiguration.loadConfiguration(msgFile);
 
-            tempConfig.set("DoNotTouchThis.Version", ChatPollsHelper.messagesConfigVersion);
+            tempConfig.set("DoNotTouchThis.Version", CommonRefs.messagesConfigVersion);
 
             saveCustomConfig(tempConfig, msgFile, false);
         }
@@ -96,7 +96,7 @@ public class ConfigurationHandler {
         YamlConfiguration msgConfig = YamlConfiguration.loadConfiguration(msgFile);
 
         /* Check if version value is out of date...*/
-        if (msgConfig.getString("DoNotTouchThis.Version") == null || !msgConfig.getString("DoNotTouchThis.Version").equals(ChatPollsHelper.messagesConfigVersion)) {
+        if (msgConfig.getString("DoNotTouchThis.Version") == null || !msgConfig.getString("DoNotTouchThis.Version").equals(CommonRefs.messagesConfigVersion)) {
             refs.debugMsg("Upgrading out-of-date messages config!");
             HashMap<String, String> oldOverrides = new HashMap<>();
 
@@ -116,7 +116,7 @@ public class ConfigurationHandler {
             /* Copy newest config */
             main.saveResource("locals" + File.separator + "messages-" + inLocalLang + ".yml", true);
             msgConfig = YamlConfiguration.loadConfiguration(msgFile);
-            msgConfig.set("DoNotTouchThis.Version", ChatPollsHelper.messagesConfigVersion);
+            msgConfig.set("DoNotTouchThis.Version", CommonRefs.messagesConfigVersion);
 
             /* Paste overrides section */
             if (!oldOverrides.isEmpty()) {

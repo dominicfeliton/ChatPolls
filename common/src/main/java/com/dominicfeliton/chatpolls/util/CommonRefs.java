@@ -13,8 +13,9 @@ import java.util.*;
  * Platform-specific subclasses should provide concrete implementations.
  */
 public abstract class CommonRefs {
-
     /* Important variables */
+    public static final String messagesConfigVersion = "014124-2";
+
     // Supported Minecraft Versions
     public static final String[] supportedMCVersions = {
             "1.21.4", "1.21.3", "1.21.2", "1.21.1",

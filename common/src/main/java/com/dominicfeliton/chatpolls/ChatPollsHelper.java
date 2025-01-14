@@ -4,8 +4,6 @@ import com.dominicfeliton.chatpolls.util.GenericRunnable;
 
 public abstract class ChatPollsHelper {
 
-    public static final String messagesConfigVersion = "014124-2";
-
     public abstract void registerEventHandlers();
 
     // Scheduler Methods
