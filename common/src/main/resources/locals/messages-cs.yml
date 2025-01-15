@@ -10,3 +10,17 @@ Messages:
   chpUpdaterFutureDate: Používáte beta verzi ChatPolls.
   chpUpdaterOutOfDate: 'K dispozici je nová verze ChatPolls ({0}). Stáhněte si ji
     zde:'
+  chplLangInvalid: '{0} není platná lokalizace. Podporované lokalizace: {1}'
+  chplLangChangedOtherPlayerSender: Změnila se lokalizace {0} na {1}.
+  chplLangChanged: Vaše lokalizace byla změněna na {0}.
+  chplLangStopped: Vaše lokalizace byla resetována na výchozí server.
+  chplLangNotLoadedConsole: '{0} v tuto chvíli nelze použít. Chcete-li to opravit,
+    můžete zkusit znovu načíst plugin, ale pokud přetrvává, kontaktujte vývojáře.'
+  chplLangAlreadyStopped: Nemáte lokalizační sadu.
+  chplLangStoppedOtherPlayerSender: Obnovte lokalizaci {0} na výchozí server.
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} nemá lokalizační sadu.'
+  chplLangNotLoaded: '{0} v tuto chvíli nelze použít. Zkuste použít jinou podporovanou
+    lokalizaci: {1}'
+  chplLangPlayerNotValid: '{0} není platný hráč.'
+  chpInvalidArgs: Neplatné argumenty jsou uvedeny!
+  chpBadPerms: 'Nemáte potřebná oprávnění k provedení tohoto příkazu: {0}'

@@ -8,3 +8,17 @@ Messages:
   chpUpdaterFailedGeneric: فشلت عملية التحقق من وجود تحديثات. سنحاول مرة أخرى لاحقًا.
   chpUpdaterFutureDate: أنت تقوم بتشغيل إصدار تجريبي من ChatPolls.
   chpUpdaterOutOfDate: 'يتوفر إصدار جديد من ChatPolls ({0}). قم بتنزيله هنا:'
+  chplLangInvalid: '{0} ليست ترجمة صالحة. الترجمات المدعومة: {1}'
+  chplLangChangedOtherPlayerSender: تم تغيير تعريب {0} إلى {1}.
+  chplLangChanged: تم تغيير الترجمة الخاصة بك إلى {0}.
+  chplLangStopped: تمت إعادة تعيين الترجمة الخاصة بك إلى الخادم الافتراضي.
+  chplLangNotLoadedConsole: لا يمكن استخدام {0} في هذا الوقت. يمكنك محاولة إعادة تحميل
+    المكون الإضافي لإصلاح ذلك، ولكن إذا استمر، يرجى الاتصال بالمطور.
+  chplLangAlreadyStopped: ليس لديك مجموعة تعريب.
+  chplLangStoppedOtherPlayerSender: أعد تعيين تعريب {0} إلى الخادم الافتراضي.
+  chplLangAlreadyStoppedOtherPlayerSender: لا يحتوي {0} على مجموعة تعريب.
+  chplLangNotLoaded: 'لا يمكن استخدام {0} في هذا الوقت. حاول استخدام ترجمة مدعومة
+    مختلفة: {1}'
+  chplLangPlayerNotValid: '{0} ليس لاعبًا صالحًا.'
+  chpInvalidArgs: تم تقديم حجج غير صالحة!
+  chpBadPerms: 'ليس لديك الأذونات المطلوبة لتنفيذ هذا الأمر: {0}'

@@ -8,3 +8,19 @@ Messages:
   chpUpdaterFailedGeneric: Güncellemeler kontrol edilemedi. Daha sonra tekrar deneyeceğiz.
   chpUpdaterFutureDate: ChatPolls"ün beta sürümünü çalıştırıyorsunuz.
   chpUpdaterOutOfDate: 'ChatPolls"ün yeni bir sürümü mevcut ({0}). Buradan indirin:'
+  chplLangInvalid: '{0} geçerli bir yerelleştirme değil. Desteklenen yerelleştirmeler:
+    {1}'
+  chplLangChangedOtherPlayerSender: '{0} yerelleştirmesi {1} olarak değiştirildi.'
+  chplLangChanged: Yerelleştirmeniz {0} olarak değiştirildi.
+  chplLangStopped: Yerelleştirmeniz sunucu varsayılanına sıfırlandı.
+  chplLangNotLoadedConsole: '{0} şu anda kullanılamaz. Bunu düzeltmek için eklentiyi
+    yeniden yüklemeyi deneyebilirsiniz, ancak devam ederse lütfen geliştiriciyle iletişime
+    geçin.'
+  chplLangAlreadyStopped: Yerelleştirme setiniz yok.
+  chplLangStoppedOtherPlayerSender: '{0} yerelleştirmesini sunucu varsayılanına sıfırlayın.'
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} yerelleştirme kümesine sahip değil.'
+  chplLangNotLoaded: '{0} şu anda kullanılamaz. Desteklenen farklı bir yerelleştirme
+    kullanmayı deneyin: {1}'
+  chplLangPlayerNotValid: '{0} geçerli bir oyuncu değil.'
+  chpInvalidArgs: Geçersiz argümanlar sağlandı!
+  chpBadPerms: 'Bu komutu yürütmek için gerekli izinlere sahip değilsiniz: {0}'

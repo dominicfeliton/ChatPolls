@@ -9,3 +9,18 @@ Messages:
     újra.
   chpUpdaterFutureDate: A ChatPolls béta verzióját futtatja.
   chpUpdaterOutOfDate: 'A ChatPolls új verziója érhető el ({0}). Töltse le itt:'
+  chplLangInvalid: 'A {0} nem érvényes lokalizáció. Támogatott lokalizációk: {1}'
+  chplLangChangedOtherPlayerSender: Megváltoztatta a {0} lokalizációját {1} -ra.
+  chplLangChanged: A lokalizációja {0} -ra változott.
+  chplLangStopped: A lokalizáció visszaállította a kiszolgáló alapértelmezett értékét.
+  chplLangNotLoadedConsole: A {0} jelenleg nem használható. Megpróbálhatja újratölteni
+    a bővítményt ennek kijavításához, de ha továbbra is fennáll, forduljon a fejlesztőhöz.
+  chplLangAlreadyStopped: Nincs lokalizációs készlete.
+  chplLangStoppedOtherPlayerSender: Állítsa vissza a {0} lokalizációját a kiszolgáló
+    alapértelmezett értékére.
+  chplLangAlreadyStoppedOtherPlayerSender: A {0} nem rendelkezik lokalizációs készlettel.
+  chplLangNotLoaded: 'A {0} jelenleg nem használható. Próbáljon meg egy másik támogatott
+    lokalizációt használni: {1}'
+  chplLangPlayerNotValid: A {0} nem érvényes játékos.
+  chpInvalidArgs: Érvénytelen argumentumok adtak meg!
+  chpBadPerms: 'A parancs végrehajtásához nincs szükséges engedélye: {0}'

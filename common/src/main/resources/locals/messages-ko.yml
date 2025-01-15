@@ -7,3 +7,16 @@ Messages:
   chpUpdaterFailedGeneric: 업데이트를 확인하지 못했습니다.나중에 다시 시도하겠습니다.
   chpUpdaterFutureDate: ChatPolls의 베타 빌드를 실행 중입니다.
   chpUpdaterOutOfDate: 'ChatPolls의 새 버전을 사용할 수 있습니다 ({0}).여기에서 다운로드하세요:'
+  chplLangInvalid: '{0} 은 (는) 유효한 현지화가 아닙니다.지원되는 현지화: {1}'
+  chplLangChangedOtherPlayerSender: '{0} 현지화를 {1} 로 변경했습니다.'
+  chplLangChanged: 현지화가 {0} (으로) 변경되었습니다.
+  chplLangStopped: 현지화가 서버 기본값으로 재설정되었습니다.
+  chplLangNotLoadedConsole: '{0} 은 (는) 지금은 사용할 수 없습니다.이 문제를 해결하기 위해 플러그인을 다시 로드해 볼
+    수 있지만 문제가 지속되면 개발자에게 문의하세요.'
+  chplLangAlreadyStopped: 로컬리제이션 세트가 없습니다.
+  chplLangStoppedOtherPlayerSender: '{0} 현지화를 서버 기본값으로 재설정합니다.'
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} 에는 현지화 세트가 없습니다.'
+  chplLangNotLoaded: '{0} 은 (는) 지금은 사용할 수 없습니다.지원되는 다른 현지화를 사용해 보세요: {1}'
+  chplLangPlayerNotValid: '{0} 님은 유효한 플레이어가 아닙니다.'
+  chpInvalidArgs: 잘못된 인수가 제공되었습니다!
+  chpBadPerms: 이 명령을 실행하는 데 필요한 권한이 없습니다. {0}

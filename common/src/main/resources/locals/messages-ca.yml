@@ -10,3 +10,20 @@ Messages:
   chpUpdaterFutureDate: Estàs executant una versió beta de ChatPolls.
   chpUpdaterOutOfDate: 'Hi ha disponible una nova versió de ChatPolls ({0}). Descarrega''l
     aquí:'
+  chplLangInvalid: '{0} no és una localització vàlida. Localitzacions suportades:
+    {1}'
+  chplLangChangedOtherPlayerSender: S'ha canviat la localització de {0} a {1}.
+  chplLangChanged: La seva localització s'ha canviat a {0}.
+  chplLangStopped: La localització es va restablir al servidor per defecte.
+  chplLangNotLoadedConsole: '{0} no es pot utilitzar en aquest moment. Podeu provar
+    de recarregar el connector per solucionar això, però si persisteix poseu-vos en
+    contacte amb el desenvolupador.'
+  chplLangAlreadyStopped: No teniu un conjunt de localització.
+  chplLangStoppedOtherPlayerSender: Restablir la localització de {0} a la predeterminada
+    del servidor.
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} no té un conjunt de localització.'
+  chplLangNotLoaded: '{0} no es pot utilitzar en aquest moment. Proveu d''utilitzar
+    una localització admesa diferent: {1}'
+  chplLangPlayerNotValid: '{0} no és un jugador vàlid.'
+  chpInvalidArgs: Arguments no vàlids proporcionats!
+  chpBadPerms: 'No teniu els permisos necessaris per executar aquesta comanda: {0}'

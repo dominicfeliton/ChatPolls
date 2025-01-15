@@ -10,3 +10,18 @@ Messages:
   chpUpdaterFutureDate: Waxaad ku maraynaa dhismaha beta ee ChatPolls.
   chpUpdaterOutOfDate: 'Nooca cusub ee ChatPolls waxaa la heli lahaa ({0}). Halkan
     ka degso:'
+  chplLangInvalid: '{0} ma aha deegaanka xal ah. Deegaanada la taageeray: {1}'
+  chplLangChangedOtherPlayerSender: Bedelay deegaanka {0} ilaa {1}.
+  chplLangChanged: Deegaankaaga waxaa lagu bedelay {0}.
+  chplLangStopped: Deegaankaaga waxaa dib u dib u dib u dib u dhacay serverda.
+  chplLangNotLoadedConsole: '{0} waqtigan la isticmaali karin. Waxaad isku dayi kartaa
+    dib u qabsado pluginka si aad tahay tan, laakiin haddii ay sii joogto fadlan xiriir
+    horumarka'
+  chplLangAlreadyStopped: Waxaad ilahayn deegaanka ah.
+  chplLangStoppedOtherPlayerSender: Dib u dib u dhigay deegaanka {0} ee serweynta.
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} ma leh dhig deegaanka.'
+  chplLangNotLoaded: '{0} waqtigan la isticmaali karin. Iday isticmaalka deegaanka
+    kala duwan oo la taageeray: {1}'
+  chplLangPlayerNotValid: '{0} ma aha ciyaaryahan xaalad ah.'
+  chpInvalidArgs: Doodaha aan loo bixiyey!
+  chpBadPerms: 'Ma leh gaasiinta loo baahan yahay si aad u fuliso amarkan: {0}'

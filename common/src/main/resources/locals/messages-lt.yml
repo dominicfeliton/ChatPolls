@@ -9,3 +9,19 @@ Messages:
     dar kartą.
   chpUpdaterFutureDate: Jūs naudojate “ChatPolls” beta versiją.
   chpUpdaterOutOfDate: 'Yra nauja “ChatPolls” versija ({0}). Atsisiųskite jį čia:'
+  chplLangInvalid: '{0} nėra tinkama lokalizacija. Palaikomos lokalizacijos: {1}'
+  chplLangChangedOtherPlayerSender: Pakeitė {0} lokalizaciją į {1}.
+  chplLangChanged: Jūsų lokalizacija buvo pakeista į {0}.
+  chplLangStopped: Jūsų lokalizacija buvo atstatyta į numatytuosius serverio parametrus.
+  chplLangNotLoadedConsole: Šiuo metu negalima naudoti {0}. Galite pabandyti iš naujo
+    įkelti įskiepį, kad tai ištaisytumėte, tačiau jei jis išlieka, susisiekite su
+    kūrėju.
+  chplLangAlreadyStopped: Jūs neturite lokalizacijos rinkinio.
+  chplLangStoppedOtherPlayerSender: Nustatykite {0} lokalizaciją į numatytuosius serverio
+    parametrus.
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} neturi lokalizacijos rinkinio.'
+  chplLangNotLoaded: 'Šiuo metu negalima naudoti {0}. Pabandykite naudoti kitą palaikomą
+    lokalizaciją: {1}'
+  chplLangPlayerNotValid: '{0} nėra tinkamas žaidėjas.'
+  chpInvalidArgs: Pateikti neteisingi argumentai!
+  chpBadPerms: 'Jūs neturite reikiamų teisių šiai komandai vykdyti: {0}'

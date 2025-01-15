@@ -10,3 +10,17 @@ Messages:
   chpUpdaterFutureDate: Jūs izmantojat ChatPolls beta versiju.
   chpUpdaterOutOfDate: 'Ir pieejama jauna ChatPolls versija ({0}). Lejupielādējiet
     to šeit:'
+  chplLangInvalid: '{0} nav derīga lokalizācija. Atbalstītās lokalizācijas: {1}'
+  chplLangChangedOtherPlayerSender: Mainīta {0} lokalizācija uz {1}.
+  chplLangChanged: Jūsu lokalizācija tika mainīta uz {0}.
+  chplLangStopped: Jūsu lokalizācija tika atiestatīta uz servera noklusējumu.
+  chplLangNotLoadedConsole: '{0} šobrīd nevar izmantot. Varat mēģināt pārlādēt spraudni,
+    lai to labotu, bet, ja tas saglabājas, lūdzu, sazinieties ar izstrādātāju.'
+  chplLangAlreadyStopped: Jums nav lokalizācijas komplekta.
+  chplLangStoppedOtherPlayerSender: Atiestatīt {0} lokalizāciju uz servera noklusējumu.
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} nav lokalizācijas kopas.'
+  chplLangNotLoaded: '{0} šobrīd nevar izmantot. Mēģiniet izmantot citu atbalstītu
+    lokalizāciju: {1}'
+  chplLangPlayerNotValid: '{0} nav derīgs spēlētājs.'
+  chpInvalidArgs: Iesniegti nederīgi argumenti!
+  chpBadPerms: 'Jums nav nepieciešamo atļauju, lai izpildītu šo komandu: {0}'

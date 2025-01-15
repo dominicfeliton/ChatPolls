@@ -14,7 +14,7 @@ import java.util.*;
  */
 public abstract class CommonRefs {
     /* Important variables */
-    public static final String messagesConfigVersion = "014124-2";
+    public static final String messagesConfigVersion = "014124-4";
 
     // Supported Minecraft Versions
     public static final String[] supportedMCVersions = {
@@ -49,9 +49,6 @@ public abstract class CommonRefs {
     }
 
     public enum LangType {
-        INPUT("in"),
-        OUTPUT("out"),
-        ALL("all"),
         LOCAL("local");
 
         private final String type;
@@ -288,6 +285,20 @@ public abstract class CommonRefs {
      * @return boolean - If the server is stopping or not
      */
     public abstract boolean serverIsStopping();
+
+    public abstract Object getPlayerObjExact(String inName);
+
+    public abstract Object getPlayer(String inName);
+
+    /**
+     * Sends a bad permissions error
+     *
+     * @param correctPerm
+     * @param sender
+     */
+    public void badPermsMessage(String correctPerm, GenericCommandSender sender) {
+        sendMsg("chpBadPerms", "&6" + correctPerm, "&c", sender);
+    }
 
     /**
      * Compares two strings to check if they are the same language under the current translator.

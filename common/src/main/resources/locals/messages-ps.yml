@@ -9,3 +9,17 @@ Messages:
     بیا هڅه وکړو.
   chpUpdaterFutureDate: تاسو د ChatPolls بیٹا جوړولو چلوئ.
   chpUpdaterOutOfDate: 'د ChatPolls نوی نسخه شتون لري ({0}). دا دلته ډاونلوډ کړئ:'
+  chplLangInvalid: '{0} یو اعتبار محیط نه ده. ملاتړ شوي لومکاییزونه: {1}'
+  chplLangChangedOtherPlayerSender: د {0} ځایي کول {1} ته بدل کړه.
+  chplLangChanged: ستاسو مقامي کول {0} ته بدل شوی.
+  chplLangStopped: ستاسو لوکیلیزه کول د سرور ډیفالټ ته بیا سیټ
+  chplLangNotLoadedConsole: '{0} په دې وخت کې نشي کارول کیږي. تاسو کولی شئ د دې اصلاح
+    کولو لپاره د فلګین بیا لوډ کولو هڅه وکړئ، مګر که دا دوام وکړي مهرباني و'
+  chplLangAlreadyStopped: تاسو لوکالیزاسیشن سیټ نه لرئ.
+  chplLangStoppedOtherPlayerSender: د {0} ځای کول د سرور ډیفالټ ته بیا ترتیب کړئ.
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} لوکالیزاسیشن سیټ نه لري.'
+  chplLangNotLoaded: '{0} په دې وخت کې نشي کارول کیږي. د بیلابیل ملاتړ شوي لوکیشن
+    کارولو وکړئ: {1}'
+  chplLangPlayerNotValid: '{0} یو اعتبار لوبغاړی نه دی.'
+  chpInvalidArgs: غلط دلائل چمتو شوي!
+  chpBadPerms: 'تاسو د دې حکم اجرا کولو لپاره اړین اجازتونه نه لرئ: {0}'

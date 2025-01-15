@@ -10,3 +10,20 @@ Messages:
   chpUpdaterFutureDate: Bạn đang chạy bản beta của ChatPolls.
   chpUpdaterOutOfDate: 'Một phiên bản mới của ChatPolls đã có sẵn ({0}). Tải xuống
     tại đây:'
+  chplLangInvalid: '{0} không phải là bản địa hóa hợp lệ. Bản địa hóa được hỗ trợ:
+    {1}'
+  chplLangChangedOtherPlayerSender: Thay đổi bản địa hóa của {0} thành {1}.
+  chplLangChanged: Bản địa hóa của bạn đã được thay đổi thành {0}.
+  chplLangStopped: Bản địa hóa của bạn đã được đặt lại về mặc định của máy chủ.
+  chplLangNotLoadedConsole: '{0} không thể được sử dụng tại thời điểm này. Bạn có
+    thể thử tải lại plugin để khắc phục điều này, nhưng nếu nó vẫn tồn tại, vui lòng
+    liên hệ với nhà phát triển.'
+  chplLangAlreadyStopped: Bạn không có một bộ bản địa hóa.
+  chplLangStoppedOtherPlayerSender: Đặt lại bản địa hóa của {0} về mặc định của máy
+    chủ.
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} không có bộ bản địa hóa.'
+  chplLangNotLoaded: '{0} không thể được sử dụng tại thời điểm này. Hãy thử sử dụng
+    một bản địa hóa được hỗ trợ khác: {1}'
+  chplLangPlayerNotValid: '{0} không phải là một cầu thủ hợp lệ.'
+  chpInvalidArgs: Các đối số không hợp lệ được cung cấp!
+  chpBadPerms: 'Bạn không có quyền cần thiết để thực hiện lệnh này: {0}'

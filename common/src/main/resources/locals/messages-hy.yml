@@ -10,3 +10,19 @@ Messages:
   chpUpdaterFutureDate: 'Դուք վարում եք ChatPolls- ի բետա կառուցումը:'
   chpUpdaterOutOfDate: 'ChatPolls- ի նոր տարբերակը հասանելի է ({0}): Ներբեռնեք այն
     այստեղ.'
+  chplLangInvalid: '{0} -ը վավեր տեղայնացում չէ: Աջակցվող տեղայնացումներ. {1}'
+  chplLangChangedOtherPlayerSender: 'Փոխել է {0} - ի տեղայնացումը {1}:'
+  chplLangChanged: 'Ձեր տեղայնացումը փոխվել է {0}:'
+  chplLangStopped: 'Ձեր տեղայնացումը վերականգնվել է սերվերի լռելյայն:'
+  chplLangNotLoadedConsole: '{0} -ը այս պահին չի կարող օգտագործվել: Դուք կարող եք
+    փորձել վերաբեռնում plugin է շտկել այս, բայց եթե այն շարունակում է խնդրում ենք
+    դիմել մշակողի.'
+  chplLangAlreadyStopped: 'Դուք տեղայնացման հավաքածու չունեք:'
+  chplLangStoppedOtherPlayerSender: 'Վերականգնել {0}- ի տեղայնացումը սերվերի կանխադրված:'
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} -ը տեղայնացման հավաքածու չունի:'
+  chplLangNotLoaded: '{0} -ը այս պահին չի կարող օգտագործվել: Փորձեք օգտագործել այլ
+    աջակցվող տեղայնացում. {1}'
+  chplLangPlayerNotValid: '{0} -ը վավեր խաղացող չէ։'
+  chpInvalidArgs: 'Անվավեր փաստարկներ են տրամադրվել:'
+  chpBadPerms: Դուք չունեք պահանջվող թույլտվությունները այս հրամանը կատարելու համար.
+    {0}

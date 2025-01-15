@@ -9,3 +9,20 @@ Messages:
   chpUpdaterFutureDate: आप ChatPolls का बीटा बिल्ड चला रहे हैं।
   chpUpdaterOutOfDate: 'ChatPolls का नया संस्करण उपलब्ध है ({0})। इसे यहां डाउनलोड
     करें:'
+  chplLangInvalid: '{0} एक मान्य स्थानीयकरण नहीं है। समर्थित स्थानीयकरण: {1}'
+  chplLangChangedOtherPlayerSender: '{0} के स्थानीयकरण को {1} में बदल दिया।'
+  chplLangChanged: आपका स्थानीयकरण {0} में बदल दिया गया था।
+  chplLangStopped: आपका स्थानीयकरण सर्वर डिफ़ॉल्ट पर रीसेट कर दिया गया था।
+  chplLangNotLoadedConsole: इस समय {0} का उपयोग नहीं किया जा सकता है। आप इसे ठीक करने
+    के लिए प्लगइन को फिर से लोड करने का प्रयास कर सकते हैं, लेकिन अगर यह बनी रहती
+    है तो कृपया डेवलपर से संपर्क करें।
+  chplLangAlreadyStopped: आपके पास स्थानीयकरण सेट नहीं है।
+  chplLangStoppedOtherPlayerSender: '{0} के स्थानीयकरण को सर्वर डिफ़ॉल्ट पर रीसेट
+    करें।'
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} में स्थानीयकरण सेट नहीं है।'
+  chplLangNotLoaded: 'इस समय {0} का उपयोग नहीं किया जा सकता है। किसी भिन्न समर्थित
+    स्थानीयकरण का उपयोग करने का प्रयास करें: {1}'
+  chplLangPlayerNotValid: '{0} एक मान्य खिलाड़ी नहीं है।'
+  chpInvalidArgs: अमान्य तर्क प्रदान किए गए!
+  chpBadPerms: 'इस कमांड को निष्पादित करने के लिए आपके पास आवश्यक अनुमतियां नहीं हैं:
+    {0}'

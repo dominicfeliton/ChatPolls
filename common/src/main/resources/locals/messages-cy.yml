@@ -10,3 +10,18 @@ Messages:
   chpUpdaterFutureDate: Rydych chi'n rhedeg adeilad beta o ChatPolls.
   chpUpdaterOutOfDate: 'Mae fersiwn newydd o ChatPolls ar gael ({0}). Lawrlwythwch
     ef yma:'
+  chplLangInvalid: 'Nid yw {0} yn lleoleiddio dilys. Lleoleiddiadau â chymorth: {1}'
+  chplLangChangedOtherPlayerSender: Newidiwyd lleoleiddio {0} i {1}.
+  chplLangChanged: Newidiwyd eich lleoleiddio i {0}.
+  chplLangStopped: Ailosodwyd eich lleoleiddio i ddiofyn y gweinydd.
+  chplLangNotLoadedConsole: Ni ellir defnyddio {0} ar hyn o bryd. Gallwch geisio ail-lwytho'r
+    ategyn i drwsio hyn, ond os yw'n parhau cysylltwch â'r datblygwr.
+  chplLangAlreadyStopped: Nid oes gennych set lleoleiddio.
+  chplLangStoppedOtherPlayerSender: Ailosod lleoleiddio {0} i ddiofyn y gweinydd.
+  chplLangAlreadyStoppedOtherPlayerSender: Nid oes gan {0} set lleoleiddio.
+  chplLangNotLoaded: 'Ni ellir defnyddio {0} ar hyn o bryd. Ceisiwch ddefnyddio lleoleiddio
+    â chymorth gwahanol: {1}'
+  chplLangPlayerNotValid: Nid yw {0} yn chwaraewr dilys.
+  chpInvalidArgs: Dadleuon annilys a ddarperir!
+  chpBadPerms: 'Nid oes gennych y caniatâd gofynnol i weithredu''r gorchymyn hwn:
+    {0}'

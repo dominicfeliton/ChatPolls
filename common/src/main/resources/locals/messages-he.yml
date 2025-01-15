@@ -8,3 +8,17 @@ Messages:
   chpUpdaterFailedGeneric: לא הצליחה לבדוק אם קיימים עדכונים. ננסה שוב מאוחר יותר.
   chpUpdaterFutureDate: אתה מפעיל בניית בטא של ChatPolls.
   chpUpdaterOutOfDate: 'גרסה חדשה של צ''אטפולקס זמינה ({0}). הורד אותו כאן:'
+  chplLangInvalid: '{0} אינו לוקליזציה תקפה. לוקליזציות נתמכות: {1}'
+  chplLangChangedOtherPlayerSender: שינה את הלוקליזציה של {0} ל- {1}.
+  chplLangChanged: הלוקליזציה שלך שונתה ל- {0}.
+  chplLangStopped: הלוקליזציה שלך אופסה לברירת המחדל של השרת.
+  chplLangNotLoadedConsole: לא ניתן להשתמש ב- {0} בשלב זה. אתה יכול לנסות לטעון מחדש
+    את התוסף כדי לתקן זאת, אבל אם זה נמשך אנא צור קשר עם המפתח.
+  chplLangAlreadyStopped: אין לך ערכת לוקליזציה.
+  chplLangStoppedOtherPlayerSender: אפס את הלוקליזציה של {0} לברירת המחדל של השרת.
+  chplLangAlreadyStoppedOtherPlayerSender: ל- {0} אין ערכת לוקליזציה.
+  chplLangNotLoaded: 'לא ניתן להשתמש ב- {0} בשלב זה. נסה להשתמש בלוקליזציה נתמכת אחרת:
+    {1}'
+  chplLangPlayerNotValid: '{0} אינו שחקן תקף.'
+  chpInvalidArgs: ארגומנטים לא חוקיים שסופקו!
+  chpBadPerms: 'אין לך את ההרשאות הנדרשות לביצוע פקודה זו: {0}'

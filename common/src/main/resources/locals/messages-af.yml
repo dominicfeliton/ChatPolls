@@ -10,3 +10,21 @@ Messages:
   chpUpdaterFutureDate: U bestuur 'n beta-bou van ChatPolls.
   chpUpdaterOutOfDate: '''N Nuwe weergawe van ChatPolls is beskikbaar ({0}). Laai
     dit hier af:'
+  chplLangInvalid: '{0} is nie ''n geldige lokalisering nie. Ondersteunde lokalisasies:
+    {1}'
+  chplLangChangedOtherPlayerSender: Verander die lokalisering van {0} na {1}.
+  chplLangChanged: Jou lokalisering is verander na {0}.
+  chplLangStopped: Jou lokalisering is terugstel na die standaard bediener.
+  chplLangNotLoadedConsole: '{0} kan nie op die oomblik gebruik word nie. U kan probeer
+    om die plugin weer te laai om dit reg te stel, maar as dit voortduur, kontak asseblief
+    die ontwikkelaar.'
+  chplLangAlreadyStopped: U het nie 'n lokaliseringstel nie.
+  chplLangStoppedOtherPlayerSender: Stel die lokalisering van {0} terug na die standaard
+    bediener.
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} het nie ''n lokaliseringstel nie.'
+  chplLangNotLoaded: '{0} kan nie op die oomblik gebruik word nie. Probeer om ''n
+    ander ondersteunde lokalisering te gebruik: {1}'
+  chplLangPlayerNotValid: '{0} is nie ''n geldige speler nie.'
+  chpInvalidArgs: Ongeldige argumente verskaf!
+  chpBadPerms: 'U het nie die vereiste toestemmings om hierdie opdrag uit te voer
+    nie: {0}'

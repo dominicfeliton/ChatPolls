@@ -9,3 +9,18 @@ Messages:
   chpUpdaterFutureDate: شما در حال اجرای یک نسخه بتا از ChatPolls هستید.
   chpUpdaterOutOfDate: 'نسخه جدیدی از ChatPolls در دسترس است ({0}). آن را از اینجا
     دانلود کنید:'
+  chplLangInvalid: '{0} محلی سازی معتبر نیست. محلی سازی های پشتیبانی شده: {1}'
+  chplLangChangedOtherPlayerSender: محلی سازی {0} را به {1} تغییر داد.
+  chplLangChanged: محلی سازی شما به {0} تغییر داده شد.
+  chplLangStopped: محلی سازی شما به سرور پیش فرض بازنشانی شد.
+  chplLangNotLoadedConsole: '{0} در حال حاضر نمی تواند مورد استفاده قرار گیرد. برای
+    رفع این موضوع می توانید پلاگین را دوباره بارگیری کنید، اما اگر ادامه یابد لطفا
+    با توسعه دهنده تماس بگیرید.'
+  chplLangAlreadyStopped: شما یک مجموعه محلی سازی ندارید.
+  chplLangStoppedOtherPlayerSender: محلی سازی {0} را به پیش فرض سرور تنظیم کنید.
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} مجموعه محلی سازی ندارد.'
+  chplLangNotLoaded: '{0} در حال حاضر قابل استفاده نیست. سعی کنید از یک محلی سازی
+    پشتیبانی شده دیگر استفاده کنید: {1}'
+  chplLangPlayerNotValid: '{0} یک بازیکن معتبر نیست.'
+  chpInvalidArgs: استدلایل نامعتبر ارائه شده است!
+  chpBadPerms: 'شما مجوزهای لازم برای اجرای این دستور ندارید: {0}'

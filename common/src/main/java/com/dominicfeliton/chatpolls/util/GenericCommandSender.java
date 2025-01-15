@@ -8,4 +8,8 @@ public interface GenericCommandSender {
 
     void setConsoleCommandSender();
 
+    String getName();
+
+
+
 }

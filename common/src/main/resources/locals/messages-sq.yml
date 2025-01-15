@@ -10,3 +10,20 @@ Messages:
   chpUpdaterFutureDate: Ju jeni duke ekzekutuar një ndërtim beta të ChatPolls.
   chpUpdaterOutOfDate: 'Një version i ri i ChatPolls është në dispozicion ({0}). Shkarkoni
     këtu:'
+  chplLangInvalid: '{0} nuk është një lokalizim i vlefshëm. Lokalizime të mbështetura:
+    {1}'
+  chplLangChangedOtherPlayerSender: Ndryshoi lokalizimin e {0} në {1}.
+  chplLangChanged: Lokalizimi juaj është ndryshuar në {0}.
+  chplLangStopped: Lokalizimi juaj u rivendos në parazgjedhjen e serverit.
+  chplLangNotLoadedConsole: '{0} nuk mund të përdoret në këtë kohë. Ju mund të provoni
+    të rimbushni shtojcën për të rregulluar këtë, por nëse vazhdon, ju lutemi kontaktoni
+    zhvilluesin.'
+  chplLangAlreadyStopped: Ju nuk keni një grup lokalizimi.
+  chplLangStoppedOtherPlayerSender: Rivendosni lokalizimin e {0} në parazgjedhjen
+    e serverit.
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} nuk ka një grup lokalizimi.'
+  chplLangNotLoaded: '{0} nuk mund të përdoret në këtë kohë. Provoni të përdorni një
+    lokalizim tjetër të mbështetur: {1}'
+  chplLangPlayerNotValid: '{0} nuk është një lojtar i vlefshëm.'
+  chpInvalidArgs: Dispozuara argumente të pavlefshme!
+  chpBadPerms: 'Ju nuk keni lejet e kërkuara për të ekzekutuar këtë komandë: {0}'

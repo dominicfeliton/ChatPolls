@@ -7,3 +7,15 @@ Messages:
   chpUpdaterFailedGeneric: 無法檢查更新。我們稍後再試一次。
   chpUpdaterFutureDate: 您正在運行聊天調查的測試版本。
   chpUpdaterOutOfDate: 新版本的聊天民意見調查已推出（{0}）。在這裡下載：
+  chplLangInvalid: '{0} 不是有效的本地化。支持的本地化：{1}'
+  chplLangChangedOtherPlayerSender: 將 {0} 的本地化變更為 {1}。
+  chplLangChanged: 您的本地化已更改為 {0}。
+  chplLangStopped: 您的本地化已重設為伺服器預設值。
+  chplLangNotLoadedConsole: '{0} 目前無法使用。您可以嘗試重新加載插件來解決此問題，但如果仍然存在，請聯繫開發人員。'
+  chplLangAlreadyStopped: 您沒有本地化設定。
+  chplLangStoppedOtherPlayerSender: 將 {0} 的本地化重設為伺服器預設值。
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} 沒有本地化設定。'
+  chplLangNotLoaded: '{0} 目前無法使用。嘗試使用其他支援的本地化：{1}'
+  chplLangPlayerNotValid: '{0} 不是有效的玩家。'
+  chpInvalidArgs: 提供無效的引數！
+  chpBadPerms: 您沒有執行此命令所需的權限：{0}

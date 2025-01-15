@@ -8,3 +8,16 @@ Messages:
   chpUpdaterFailedGeneric: ዝማኔዎችን ማረጋገጥ አልተሳካም። በኋላ እንደገና እንሞክራለን።
   chpUpdaterFutureDate: የ ChatPolls የቤታ ግንባታ እያካሄዱ ነው።
   chpUpdaterOutOfDate: 'አዲስ የ ChatPolls ስሪት ይገኛል ({0})። እዚህ ያውርዱት:'
+  chplLangInvalid: '{0} ትክክለኛ አካባቢያዊ አይደለም። የሚደገፉ አካባቢያዎች: {1}'
+  chplLangChangedOtherPlayerSender: የ {0} አካባቢያዊነት ወደ {1} ቀይሯል።
+  chplLangChanged: የአካባቢያዎ ወደ {0} ተለውጧል።
+  chplLangStopped: የአካባቢያዎ ወደ አገልጋዩ ነባሪ እንደገና ተጀመረ።
+  chplLangNotLoadedConsole: '{0} በዚህ ጊዜ ጥቅም ላይ ሊውል አይችልም። ይህንን ለማስተካከል ተሰኪውን እንደገና
+    መጫን መሞከር ይችላሉ፣ ግን ከቀጠለ እባክዎን ገንቢውን ያነጋግሩ።'
+  chplLangAlreadyStopped: የአካባቢያ ስብስብ የለዎትም።
+  chplLangStoppedOtherPlayerSender: የ {0} አካባቢን ወደ አገልጋዩ ነባሪ ዳግም ያስጀምሩ።
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} የአካባቢያ ስብስብ የለውም።'
+  chplLangNotLoaded: '{0} በዚህ ጊዜ ጥቅም ላይ ሊውል አይችልም። የተለየ የተደገፈ አካባቢያዊ መጠቀም ይሞክሩ {1}'
+  chplLangPlayerNotValid: '{0} ትክክለኛ ተጫዋች አይደለም።'
+  chpInvalidArgs: ትክክል ያልሆነ ክርክሮች
+  chpBadPerms: ይህንን ትዕዛዝ ለማከናወን አስፈላጊ ፈቃዶች የሉዎት፡ {0}

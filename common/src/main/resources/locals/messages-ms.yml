@@ -8,3 +8,19 @@ Messages:
   chpUpdaterFailedGeneric: Gagal menyemak kemas kini. Kami akan cuba lagi nanti.
   chpUpdaterFutureDate: Anda sedang menjalankan binaan beta ChatPolls.
   chpUpdaterOutOfDate: 'Versi baru ChatPolls tersedia ({0}). Muat turun di sini:'
+  chplLangInvalid: '{0} bukan penyetempatan yang sah. Lokalisasi yang disokong: {1}'
+  chplLangChangedOtherPlayerSender: Menukar penyetempatan {0} kepada {1}.
+  chplLangChanged: Penyetempatan anda telah ditukar kepada {0}.
+  chplLangStopped: Penyetempatan anda telah ditetapkan semula kepada default pelayan.
+  chplLangNotLoadedConsole: '{0} tidak boleh digunakan pada masa ini. Anda boleh cuba
+    memuat semula plugin untuk memperbaikinya, tetapi jika ia berterusan sila hubungi
+    pemaju.'
+  chplLangAlreadyStopped: Anda tidak mempunyai set penyetempatan.
+  chplLangStoppedOtherPlayerSender: Tetapkan semula penyetempatan {0} ke default pelayan.
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} tidak mempunyai set penyetempatan.'
+  chplLangNotLoaded: '{0} tidak boleh digunakan pada masa ini. Cuba gunakan penyetempatan
+    yang disokong yang berbeza: {1}'
+  chplLangPlayerNotValid: '{0} bukan pemain yang sah.'
+  chpInvalidArgs: Hujah tidak sah disediakan!
+  chpBadPerms: 'Anda tidak mempunyai keizinan yang diperlukan untuk melaksanakan arahan
+    ini: {0}'

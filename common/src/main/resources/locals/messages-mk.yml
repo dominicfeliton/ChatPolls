@@ -9,3 +9,19 @@ Messages:
     повторно подоцна.
   chpUpdaterFutureDate: Водите бета верзија на ChatPolls.
   chpUpdaterOutOfDate: 'Достапна е нова верзија на ChatPolls ({0}). Преземете го овде:'
+  chplLangInvalid: '{0} не е валидна локализација. Поддржани локализации: {1}'
+  chplLangChangedOtherPlayerSender: Промена на локализацијата на {0} во {1}.
+  chplLangChanged: Вашата локализација е променета на {0}.
+  chplLangStopped: Вашата локализација беше ресетирана на стандардниот сервер.
+  chplLangNotLoadedConsole: '{0} не може да се користи во овој момент. Можете да се
+    обидете повторно да го вчитате приклучокот за да го поправите ова, но ако опстојува,
+    ве молиме контактирајте го развивачот.'
+  chplLangAlreadyStopped: Немате сет за локализација.
+  chplLangStoppedOtherPlayerSender: Ресетирајте ја локализацијата на {0} на стандардниот
+    сервер.
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} нема сет за локализација.'
+  chplLangNotLoaded: '{0} не може да се користи во овој момент. Обидете се да користите
+    друга поддржана локализација: {1}'
+  chplLangPlayerNotValid: '{0} не е валиден играч.'
+  chpInvalidArgs: Дадени неважечки аргументи!
+  chpBadPerms: 'Вие ги немате потребните дозволи за извршување на оваа команда: {0}'

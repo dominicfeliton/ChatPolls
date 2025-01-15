@@ -1,5 +1,6 @@
 package com.dominicfeliton.chatpolls;
 
+import com.dominicfeliton.chatpolls.commands.CHPLocalizeBukkit;
 import com.dominicfeliton.chatpolls.configuration.ConfigurationHandler;
 import com.dominicfeliton.chatpolls.runnables.UpdateChecker;
 import com.dominicfeliton.chatpolls.util.*;
@@ -177,6 +178,10 @@ public class ChatPolls extends JavaPlugin {
                     refs.sendMsg(s, versionNotice, true);
                     //refs.playSound(CHP_VERSION, sender);
                     return true;
+                case "chpl":
+                    // Change localization
+                    CHPLocalizeBukkit c = new CHPLocalizeBukkit(new BukkitCommandSender(sender), label, args, refs);
+                    return c.processCommand();
             }
         }
         return true;

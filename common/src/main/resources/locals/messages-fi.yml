@@ -9,3 +9,19 @@ Messages:
     uudelleen.
   chpUpdaterFutureDate: Käytät ChatPolls -beta-versiota.
   chpUpdaterOutOfDate: 'Uusi ChatPolls -versio on saatavilla ({0}). Lataa se täältä:'
+  chplLangInvalid: '{0} ei ole kelvollinen lokalisointi. Tuetut lokalisaatiot: {1}'
+  chplLangChangedOtherPlayerSender: 'Vaihdettiin {0}: n lokalisointi {1}: ksi.'
+  chplLangChanged: Lokalisointisi muutettiin muotoon {0}.
+  chplLangStopped: Lokalisointi palautettiin palvelimen oletusarvoiseksi.
+  chplLangNotLoadedConsole: '{0} ei voi käyttää tällä hetkellä. Voit yrittää ladata
+    laajennuksen uudelleen tämän korjaamiseksi, mutta jos se jatkuu, ota yhteyttä
+    kehittäjään.'
+  chplLangAlreadyStopped: Sinulla ei ole lokalisointiasetusta.
+  chplLangStoppedOtherPlayerSender: Palauta {0} -lokalisointi palvelimen oletusarvoiseksi.
+  chplLangAlreadyStoppedOtherPlayerSender: '{0}: lla ei ole lokalisointiasetusta.'
+  chplLangNotLoaded: '{0} ei voi käyttää tällä hetkellä. Kokeile toista tuettua lokalisointia:
+    {1}'
+  chplLangPlayerNotValid: '{0} ei ole kelvollinen pelaaja.'
+  chpInvalidArgs: Annetut virheelliset argumentit!
+  chpBadPerms: 'Sinulla ei ole vaadittuja oikeuksia tämän komennon suorittamiseen:
+    {0}'

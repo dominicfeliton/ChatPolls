@@ -8,3 +8,16 @@ Messages:
   chpUpdaterFailedGeneric: ไม่สามารถตรวจสอบการอัปเดตได้เราจะลองอีกครั้งในภายหลัง
   chpUpdaterFutureDate: คุณกำลังเรียกใช้ ChatPolls รุ่นเบต้า
   chpUpdaterOutOfDate: 'ChatPolls เวอร์ชันใหม่พร้อมใช้งาน ({0})ดาวน์โหลดได้ที่นี่:'
+  chplLangInvalid: '{0} ไม่ใช่การแปลที่ถูกต้องการปรับตำแหน่งที่รองรับ: {1}'
+  chplLangChangedOtherPlayerSender: เปลี่ยนการแปลภาษาของ {0} เป็น {1}
+  chplLangChanged: การแปลภาษาของคุณถูกเปลี่ยนเป็น {0}
+  chplLangStopped: การแปลภาษาของคุณถูกรีเซ็ตเป็นค่าเริ่มต้นของเซิร์ฟเวอร์
+  chplLangNotLoadedConsole: ขณะนี้ไม่สามารถใช้ {0} ได้คุณสามารถลองโหลดปลั๊กอินใหม่เพื่อแก้ไขปัญหานี้
+    แต่หากยังคงอยู่โปรดติดต่อนักพัฒนา
+  chplLangAlreadyStopped: คุณไม่มีชุดการแปลภาษาท้องถิ่น
+  chplLangStoppedOtherPlayerSender: รีเซ็ตการแปลของ {0} เป็นค่าเริ่มต้นของเซิร์ฟเวอร์
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} ไม่มีชุดการแปลภาษาท้องถิ่น'
+  chplLangNotLoaded: 'ขณะนี้ไม่สามารถใช้ {0} ได้ลองใช้การแปลภาษาที่รองรับอื่น: {1}'
+  chplLangPlayerNotValid: '{0} ไม่ใช่ผู้เล่นที่ถูกต้อง'
+  chpInvalidArgs: มีอาร์กิวเมนต์ที่ไม่ถูกต้อง!
+  chpBadPerms: 'คุณไม่มีสิทธิ์ที่จำเป็นในการดำเนินการคำสั่งนี้: {0}'

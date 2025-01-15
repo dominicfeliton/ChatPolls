@@ -9,3 +9,18 @@ Messages:
     знову пізніше.
   chpUpdaterFutureDate: Ви запускаєте бета-версію ChatPolls.
   chpUpdaterOutOfDate: 'Доступна нова версія ChatPolls ({0}). Завантажте його тут:'
+  chplLangInvalid: '{0} не є дійсною локалізацією. Підтримувані локалізації: {1}'
+  chplLangChangedOtherPlayerSender: Змінено локалізацію {0} на {1}.
+  chplLangChanged: Вашу локалізацію було змінено на {0}.
+  chplLangStopped: Ваша локалізація була скинута до сервера за замовчуванням.
+  chplLangNotLoadedConsole: '{0} наразі не можна використовувати. Ви можете спробувати
+    перезавантажити плагін, щоб виправити це, але якщо він зберігається, зв''яжіться
+    з розробником.'
+  chplLangAlreadyStopped: У вас немає набору локалізації.
+  chplLangStoppedOtherPlayerSender: Скинути локалізацію {0} до сервера за замовчуванням.
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} не має встановленого локалізації.'
+  chplLangNotLoaded: '{0} наразі не можна використовувати. Спробуйте використовувати
+    іншу підтримувану локалізацію: {1}'
+  chplLangPlayerNotValid: '{0} не є дійсним гравцем.'
+  chpInvalidArgs: Надані недійсні аргументи!
+  chpBadPerms: 'У вас немає необхідних дозволів для виконання цієї команди: {0}'

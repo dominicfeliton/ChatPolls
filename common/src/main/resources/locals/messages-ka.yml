@@ -9,3 +9,18 @@ Messages:
   chpUpdaterFutureDate: თქვენ ატარებთ ChatPolls-ის ბეტა შექმნას.
   chpUpdaterOutOfDate: 'ხელმისაწვდომია ChatPolls— ის ახალი ვერსია ({0}). ჩამოტვირთეთ
     აქ:'
+  chplLangInvalid: '{0} არ არის მოქმედი ლოკალიზაცია. მხარდაჭერილი ლოკალიზაციები: {1}'
+  chplLangChangedOtherPlayerSender: შეცვალა {0} -ის ლოკალიზაცია {1} -ზე.
+  chplLangChanged: თქვენი ლოკალიზაცია შეიცვალა {0} -ზე.
+  chplLangStopped: თქვენი ლოკალიზაცია გადადგა სერვერის სტანდარტულად.
+  chplLangNotLoadedConsole: '{0} ამ დროს არ შეიძლება გამოყენებულ იქნას. ამის გამოსასწორებლად
+    შეგიძლიათ სცადოთ მოდულის გადატვირთვა, მაგრამ თუ ის გაგრძელდება, გთხოვთ, დაუკავშირდეთ
+    დეველ'
+  chplLangAlreadyStopped: თქვენ არ გაქვთ ლოკალიზაციის ნაკრები.
+  chplLangStoppedOtherPlayerSender: '{0} -ის ლოკალიზაცია სერვერის ნაგულისხმევად გადაიტანეთ'
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} არ გააჩნია ლოკალიზაციის ნაკრები.'
+  chplLangNotLoaded: '{0} ამ დროს არ შეიძლება გამოყენებულ იქნას. სცადეთ გამოიყენოთ
+    სხვა მხარდაჭერილი ლოკალიზაცია {1}'
+  chplLangPlayerNotValid: '{0} არ არის მოქმედი მოთამაშე.'
+  chpInvalidArgs: მოცემულია არასწორი არგუმენტ
+  chpBadPerms: 'თქვენ არ გაქვთ საჭირო ნებართვები ამ ბრძანების შესასრულებლად: {0}'

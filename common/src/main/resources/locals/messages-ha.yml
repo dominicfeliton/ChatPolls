@@ -8,3 +8,18 @@ Messages:
   chpUpdaterFailedGeneric: An kasa bincika sabuntawa. Za mu sake gwada daga baya.
   chpUpdaterFutureDate: Kuna gudanar da ginin beta na ChatPolls.
   chpUpdaterOutOfDate: 'Ana samun sabon sigar ChatPolls ({0}). Zazzage shi anan:'
+  chplLangInvalid: '{0} ba ingantaccen wuri bane. Wuraren da aka tallafawa: {1}'
+  chplLangChangedOtherPlayerSender: Canza wurin wuri na {0} zuwa {1}.
+  chplLangChanged: An canza yanayin ku zuwa {0}.
+  chplLangStopped: An sake saita wurin ku zuwa tsoho uwar garken.
+  chplLangNotLoadedConsole: Ba za a iya amfani da {0} a wannan lokacin ba. Kuna iya
+    gwada sake loda plugin don gyara wannan, amma idan ya ci gaba da fatan za a tuntuɓi
+    mai haɓakawa.
+  chplLangAlreadyStopped: Ba ku da saitin yankewa.
+  chplLangStoppedOtherPlayerSender: Sake saita wurin wuri na {0} zuwa tsoho uwar garken.
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} ba shi da saitin yankewa.'
+  chplLangNotLoaded: 'Ba za a iya amfani da {0} a wannan lokacin ba. Gwada amfani
+    da wani yanki mai tallafi daban-daban: {1}'
+  chplLangPlayerNotValid: '{0} ba dan wasa bane mai inganci.'
+  chpInvalidArgs: An bayar da hujjoji mara kyau!
+  chpBadPerms: 'Ba ku da izinin da ake buƙata don aiwatar da wannan umarni: {0}'

@@ -10,3 +10,20 @@ Messages:
   chpUpdaterFutureDate: Int qed tħaddem bini beta ta' ChatPolls.
   chpUpdaterOutOfDate: 'Verżjoni ġdida ta ''ChatPolls hija disponibbli ({0}). Niżżel
     minn hawn:'
+  chplLangInvalid: '{0} mhix lokalizzazzjoni valida. Lokalizzazzjonijiet appoġġjati:
+    {1}'
+  chplLangChangedOtherPlayerSender: Bidlet il-lokalizzazzjoni ta' {0} għal {1}.
+  chplLangChanged: Il-lokalizzazzjoni tiegħek inbidlet għal {0}.
+  chplLangStopped: Il-lokalizzazzjoni tiegħek ġiet irrisettjata għall-default tas-server.
+  chplLangNotLoadedConsole: '{0} ma jistax jintuża f''dan il-ħin. Tista ''tipprova
+    tagħbija mill-ġdid il-plugin biex tiffissa dan, imma jekk tippersisti jekk jogħġbok
+    ikkuntattja lill-iżviluppatur.'
+  chplLangAlreadyStopped: M'għandekx sett ta' lokalizzazzjoni.
+  chplLangStoppedOtherPlayerSender: Irrisettja l-lokalizzazzjoni ta' {0} għall-default
+    tas-server.
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} m''għandux sett ta'' lokalizzazzjoni.'
+  chplLangNotLoaded: '{0} ma jistax jintuża f''dan il-ħin. Ipprova tuża lokalizzazzjoni
+    appoġġjata differenti: {1}'
+  chplLangPlayerNotValid: '{0} mhuwiex plejer validu.'
+  chpInvalidArgs: Argumenti invalidi pprovduti!
+  chpBadPerms: 'M''għandekx il-permessi meħtieġa biex tesegwixxi dan il-kmand: {0}'

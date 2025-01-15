@@ -10,3 +10,20 @@ Messages:
   chpUpdaterFutureDate: Du kör en betaversion av ChatPolls.
   chpUpdaterOutOfDate: 'En ny version av ChatPolls är tillgänglig ({0}). Ladda ner
     den här:'
+  chplLangInvalid: '{0} är inte en giltig lokalisering. Lokaliseringar som stöds:
+    {1}'
+  chplLangChangedOtherPlayerSender: Ändrade lokaliseringen av {0} till {1}.
+  chplLangChanged: Din lokalisering ändrades till {0}.
+  chplLangStopped: Din lokalisering återställdes till serverns standard.
+  chplLangNotLoadedConsole: '{0} kan inte användas just nu. Du kan försöka ladda om
+    pluginet för att fixa detta, men om det kvarstår vänligen kontakta utvecklaren.'
+  chplLangAlreadyStopped: Du har ingen lokaliseringsuppsättning.
+  chplLangStoppedOtherPlayerSender: Återställ lokaliseringen av {0} till serverns
+    standard.
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} har ingen lokaliseringsuppsättning.'
+  chplLangNotLoaded: '{0} kan inte användas just nu. Försök använda en annan lokalisering
+    som stöds: {1}'
+  chplLangPlayerNotValid: '{0} är inte en giltig spelare.'
+  chpInvalidArgs: Ogiltiga argument angivna!
+  chpBadPerms: 'Du har inte de behörigheter som krävs för att utföra det här kommandot:
+    {0}'

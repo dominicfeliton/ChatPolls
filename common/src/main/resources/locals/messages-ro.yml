@@ -10,3 +10,18 @@ Messages:
   chpUpdaterFutureDate: Rulați o versiune beta a ChatPolls.
   chpUpdaterOutOfDate: 'O nouă versiune de ChatPolls este disponibilă ({0}). Descărcați-l
     aici:'
+  chplLangInvalid: '{0} nu este o localizare validă. Localizări acceptate: {1}'
+  chplLangChangedOtherPlayerSender: S-a schimbat localizarea {0} în {1}.
+  chplLangChanged: Localizarea dvs. a fost schimbată în {0}.
+  chplLangStopped: Localizarea dvs. a fost resetată la serverul implicit.
+  chplLangNotLoadedConsole: '{0} nu poate fi utilizat în acest moment. Puteți încerca
+    să reîncărcați pluginul pentru a remedia acest lucru, dar dacă persistă vă rugăm
+    să contactați dezvoltatorul.'
+  chplLangAlreadyStopped: Nu aveți un set de localizare.
+  chplLangStoppedOtherPlayerSender: Resetați localizarea {0} la serverul implicit.
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} nu are un set de localizare.'
+  chplLangNotLoaded: '{0} nu poate fi utilizat în acest moment. Încercați să utilizați
+    o altă localizare acceptată: {1}'
+  chplLangPlayerNotValid: '{0} nu este un jucător valid.'
+  chpInvalidArgs: Argumente nevalide furnizate!
+  chpBadPerms: 'Nu aveți permisiunile necesare pentru a executa această comandă: {0}'

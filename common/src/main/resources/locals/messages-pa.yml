@@ -10,3 +10,18 @@ Messages:
   chpUpdaterFutureDate: ਤੁਸੀਂ ਚੈਟਪੋਲਸ ਦਾ ਬੀਟਾ ਬਿਲਡ ਚਲਾ ਰਹੇ ਹੋ।
   chpUpdaterOutOfDate: 'ਚੈਟਪੋਲਸ ਦਾ ਇੱਕ ਨਵਾਂ ਸੰਸਕਰਣ ਉਪਲਬਧ ਹੈ ({0})। ਇਸਨੂੰ ਇੱਥੇ ਡਾਊਨਲੋਡ
     ਕਰੋ:'
+  chplLangInvalid: '{0} ਇੱਕ ਵੈਧ ਸਥਾਨਕਕਰਨ ਨਹੀਂ ਹੈ। ਸਹਿਯੋਗੀ ਸਥਾਨਕਕਰਨ: {1}'
+  chplLangChangedOtherPlayerSender: '{0} ਦੇ ਸਥਾਨਕਕਰਨ ਨੂੰ {1} ਵਿੱਚ ਬਦਲ ਦਿੱਤਾ।'
+  chplLangChanged: ਤੁਹਾਡਾ ਸਥਾਨਕਕਰਨ {0} ਵਿੱਚ ਬਦਲ ਦਿੱਤਾ ਗਿਆ ਸੀ।
+  chplLangStopped: ਤੁਹਾਡਾ ਸਥਾਨਕਕਰਨ ਸਰਵਰ ਡਿਫੌਲਟ ਤੇ ਰੀਸੈਟ ਕੀਤਾ ਗਿਆ ਸੀ.
+  chplLangNotLoadedConsole: '{0} ਇਸ ਸਮੇਂ ਵਰਤਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ। ਤੁਸੀਂ ਇਸ ਨੂੰ ਠੀਕ ਕਰਨ
+    ਲਈ ਪਲੱਗਇਨ ਨੂੰ ਦੁਬਾਰਾ ਲੋਡ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰ ਸਕਦੇ ਹੋ, ਪਰ ਜੇ ਇਹ ਕਾਇਮ ਰਹਿੰਦਾ ਹੈ ਤਾਂ
+    ਕਿਰਪਾ ਕਰਕੇ ਡਿਵੈ'
+  chplLangAlreadyStopped: ਤੁਹਾਡੇ ਕੋਲ ਸਥਾਨਕਕਰਨ ਸੈੱਟ ਨਹੀਂ ਹੈ.
+  chplLangStoppedOtherPlayerSender: '{0} ਦੇ ਸਥਾਨਕਕਰਨ ਨੂੰ ਸਰਵਰ ਡਿਫੌਲਟ ਤੇ ਰੀਸੈਟ ਕਰੋ.'
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} ਕੋਲ ਸਥਾਨਕਕਰਨ ਸੈੱਟ ਨਹੀਂ ਹੈ।'
+  chplLangNotLoaded: '{0} ਇਸ ਸਮੇਂ ਵਰਤਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ। ਇੱਕ ਵੱਖਰੇ ਸਮਰਥਿਤ ਸਥਾਨਕਕਰਨ ਦੀ
+    ਵਰਤੋਂ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ: {1}'
+  chplLangPlayerNotValid: '{0} ਕੋਈ ਵੈਧ ਖਿਡਾਰੀ ਨਹੀਂ ਹੈ.'
+  chpInvalidArgs: ਅਯੋਗ ਦਲੀਲਾਂ ਪ੍ਰਦਾਨ ਕੀਤੀਆਂ ਗਈਆਂ!
+  chpBadPerms: 'ਇਸ ਕਮਾਂਡ ਨੂੰ ਚਲਾਉਣ ਲਈ ਤੁਹਾਡੇ ਕੋਲ ਲੋੜੀਂਦੀਆਂ ਇਜਾਜ਼ਤਾਂ ਨਹੀਂ ਹਨ: {0}'

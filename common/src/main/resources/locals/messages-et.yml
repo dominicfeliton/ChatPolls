@@ -10,3 +10,18 @@ Messages:
   chpUpdaterFutureDate: Te kasutate ChatPolli beetaversiooni.
   chpUpdaterOutOfDate: 'Saadaval on ChatPollsi uus versioon ({0}). Laadige see alla
     siit:'
+  chplLangInvalid: '{0} ei ole kehtiv lokaliseerimine. Toetatud lokaliseerimised:
+    {1}'
+  chplLangChangedOtherPlayerSender: Muutis {0} lokaliseerimist {1} -ks.
+  chplLangChanged: Teie lokaliseerimine muudeti väärtuseks {0}.
+  chplLangStopped: Teie lokaliseerimine lähtestati serveri vaikimisi.
+  chplLangNotLoadedConsole: '{0} ei saa praegu kasutada. Selle parandamiseks võite
+    proovida pistikprogrammi uuesti laadida, kuid kui see püsib, võtke ühendust arendajaga.'
+  chplLangAlreadyStopped: Teil pole lokaliseerimiskomplekti.
+  chplLangStoppedOtherPlayerSender: Lähtestage {0} lokaliseerimine serveri vaikimisi.
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} ei ole lokaliseerimiskomplekti.'
+  chplLangNotLoaded: '{0} ei saa praegu kasutada. Proovige kasutada mõnda muud toetatud
+    lokaliseerimist: {1}'
+  chplLangPlayerNotValid: '{0} ei ole kehtiv mängija.'
+  chpInvalidArgs: Esitatud on kehtetud argumendid!
+  chpBadPerms: 'Teil pole selle käsu täitmiseks vajalikke õigusi: {0}'

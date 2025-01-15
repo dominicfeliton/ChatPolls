@@ -10,3 +10,21 @@ Messages:
   chpUpdaterFutureDate: Siz ChatPolls-ning beta versiyasini ishlayapsiz.
   chpUpdaterOutOfDate: 'ChatPolls-ning yangi versiyasi mavjud ({0}). Uni bu yerdan
     yuklab oling:'
+  chplLangInvalid: '{0} haqiqiy lokalizatsiya emas. Qo''llab-quvvatlanadigan lokalizatsiyalar:
+    {1}'
+  chplLangChangedOtherPlayerSender: '{0} ning lokalizatsiyasini {1} ga o''zgartirdi.'
+  chplLangChanged: Sizning lokalizatsiyangiz {0} ga o'zgartirildi.
+  chplLangStopped: Mahalliylashtirishingiz server standart holatiga qaytarildi.
+  chplLangNotLoadedConsole: Hozirda {0} dan foydalanish mumkin emas. Buni tuzatish
+    uchun plaginni qayta yuklashni sinab ko'rishingiz mumkin, lekin agar u davom etsa
+    iltimos ishlab chiquvchiga murojaat qiling.
+  chplLangAlreadyStopped: Sizda lokalizatsiya to'plami yo'q.
+  chplLangStoppedOtherPlayerSender: '{0} lokalizatsiyasini server standart holatiga
+    qaytaring.'
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} mahalliylashtirish to''plamiga ega
+    emas.'
+  chplLangNotLoaded: 'Hozirda {0} dan foydalanish mumkin emas. Boshqa qo''llab-quvvatlanadigan
+    lokalizatsiyadan foydalanishga harakat qilib ko''ring: {1}'
+  chplLangPlayerNotValid: '{0} haqiqiy o''yinchi emas.'
+  chpInvalidArgs: Yaroqsiz argumentlar taqdim etilgan!
+  chpBadPerms: 'Ushbu buyruqni bajarish uchun kerakli ruxsatnomangiz yo''q: {0}'

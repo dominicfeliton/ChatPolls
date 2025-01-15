@@ -8,3 +8,17 @@ Messages:
   chpUpdaterFailedGeneric: अद्यतने तपासण्यात अयशस्वी आपण नंतर पुन्हा प्रयत्न करू.
   chpUpdaterFutureDate: आपण चॅटपोलचा बीटा बिल्ड चालवत आहात
   chpUpdaterOutOfDate: 'चॅटपोल्सची नवीन आवृत्ती उपलब्ध आहे ({0}). इथे डाउनलोड करा:'
+  chplLangInvalid: '{0} हे वैध स्थानिकीकरण नाही. समर्थित स्थानिकीकरण: {1}'
+  chplLangChangedOtherPlayerSender: '{0} चे स्थानिकीकरण {1} मध्ये बदलले.'
+  chplLangChanged: आपले स्थानिकीकरण {0} मध्ये बदलले गेल
+  chplLangStopped: आपले स्थानिकीकरण सर्व्हर डीफॉल्टवर रीसे
+  chplLangNotLoadedConsole: '{0} यावेळी वापरला जाऊ शकत नाही. हे निराकरण करण्यासाठी
+    आपण प्लगइन रीलोड करण्याचा प्रयत्न करू शकता, परंतु ते कायम राहिल्यास कृपया'
+  chplLangAlreadyStopped: आपल्याकडे स्थानिकीकरण सेट नाही.
+  chplLangStoppedOtherPlayerSender: सर्व्हर डीफॉल्टवर {0} चे स्थानिकरण रीसेट करा.
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} मध्ये स्थानिकीकरण सेट नाही.'
+  chplLangNotLoaded: '{0} यावेळी वापरला जाऊ शकत नाही. वेगळे समर्थित स्थानिकीकरण वापरण्याचा
+    {1}'
+  chplLangPlayerNotValid: '{0} हा वैध खेळाडू नाही.'
+  chpInvalidArgs: अवैध वाद प्रदान केले
+  chpBadPerms: 'ही आदेश अंमलात आणण्यासाठी आपल्याकडे आवश्यक परवानगी नाही: {0}'

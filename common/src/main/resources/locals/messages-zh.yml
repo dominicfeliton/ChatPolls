@@ -7,3 +7,15 @@ Messages:
   chpUpdaterFailedGeneric: 无法检查更新。我们稍后再试。
   chpUpdaterFutureDate: 你正在运行 ChatPolls 的测试版本。
   chpUpdaterOutOfDate: 新版本的 ChatPolls 现已推出 ({0})。在这里下载：
+  chplLangInvalid: '{0} 不是有效的本地化。支持的本地化：{1}'
+  chplLangChangedOtherPlayerSender: 将 {0} 的本地化更改为 {1}。
+  chplLangChanged: 您的本地化已更改为 {0}。
+  chplLangStopped: 您的本地化已重置为服务器默认值。
+  chplLangNotLoadedConsole: '{0} 此时无法使用。你可以尝试重新加载插件来修复这个问题，但如果问题仍然存在，请联系开发人员。'
+  chplLangAlreadyStopped: 您没有本地化设置。
+  chplLangStoppedOtherPlayerSender: 将 {0} 的本地化重置为服务器默认值。
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} 没有本地化设置。'
+  chplLangNotLoaded: '{0} 此时无法使用。尝试使用其他支持的本地化：{1}'
+  chplLangPlayerNotValid: '{0} 不是有效的玩家。'
+  chpInvalidArgs: 提供的参数无效！
+  chpBadPerms: 你没有执行此命令所需的权限：{0}

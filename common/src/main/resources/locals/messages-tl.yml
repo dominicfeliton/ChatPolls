@@ -9,3 +9,21 @@ Messages:
   chpUpdaterFutureDate: Nagpapatakbo ka ng isang beta build ng ChatPolls.
   chpUpdaterOutOfDate: 'Magagamit ang isang bagong bersyon ng ChatPolls ({0}). I-download
     ito dito:'
+  chplLangInvalid: 'Ang {0} ay hindi isang wastong lokalisasyon. Mga sinusuportahang
+    lokalisasyon: {1}'
+  chplLangChangedOtherPlayerSender: Binago ang lokalisasyon ng {0} sa {1}.
+  chplLangChanged: Ang iyong lokalisasyon ay binago sa {0}.
+  chplLangStopped: Ang iyong lokalisasyon ay na-reset sa default na server.
+  chplLangNotLoadedConsole: Ang {0} ay hindi maaaring gamitin sa oras na ito. Maaari
+    mong subukang muling i-load ang plugin upang ayusin ito, ngunit kung magpapatuloy
+    ito mangyaring makipag-ugnay sa developer.
+  chplLangAlreadyStopped: Wala kang isang hanay ng lokalisasyon.
+  chplLangStoppedOtherPlayerSender: I-reset ang lokalisasyon ng {0} sa default na
+    server.
+  chplLangAlreadyStoppedOtherPlayerSender: Ang {0} ay walang hanay ng lokalisasyon.
+  chplLangNotLoaded: 'Ang {0} ay hindi maaaring gamitin sa oras na ito. Subukang gumamit
+    ng ibang suportadong lokalisasyon: {1}'
+  chplLangPlayerNotValid: Ang {0} ay hindi isang wastong manlalaro.
+  chpInvalidArgs: Hindi wastong mga argumento na ibinigay!
+  chpBadPerms: 'Wala kang mga kinakailangang pahintulot upang maisagawa ang utos na
+    ito: {0}'

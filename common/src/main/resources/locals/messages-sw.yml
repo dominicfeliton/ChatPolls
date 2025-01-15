@@ -8,3 +8,18 @@ Messages:
   chpUpdaterFailedGeneric: Imeshindwa kuangalia sasisho. Tutajaribu tena baadaye.
   chpUpdaterFutureDate: Unaendesha ujenzi wa beta wa ChatPolls.
   chpUpdaterOutOfDate: 'Toleo jipya la ChatPolls linapatikana ({0}). Pakua hapa:'
+  chplLangInvalid: '{0} sio ujanibishaji halali. Eneo zinazoungwa mkono: {1}'
+  chplLangChangedOtherPlayerSender: Ibadilisha ujanibishaji wa {0} hadi {1}.
+  chplLangChanged: Ujenaji wako ulibadilishwa kuwa {0}.
+  chplLangStopped: Ujenajiaji wako uliwekwa upya kwa seva default.
+  chplLangNotLoadedConsole: '{0} haiwezi kutumika wakati huu. Unaweza kujaribu kupakia
+    tena programu-jalizi ili kurekebisha hii, lakini ikiwa inaendelea tafadhali wasiliana
+    na msanidi programu.'
+  chplLangAlreadyStopped: Huna seti ya ujanibishaji.
+  chplLangStoppedOtherPlayerSender: Weka upya ujanibishaji wa {0} kwa seva default.
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} haina seti ya ujanibishaji.'
+  chplLangNotLoaded: '{0} haiwezi kutumika wakati huu. Jaribu kutumia eneo tofauti
+    inayoungwa mkono: {1}'
+  chplLangPlayerNotValid: '{0} sio mchezaji halali.'
+  chpInvalidArgs: Hoja mbaya zilizotolewa!
+  chpBadPerms: 'Huna ruhusa zinazohitajika kutekeleza amri hii: {0}'

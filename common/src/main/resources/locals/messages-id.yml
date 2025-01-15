@@ -8,3 +8,19 @@ Messages:
   chpUpdaterFailedGeneric: Gagal memeriksa pembaruan. Kami akan mencoba lagi nanti.
   chpUpdaterFutureDate: Anda menjalankan versi beta dari ChatPolls.
   chpUpdaterOutOfDate: 'Versi baru ChatPolls tersedia ({0}). Unduh di sini:'
+  chplLangInvalid: '{0} bukan lokalisasi yang valid. Lokalisasi yang didukung: {1}'
+  chplLangChangedOtherPlayerSender: Mengubah lokalisasi {0} menjadi {1}.
+  chplLangChanged: Lokalisasi Anda diubah menjadi {0}.
+  chplLangStopped: Lokalisasi Anda diatur ulang ke server default.
+  chplLangNotLoadedConsole: '{0} tidak dapat digunakan saat ini. Anda dapat mencoba
+    memuat ulang plugin untuk memperbaikinya, tetapi jika tetap ada, silakan hubungi
+    pengembang.'
+  chplLangAlreadyStopped: Anda tidak memiliki set lokalisasi.
+  chplLangStoppedOtherPlayerSender: Setel ulang lokalisasi {0} ke default server.
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} tidak memiliki set lokalisasi.'
+  chplLangNotLoaded: '{0} tidak dapat digunakan saat ini. Coba gunakan pelokalan lain
+    yang didukung: {1}'
+  chplLangPlayerNotValid: '{0} bukan pemain yang valid.'
+  chpInvalidArgs: Argumen tidak valid disediakan!
+  chpBadPerms: 'Anda tidak memiliki izin yang diperlukan untuk menjalankan perintah
+    ini: {0}'

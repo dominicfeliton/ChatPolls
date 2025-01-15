@@ -9,3 +9,19 @@ Messages:
     później.
   chpUpdaterFutureDate: Prowadzisz wersję beta ChatPolls.
   chpUpdaterOutOfDate: 'Dostępna jest nowa wersja ChatPolls ({0}). Pobierz go tutaj:'
+  chplLangInvalid: '{0} nie jest prawidłową lokalizacją. Obsługiwane lokalizacje:
+    {1}'
+  chplLangChangedOtherPlayerSender: Zmieniono lokalizację {0} na {1}.
+  chplLangChanged: Twoja lokalizacja została zmieniona na {0}.
+  chplLangStopped: Twoja lokalizacja została zresetowana do domyślnej serwera.
+  chplLangNotLoadedConsole: '{0} nie może być użyty w tej chwili. Możesz spróbować
+    ponownie załadować wtyczkę, aby to naprawić, ale jeśli nadal będzie działać, skontaktuj
+    się z programistą.'
+  chplLangAlreadyStopped: Nie masz zestawu lokalizacji.
+  chplLangStoppedOtherPlayerSender: Zresetuj lokalizację {0} do domyślnej serwera.
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} nie ma zestawu lokalizacji.'
+  chplLangNotLoaded: '{0} nie może być użyty w tej chwili. Spróbuj użyć innej obsługiwanej
+    lokalizacji: {1}'
+  chplLangPlayerNotValid: '{0} nie jest ważnym graczem.'
+  chpInvalidArgs: Podane nieprawidłowe argumenty!
+  chpBadPerms: 'Nie masz uprawnień wymaganych do wykonania tego polecenia: {0}'

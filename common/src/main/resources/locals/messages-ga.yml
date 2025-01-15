@@ -9,3 +9,20 @@ Messages:
     iarracht arís níos déanaí.
   chpUpdaterFutureDate: Tá tógáil béite de ChatPolls á reáchtáil agat.
   chpUpdaterOutOfDate: 'Tá leagan nua de ChatPolls ar fáil ({0}). Íoslódáil é anseo:'
+  chplLangInvalid: 'Ní logánú bailí é {0}. Logánú tacaithe: {1}'
+  chplLangChangedOtherPlayerSender: Athraigh logánú {0} go {1}.
+  chplLangChanged: Athraíodh do logánú go {0}.
+  chplLangStopped: Athshocraíodh do logánú go réamhshocrú an fhreastalaí.
+  chplLangNotLoadedConsole: Ní féidir {0} a úsáid ag an am seo. Féadfaidh tú triail
+    a bhaint as an breiseán a athluchtú chun é seo a shocrú, ach má leanann sé déan
+    teagmháil leis an bhforbróir.
+  chplLangAlreadyStopped: Níl tacar logánaithe agat.
+  chplLangStoppedOtherPlayerSender: Athshocraigh logánú {0} go réamhshocraithe an
+    fhreastalaí.
+  chplLangAlreadyStoppedOtherPlayerSender: Níl tacar logánaithe ag {0}.
+  chplLangNotLoaded: 'Ní féidir {0} a úsáid ag an am seo. Bain triail as logánú difriúil
+    tacaithe a úsáid: {1}'
+  chplLangPlayerNotValid: Ní imreoir bailí é {0}.
+  chpInvalidArgs: Argóintí neamhbhailí ar fáil
+  chpBadPerms: 'Níl na ceadanna riachtanacha agat chun an t-ordú seo a fhorghníomhú:
+    {0}'

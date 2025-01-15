@@ -9,3 +9,17 @@ Messages:
     ponovo kasnije.
   chpUpdaterFutureDate: Izvodite beta verziju ChatPolla.
   chpUpdaterOutOfDate: 'Dostupna je nova verzija ChatPolls ({0}). Preuzmite ga ovdje:'
+  chplLangInvalid: '{0} nije valjana lokalizacija. Podržane lokalizacije: {1}'
+  chplLangChangedOtherPlayerSender: Promijenio je lokalizaciju {0} u {1}.
+  chplLangChanged: Vaša lokalizacija je promijenjena u {0}.
+  chplLangStopped: Vaša lokalizacija je vraćena na zadanu postavku poslužitelja.
+  chplLangNotLoadedConsole: '{0} se trenutno ne može koristiti. Možete pokušati ponovno
+    učitati dodatak da biste to popravili, ali ako se nastavi, kontaktirajte programera.'
+  chplLangAlreadyStopped: Nemate skup lokalizacije.
+  chplLangStoppedOtherPlayerSender: Vratite lokalizaciju {0} na zadanu postavku poslužitelja.
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} nema skup lokalizacije.'
+  chplLangNotLoaded: '{0} se trenutno ne može koristiti. Pokušajte koristiti drugu
+    podržanu lokalizaciju: {1}'
+  chplLangPlayerNotValid: '{0} nije valjan igrač.'
+  chpInvalidArgs: Navedeni su nevažeći argumenti!
+  chpBadPerms: 'Nemate potrebne dozvole za izvršavanje ove naredbe: {0}'

@@ -10,3 +10,18 @@ Messages:
   chpUpdaterFutureDate: ඔබ ChatPolls හි බීටා බිල්ඩුවක් ක්රියාත්මක කරයි.
   chpUpdaterOutOfDate: 'ChatPolls හි නව අනුවාදයක් ලබා ගත හැකිය ({0}). එය මෙතැනින්
     බාගන්න:'
+  chplLangInvalid: '{0} වලංගු දේශීයකරණය නොවේ. සහාය දක්වන දේශීයකරණය: {1}'
+  chplLangChangedOtherPlayerSender: '{0} හි ප්රාදේශීයකරණය {1} ලෙස වෙනස් කරන ලදි.'
+  chplLangChanged: ඔබගේ දේශීයකරණය {0} ලෙස වෙනස් කරන ලදී.
+  chplLangStopped: ඔබගේ දේශීයකරණය සේවාදායක පෙරනිමියට යළි පිහිටුවන ලදී.
+  chplLangNotLoadedConsole: '{0} මේ වන විට භාවිතා කළ නොහැක. මෙය නිවැරදි කිරීම සඳහා
+    ඔබට ප්ලගිනය නැවත පැටවීම උත්සාහ කළ හැකිය, නමුත් එය දිගටම පවතින්නේ නම් කරුණාකර සංවර්ධකයා
+    අමතන්න.'
+  chplLangAlreadyStopped: ඔබට ප්රාදේශීයකරණ කට්ටලයක් නොමැත.
+  chplLangStoppedOtherPlayerSender: '{0} හි දේශීයකරණය සේවාදායකයේ පෙරනිමියට යළි පිහිටුවන්න.'
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} හි දේශීයකරණ කට්ටලයක් නොමැත.'
+  chplLangNotLoaded: '{0} මේ වන විට භාවිතා කළ නොහැක. වෙනත් සහාය දක්වන දේශීයකරණයක්
+    භාවිතා කිරීමට උත්සාහ කරන්න: {1}'
+  chplLangPlayerNotValid: '{0} වලංගු ක්රීඩකයෙකු නොවේ.'
+  chpInvalidArgs: අවලංගු තර්ක ලබා දී ඇත!
+  chpBadPerms: 'මෙම විධානය ක්රියාත්මක කිරීමට ඔබට අවශ්ය අවසරයන් නොමැත: {0}'

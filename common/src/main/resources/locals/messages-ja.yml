@@ -7,3 +7,15 @@ Messages:
   chpUpdaterFailedGeneric: 更新を確認できませんでした。後でもう一度試します。
   chpUpdaterFutureDate: ChatPolls のベータビルドを実行しています。
   chpUpdaterOutOfDate: 'チャット投票の新しいバージョンが利用可能です ({0})。ここからダウンロードしてください:'
+  chplLangInvalid: '{0} は有効なローカライズではありません。対応しているローカリゼーション:{1}'
+  chplLangChangedOtherPlayerSender: '{0} のローカライズを {1} に変更しました。'
+  chplLangChanged: ローカライズが {0} に変更されました。
+  chplLangStopped: ローカリゼーションがサーバーのデフォルトにリセットされました。
+  chplLangNotLoadedConsole: '{0} は現時点では使用できません。この問題を解決するためにプラグインをリロードしてみることもできますが、それでも解決しない場合は開発者に連絡してください。'
+  chplLangAlreadyStopped: ローカリゼーションセットはありません。
+  chplLangStoppedOtherPlayerSender: '{0} のローカライズをサーバーのデフォルトにリセットします。'
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} にはローカライズセットがありません。'
+  chplLangNotLoaded: '{0} は現在使用できません。サポートされている別のローカライズ版を使ってみてください:{1}'
+  chplLangPlayerNotValid: '{0} は有効なプレイヤーではありません。'
+  chpInvalidArgs: 無効な引数が指定されました!
+  chpBadPerms: このコマンドを実行するのに必要な権限がありません:{0}

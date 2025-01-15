@@ -9,3 +9,19 @@ Messages:
     síðar.
   chpUpdaterFutureDate: Þú ert að keyra beta smíði af ChatPolls.
   chpUpdaterOutOfDate: 'Ný útgáfa af ChatPolls er fáanleg ({0}). Sæktu það hér:'
+  chplLangInvalid: '{0} er ekki gild staðsetning. Stuðnar staðsetningar: {1}'
+  chplLangChangedOtherPlayerSender: Breytt staðsetningu {0} í {1}.
+  chplLangChanged: Staðsetning þín var breytt í {0}.
+  chplLangStopped: Staðsetning þín var endurstillt á sjálfgefna miðlara.
+  chplLangNotLoadedConsole: Ekki er hægt að nota {0} á þessum tíma. Þú getur prófað
+    að endurhlaða viðbótina til að laga þetta, en ef það er viðvarandi vinsamlegast
+    hafðu samband við verktaki.
+  chplLangAlreadyStopped: Þú ert ekki með staðsetningarsett.
+  chplLangStoppedOtherPlayerSender: Endurstilla staðsetningu {0} í sjálfgefna netþjóninn.
+  chplLangAlreadyStoppedOtherPlayerSender: '{0} er ekki með staðsetningarsett.'
+  chplLangNotLoaded: 'Ekki er hægt að nota {0} á þessum tíma. Prófaðu að nota aðra
+    studda staðsetningu: {1}'
+  chplLangPlayerNotValid: '{0} er ekki gildur leikmaður.'
+  chpInvalidArgs: Ógild rök gefnar upp!
+  chpBadPerms: 'Þú hefur ekki nauðsynlegar heimildir til að framkvæma þessa skipun:
+    {0}'

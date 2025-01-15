@@ -26,4 +26,8 @@ public class PlayerRecord {
         return localizationCode;
     }
 
+    public void setLocalizationCode(String localizationCode) {
+        this.localizationCode = localizationCode;
+    }
+
 }

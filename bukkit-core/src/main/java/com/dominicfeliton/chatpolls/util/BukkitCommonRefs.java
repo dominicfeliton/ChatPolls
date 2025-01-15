@@ -268,6 +268,16 @@ public class BukkitCommonRefs extends CommonRefs {
         return false;
     }
 
+    @Override
+    public Object getPlayerObjExact(String inName) {
+        return Bukkit.getPlayerExact(inName);
+    }
+
+    @Override
+    public Object getPlayer(String inName) {
+        return Bukkit.getPlayer(inName);
+    }
+
     /**
      * Compares two strings to check if they are the same language under the current translator.
      *
