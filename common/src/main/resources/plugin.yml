@@ -15,7 +15,7 @@ commands:
   chpl:
     description: Changes a player's localization.
     aliases: [ chatpollslocal, chatpollsl ]
-    usage: §4/chpl
+    usage: §4/chpl (playerName) (languageName)
     permission: chatpolls.chpl
     permission-message: §4You do not have permission to run this command.
 permissions:

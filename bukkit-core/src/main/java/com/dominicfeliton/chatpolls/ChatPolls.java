@@ -236,8 +236,10 @@ public class ChatPolls extends JavaPlugin {
         }
         if (createNewIfNotExisting) {
             // Create + add new record
-            PlayerRecord newRecord = new PlayerRecord("--------", uuid);
+            refs.debugMsg("Adding new player record " + uuid);
+            PlayerRecord newRecord = new PlayerRecord(uuid);
             addPlayerRecord(newRecord);
+            refs.debugMsg("Size of records: " + playerRecords.size());
             return newRecord;
         }
         return null;

@@ -7,7 +7,7 @@
 SERVERS_BASE_DIR="/tmp"
 
 # Where your ChatPolls repo is
-CHATPOLLS_BASE_DIR="/Users/dominicfeliton/Documents/GitHub/ChatPolls"
+CHATPOLLS_BASE_DIR="/home/dominic/Documents/ChatPolls"
 
 # Default MC version if user doesn't specify one
 LATEST_VERSION="1.21.4"

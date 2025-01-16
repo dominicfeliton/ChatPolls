@@ -44,6 +44,7 @@ public class CHPLocalizeBukkit extends CHPLocalize {
         }
 
         PlayerRecord currRecord = main.getPlayerRecord(inPlayer, true);
+        refs.debugMsg("Previous lang: " + currRecord.getLocalizationCode());
         if (!isConsoleSender && inPlayer.getName().equalsIgnoreCase(sender.getName())) {
             // Changing our own localization
             if (!locale.equalsIgnoreCase("stop")) {

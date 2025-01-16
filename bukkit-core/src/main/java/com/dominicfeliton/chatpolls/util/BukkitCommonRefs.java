@@ -17,6 +17,7 @@ import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -111,8 +112,10 @@ public class BukkitCommonRefs extends CommonRefs {
         YamlConfiguration messagesConfig = main.getConfigManager().getMsgsConfig();
         String code = "";
         String globalCode = main.getConfigManager().getMainConfig().getString("General.pluginLang");
-        if (sender instanceof Player && main.isPlayerRecord((Player) sender)) {
-            code = main.getPlayerRecord((Player) sender, false).getLocalizationCode();
+        CommandSender bukkitSender = sender != null ? ((BukkitCommandSender) sender).getBukkitSender() : null;
+
+        if (bukkitSender instanceof Player && main.isPlayerRecord((Player) bukkitSender)) {
+            code = main.getPlayerRecord((Player) bukkitSender, false).getLocalizationCode();
             if (!code.isEmpty()) {
                 messagesConfig = main.getConfigManager().getCustomMessagesConfig(code);
             }

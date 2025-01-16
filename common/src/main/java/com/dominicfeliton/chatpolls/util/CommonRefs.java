@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.kyori.adventure.text.Component;
 
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.*;
 
@@ -14,7 +15,7 @@ import java.util.*;
  */
 public abstract class CommonRefs {
     /* Important variables */
-    public static final String messagesConfigVersion = "014124-4";
+    public static final String messagesConfigVersion = "015124-1";
 
     // Supported Minecraft Versions
     public static final String[] supportedMCVersions = {
@@ -343,7 +344,7 @@ public abstract class CommonRefs {
      * @return Supported Lang Object, or an unfixed obj if it was not found in the JSON
      */
     public static SupportedLang fixLangName(String code) {
-        String isoJsonFilePath = "ISO_639-CHP-Modified.json";
+        String isoJsonFilePath = "ISO-CHP.json";
         ObjectMapper objectMapper = new ObjectMapper();
         SupportedLang out = new SupportedLang(code);
 
@@ -386,12 +387,12 @@ public abstract class CommonRefs {
      */
     public static Map<String, SupportedLang> fixLangNames(Map<String, SupportedLang> in, boolean nativesOnly, boolean preInit) {
         // Adjust the file path as necessary
-        String isoJsonFilePath = "ISO_639-CHP-Modified.json";
+        String isoJsonFilePath = "/ISO-CHP.json";
         ObjectMapper objectMapper = new ObjectMapper();
 
-        try (InputStream inStream = CommonRefs.class.getClassLoader().getResourceAsStream(isoJsonFilePath)) {
+        try (InputStream inStream = CommonRefs.class.getResourceAsStream(isoJsonFilePath)) {
             if (inStream == null) {
-                return in;
+                throw new FileNotFoundException("Can't find ISO reference! This is bad news...");
             }
 
             // Read the ISO language data from the JSON
@@ -401,9 +402,6 @@ public abstract class CommonRefs {
             // hashSet means less dupes
             for (SupportedLang currLang : new HashSet<>(in.values())) {
                 String currCode = currLang.getLangCode();
-                if (!preInit) {
-                    //debugMsg("Trying to fix " + currCode + " from JSON...");
-                }
                 ISOLanguage jsonLang = languageMap.get(currCode);
 
                 if (jsonLang != null) {
@@ -414,13 +412,11 @@ public abstract class CommonRefs {
                         currLang.setLangName(jsonLang.getIntName());
                         in.put(currLang.getLangName(), currLang);
                     }
-                } else {
-                    //if (!preInit) debugMsg("Could not find " + currCode + " in JSON!");
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
-            //if (!preInit) main.getLogger().warning(getPlainMsg("chpISOJSONFail"));
+            //if (!preInit) System.out.println(getPlainMsg("chpISOJSONFail"));
         }
 
         return in;
