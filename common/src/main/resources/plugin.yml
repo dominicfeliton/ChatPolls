@@ -18,6 +18,12 @@ commands:
     usage: §4/chpl (playerName) (languageName)
     permission: chatpolls.chpl
     permission-message: §4You do not have permission to run this command.
+  chpp:
+    description: Manage personal polls
+    aliases: [ chatpollspersonal ]
+    usage: §4/chpp <create|list|delete>
+    permission: chatpolls.chpp
+    permission-message: §4You do not have permission to run this command.
 permissions:
   chatpolls.*:
     description: Gives access to all ChatPolls commands.
@@ -25,6 +31,7 @@ permissions:
       chatpolls.chp: true
       chatpolls.chpl: true
       chatpolls.chpl.otherplayers: true
+      chatpolls.chpp: true
     default: op
   chatpolls.chp:
     description: Gives access to /chp.
@@ -35,3 +42,6 @@ permissions:
   chatpolls.chpl.otherplayers:
     description: Gives access to /chpl on other players.
     default: op
+  chatpolls.chpp:
+    description: Gives access to personal polls
+    default: true

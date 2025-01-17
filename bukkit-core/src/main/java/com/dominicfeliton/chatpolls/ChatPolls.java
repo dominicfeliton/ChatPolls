@@ -1,6 +1,7 @@
 package com.dominicfeliton.chatpolls;
 
 import com.dominicfeliton.chatpolls.commands.CHPLocalizeBukkit;
+import com.dominicfeliton.chatpolls.commands.CHPPersonalBukkit;
 import com.dominicfeliton.chatpolls.configuration.ConfigurationHandler;
 import com.dominicfeliton.chatpolls.runnables.UpdateChecker;
 import com.dominicfeliton.chatpolls.util.*;
@@ -58,6 +59,12 @@ public class ChatPolls extends JavaPlugin {
     private ChatPollsHelper helper;
 
     private Map<String, PlayerRecord> playerRecords = new ConcurrentHashMap<>();
+
+    /**
+     * personalPolls is a mapping of player UUID => (pollId => PollObject).
+     * This is an in-memory store for personal polls.
+     */
+    private final Map<UUID, Map<String, PollObject>> personalPolls = new ConcurrentHashMap<>();
 
     private volatile String globalState = "Starting";
 
@@ -183,6 +190,10 @@ public class ChatPolls extends JavaPlugin {
                     // Change localization
                     CHPLocalizeBukkit c = new CHPLocalizeBukkit(s, label, args, refs);
                     return c.processCommand();
+                case "chpp":
+                    // Personal polls
+                    CHPPersonalBukkit personalCmd = new CHPPersonalBukkit(s, label, args, refs);
+                    return personalCmd.processCommand();
             }
         }
         return true;
@@ -224,6 +235,10 @@ public class ChatPolls extends JavaPlugin {
 
     public ConfigurationHandler getConfigManager() {
         return configurationManager;
+    }
+
+    public Map<UUID, Map<String, PollObject>> getPersonalPolls() {
+        return personalPolls;
     }
 
     public PlayerRecord getPlayerRecord(Player inPlayer, boolean createNewIfNotExisting) {
