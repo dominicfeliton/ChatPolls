@@ -104,19 +104,8 @@
     <resources>
       <resource>
         <targetPath>.</targetPath>
-        <filtering>true</filtering>
-        <directory>src/main/resources/</directory>
-        <includes>
-          <include>*.yml</include>
-        </includes>
-      </resource>
-      <resource>
-        <targetPath>locals</targetPath>
-        <filtering>true</filtering>
-        <directory>src/main/resources/locals</directory>
-        <includes>
-          <include>*.yml</include>
-        </includes>
+        <filtering>false</filtering>
+        <directory>src/main/resources</directory>
       </resource>
     </resources>
     <plugins>

@@ -13,6 +13,7 @@ Messages:
   chpUpdaterFailedGeneric: 'Failed to check for updates. We will try again later.'
   chpBadPerms: 'You do not have the required permissions to execute this command: {0}'
   chpInvalidArgs: 'Invalid arguments provided!'
+  chpLangNotLoadedConsole: 'The language {0} is not functioning properly with this plugin. Please report this issue to the developer.'
   #------------------- /chpl Messages -------------------
   chplLangStopped: 'Your localization was reset to the server default.'
   chplLangChanged: 'Your localization was changed to {0}.'

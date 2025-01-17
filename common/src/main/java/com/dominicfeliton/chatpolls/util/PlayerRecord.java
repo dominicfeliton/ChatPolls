@@ -13,9 +13,9 @@ public class PlayerRecord {
 
     private boolean hasBeenSaved = false;
 
-    public PlayerRecord(String playerUUID, String localizationCode) {
+    public PlayerRecord(String playerUUID) {
         this.playerUUID = playerUUID;
-        this.localizationCode = localizationCode;
+        this.localizationCode = "";
     }
 
     public String getUUID() {
