@@ -26,19 +26,70 @@ Messages:
   chplLangChangedOtherPlayerSender: 'Changed the localization of {0} to {1}.'
   chplLangAlreadyStoppedOtherPlayerSender: '{0} does not have a localization set.'
   #------------------- /chpp Messages -------------------
-  chppUsage: '§cUsage: /chpp <create|list|delete|vote>'
+  chppUsage: |
+    §6=== ChatPolls Personal Commands ===
+    §e/chpp create <title> <option1,option2,...> [delay] [duration] [description] §7- Create a poll
+    §e/chpp list §7- View your polls
+    §e/chpp delete <pollId> §7- Delete a poll
+    §e/chpp vote <pollId> [option] §7- Vote on a poll or view options
   chppConsoleDenied: '§cThis command can only be run by players!'
   chppPlayerNotFound: '§cCould not find that player!'
-  chppCreateUsage: '§cUsage: /chpp create <title> [description...]'
-  chppCreateSuccess: '§aCreated a personal poll! ID={0}, Title={1}, Desc={2}'
+  chppCreateUsage: |
+    §6To create a poll:
+    §e/chpp create <title> <option1,option2,...> [delay] [duration] [description]
+    §7Example: /chpp create "Best Food" "Pizza,Burger,Sushi" 5m 1h "What's your favorite food?"
+    §7You can add 2-5 options, separated by commas
+    §7Delay and duration format: ##s (seconds), ##m (minutes), ##h (hours), ##d (days)
+  chppCreateSuccess: |
+    §aCreated new poll:
+    §fID: §e{0}
+    §fTitle: §b{1}
+    §fOptions: §e{2}
+    §fStarts: §e{3}
+    §fEnds: §e{4}
+    §fDescription: §7{5}
   chppListEmpty: '§cYou have no personal polls.'
-  chppListHeader: '§aYour personal polls:'
-  chppListItem: '§bID={0}, Title={1}'
-  chppDeleteUsage: '§cUsage: /chpp delete <pollId>'
-  chppDeleteNotFound: '§cNo poll found with ID {0}'
-  chppDeleteSuccess: '§aPoll {0} deleted.'
-  chppVoteUsage: '§cUsage: /chpp vote <pollId> <option1> [option2...]'
-  chppVoteNotFound: '§cNo poll found with ID {0}'
-  chppVoteFail: '§cFailed to cast your vote.'
-  chppVoteSuccess: '§aYou voted in poll {0}!'
-  chppVoteTallyLine: '§6{0}: §f{1} votes'
+  chppListHeader: |
+    §6=== Your Personal Polls ===
+    §7Click a poll to copy its ID to your command
+  chppListItem: '§b[{0}] §f{1}'
+  chppDeleteUsage: |
+    §6To delete a poll:
+    §e/chpp delete <pollId>
+    §7Click a poll from /chpp list to select it
+  chppDeleteNotFound: '§cNo poll found with ID {0}. Use §e/chpp list §cto see your polls.'
+  chppDeleteSuccess: '§aPoll {0} deleted successfully.'
+  chppVoteUsage: |
+    §6To vote on a poll:
+    §e/chpp vote <pollId> [option]
+    §7Use /chpp list to see available polls
+  chppVoteNotFound: '§cNo poll found with ID {0}. Use §e/chpp list §cto see available polls.'
+  chppVoteFail: '§cFailed to cast vote. Please choose a valid option.'
+  chppVoteSuccess: '§aSuccessfully voted for {0} in poll {1}!'
+  chppVoteTallyLine: '§6{0}: §b{1} votes'
+  chppAlreadyVoted: '§cYou have already voted for {0} in this poll!'
+  chppInvalidOption: '§cInvalid option. Please choose from the available options.'
+  chppTooFewOptions: '§cYou must provide at least 2 options.'
+  chppTooManyOptions: '§cYou can only have up to 5 options.'
+  chppInvalidTime: '§cInvalid time format. Use ##s (seconds), ##m (minutes), ##h (hours), ##d (days)'
+  chppPollNotStarted: '§cThis poll has not started yet. Starts at: {0}'
+  chppPollEnded: '§cThis poll has ended. Ended at: {0}'
+  chppVoteInfo: |
+    §6=== Poll Options ===
+    §fTitle: §b{0}
+    §fDescription: §7{1}
+    §fStarts: §e{2}
+    §fEnds: §e{3}
+    §fOptions:
+  chppVoteInfoOption: '§e{0}'
+  chppVoteInfoVoted: '§aYou voted for: §f{0}'
+  # Poll list hover text
+  chppListHoverPoll: '§bPoll: §f{0}'
+  chppListHoverDesc: '§7Description: §f{0}'
+  chppListHoverOptions: '§eOptions: §f{0}'
+  chppListHoverVoted: '§aYou voted: §f{0}'
+  chppListHoverVotes: '§6Current Votes:'
+  chppListHoverVoteLine: '§e{0}: §b{1}'
+  chppListHoverVoteAction: '§7Click to vote on this poll'
+  chppListHoverDeleteAction: '§cClick to delete this poll'
+  chppListActions: '§7(Click ID to vote, ✖ to delete)'
