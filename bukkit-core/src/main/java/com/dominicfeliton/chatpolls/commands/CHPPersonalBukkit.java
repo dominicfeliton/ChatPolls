@@ -7,7 +7,11 @@ import com.dominicfeliton.chatpolls.util.PollObject;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ThreadLocalRandom;
@@ -50,6 +54,8 @@ public class CHPPersonalBukkit extends BasicCommand {
                 return handleList(playerUuid);
             case "delete":
                 return handleDelete(playerUuid);
+            case "vote":
+                return handleVote(playerUuid);
             default:
                 refs.sendMsg("chppUsage", sender);
                 return true;
@@ -127,14 +133,64 @@ public class CHPPersonalBukkit extends BasicCommand {
         return String.valueOf(ThreadLocalRandom.current().nextInt(100000, 999999));
     }
 
+    private boolean handleVote(UUID playerUuid) {
+        if (args.length < 3) {
+            refs.sendMsg("chppVoteUsage", sender);
+            return true;
+        }
+
+        String pollId = args[1];
+        List<String> chosenOptions = new ArrayList<>();
+        for (int i = 2; i < args.length; i++) {
+            chosenOptions.add(args[i]);
+        }
+
+        Map<String, PollObject> userPolls = main.getPersonalPolls().get(playerUuid);
+        if (userPolls == null || !userPolls.containsKey(pollId)) {
+            refs.sendMsg("chppVoteNotFound", new String[]{pollId}, "&c", sender);
+            return true;
+        }
+
+        PollObject poll = userPolls.get(pollId);
+        if (!(poll instanceof PersonalPollObject)) {
+            refs.debugMsg("Poll was not a PersonalPollObject? Strange.");
+            refs.sendMsg("chppVoteFail", sender);
+            return true;
+        }
+
+        PersonalPollObject personalPoll = (PersonalPollObject) poll;
+        boolean success = personalPoll.castVote(playerUuid, chosenOptions);
+        if (!success) {
+            refs.sendMsg("chppVoteFail", sender);
+            return true;
+        }
+
+        refs.sendMsg("chppVoteSuccess", new String[]{pollId}, "&a", sender);
+
+        Map<String, Integer> updatedVotes = personalPoll.getOptionVotes();
+        for (Map.Entry<String, Integer> entry : updatedVotes.entrySet()) {
+            String optionName = entry.getKey();
+            int voteCount = entry.getValue();
+            refs.sendMsg("chppVoteTallyLine", new String[]{optionName, String.valueOf(voteCount)}, "&e", sender);
+        }
+
+        return true;
+    }
+
     private static class PersonalPollObject extends PollObject {
         private final String title;
         private final String description;
+        private final Map<String, Integer> optionVotes = new ConcurrentHashMap<>();
+        private final Map<UUID, Set<String>> userVotes = new ConcurrentHashMap<>();
 
         public PersonalPollObject(String title, String description) {
             super();
             this.title = title;
             this.description = description;
+            // Default options
+            optionVotes.put("OptionA", 0);
+            optionVotes.put("OptionB", 0);
+            optionVotes.put("OptionC", 0);
         }
 
         public String getTitle() {
@@ -143,6 +199,37 @@ public class CHPPersonalBukkit extends BasicCommand {
 
         public String getDescription() {
             return description;
+        }
+
+        public Map<String, Integer> getOptionVotes() {
+            return Collections.unmodifiableMap(optionVotes);
+        }
+
+        public boolean hasOption(String optionKey) {
+            return optionVotes.containsKey(optionKey);
+        }
+
+        public boolean castVote(UUID playerUuid, List<String> optionsToVoteFor) {
+            for (String opt : optionsToVoteFor) {
+                if (!optionVotes.containsKey(opt)) {
+                    continue;
+                }
+
+                userVotes.putIfAbsent(playerUuid, ConcurrentHashMap.newKeySet());
+                Set<String> alreadyVotedSet = userVotes.get(playerUuid);
+
+                if (alreadyVotedSet.contains(opt)) {
+                    continue;
+                }
+
+                alreadyVotedSet.add(opt);
+
+                synchronized (this) {
+                    int currentCount = optionVotes.getOrDefault(opt, 0);
+                    optionVotes.put(opt, currentCount + 1);
+                }
+            }
+            return true;
         }
     }
 }

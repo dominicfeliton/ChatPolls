@@ -26,7 +26,7 @@ Messages:
   chplLangChangedOtherPlayerSender: 'Changed the localization of {0} to {1}.'
   chplLangAlreadyStoppedOtherPlayerSender: '{0} does not have a localization set.'
   #------------------- /chpp Messages -------------------
-  chppUsage: '§cUsage: /chpp <create|list|delete>'
+  chppUsage: '§cUsage: /chpp <create|list|delete|vote>'
   chppConsoleDenied: '§cThis command can only be run by players!'
   chppPlayerNotFound: '§cCould not find that player!'
   chppCreateUsage: '§cUsage: /chpp create <title> [description...]'
@@ -37,3 +37,8 @@ Messages:
   chppDeleteUsage: '§cUsage: /chpp delete <pollId>'
   chppDeleteNotFound: '§cNo poll found with ID {0}'
   chppDeleteSuccess: '§aPoll {0} deleted.'
+  chppVoteUsage: '§cUsage: /chpp vote <pollId> <option1> [option2...]'
+  chppVoteNotFound: '§cNo poll found with ID {0}'
+  chppVoteFail: '§cFailed to cast your vote.'
+  chppVoteSuccess: '§aYou voted in poll {0}!'
+  chppVoteTallyLine: '§6{0}: §f{1} votes'
