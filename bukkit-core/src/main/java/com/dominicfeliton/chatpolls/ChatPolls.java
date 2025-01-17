@@ -22,6 +22,7 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static com.dominicfeliton.chatpolls.ChatPollsHelper.SchedulerType.ASYNC;
+import static com.dominicfeliton.chatpolls.util.CommonRefs.SoundType.CHP_VERSION;
 
 public class ChatPolls extends JavaPlugin {
 
@@ -165,10 +166,10 @@ public class ChatPolls extends JavaPlugin {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         /* Commands that run regardless of translator settings, but not during restarts */
         if (globalState.equals("Enabled")) {
+            BukkitCommandSender s = new BukkitCommandSender(sender);
             switch (command.getName()) {
                 case "chp":
                     // ChP version
-                    BukkitCommandSender s = new BukkitCommandSender(sender);
                     final TextComponent versionNotice = Component.text()
                             .content(refs.getPlainMsg("chpVersion", s)).color(NamedTextColor.RED)
                             .append((Component.text().content(" " + getPluginVersion())).color(NamedTextColor.LIGHT_PURPLE))
@@ -176,11 +177,11 @@ public class ChatPolls extends JavaPlugin {
                             .append((Component.text().content("Dominic Feliton")).color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD))
                             .append((Component.text().content(")").resetStyle()).color(NamedTextColor.GOLD)).build();
                     refs.sendMsg(s, versionNotice, true);
-                    //refs.playSound(CHP_VERSION, sender);
+                    refs.playSound(CHP_VERSION, new BukkitCommandSender(sender));
                     return true;
                 case "chpl":
                     // Change localization
-                    CHPLocalizeBukkit c = new CHPLocalizeBukkit(new BukkitCommandSender(sender), label, args, refs);
+                    CHPLocalizeBukkit c = new CHPLocalizeBukkit(s, label, args, refs);
                     return c.processCommand();
             }
         }

@@ -1,5 +1,6 @@
 package com.dominicfeliton.chatpolls.util;
 
+import com.cryptomorin.xseries.XSound;
 import com.dominicfeliton.chatpolls.ChatPolls;
 
 import java.text.MessageFormat;
@@ -17,6 +18,7 @@ import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -328,6 +330,43 @@ public class BukkitCommonRefs extends CommonRefs {
         }
 
         return outLang;
+    }
+
+    /**
+     * Plays a sound for a Bukkit Player based on our platform-agnostic SoundType.
+     */
+    public void playSound(SoundType soundType, GenericCommandSender sender) {
+        if (!(sender instanceof BukkitCommandSender) || !(((BukkitCommandSender) sender).getBukkitSender() instanceof Player) || soundType == null) return;
+
+        Sound bukkitSound = parseBukkitSound(soundType.getSoundKey());
+        float volume = soundType.getVolume();
+        float pitch = soundType.getPitch();
+        Player p = (Player) ((BukkitCommandSender) sender).getBukkitSender();
+
+        p.playSound(p.getLocation(), bukkitSound, volume, pitch);
+    }
+
+    /**
+     * Safely parse the "soundKey" into a Bukkit Sound enum constant.
+     * If it fails, we fallback to something like ENTITY_EXPERIENCE_ORB_PICKUP.
+     */
+    private Sound parseBukkitSound(String soundKey) {
+        if (soundKey == null) {
+            debugMsg("Null soundKey provided - defaulting to fallback sound");
+            return Sound.ENTITY_EXPERIENCE_ORB_PICKUP;
+        }
+
+        try {
+            // Option A) Direct Sound.valueOf(...)
+            return Sound.valueOf(soundKey);
+
+            // Option B) If you prefer XSound:
+            // XSound match = XSound.matchXSound(soundKey).orElse(XSound.ENTITY_EXPERIENCE_ORB_PICKUP);
+            // return match.parseSound(); // could still be null in older MC
+        } catch (Exception e) {
+            debugMsg("Failed to parse Sound: " + soundKey + " => fallback used");
+            return Sound.ENTITY_EXPERIENCE_ORB_PICKUP;
+        }
     }
 
     /**

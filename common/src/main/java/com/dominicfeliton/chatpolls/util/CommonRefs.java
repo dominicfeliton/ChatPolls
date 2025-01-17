@@ -337,6 +337,67 @@ public abstract class CommonRefs {
     public abstract String getFormattedLangCodes(String langType);
 
     /**
+     * A platform-agnostic enum storing "sound names" and pitch/volume values
+     * without directly depending on org.bukkit.Sound.
+     */
+    public enum SoundType {
+        SUBMENU_TOGGLE_ON("SUBMENU_TOGGLE_ON", "BLOCK_NOTE_BLOCK_HAT", 0.5f, 1.0f),
+        SUBMENU_TOGGLE_OFF("SUBMENU_TOGGLE_OFF", "BLOCK_NOTE_BLOCK_SNARE", 0.5f, 1.0f),
+        START_TRANSLATION("START_TRANSLATION", "ENTITY_EXPERIENCE_ORB_PICKUP", 1.0f, 1.0f),
+        STOP_TRANSLATION("STOP_TRANSLATION", "BLOCK_WOODEN_BUTTON_CLICK_OFF", 1.0f, 1.0f),
+        RELOAD_SUCCESS("RELOAD_SUCCESS", "BLOCK_BEACON_ACTIVATE", 1.0f, 1.0f),
+        RELOAD_ERROR("RELOAD_ERROR", "BLOCK_DISPENSER_FAIL", 1.0f, 1.0f),
+
+        // If you previously had logic referencing version-specific sounds, you can keep it simple here:
+        STATS_SUCCESS("STATS_SUCCESS", "ITEM_BOOK_PAGE_TURN", 1.0f, 1.0f),
+        STATS_FAIL("STATS_FAIL", "BLOCK_NOTE_BLOCK_BASS", 1.0f, 1.0f),
+        CHP_VERSION("CHP_VERSION", "ENTITY_PLAYER_LEVELUP", 1.0f, 1.0f),
+        PENDING_RELOAD("PENDING_RELOAD", "BLOCK_NOTE_BLOCK_XYLOPHONE", 1.0f, 1.0f);
+
+        private final String alias;         // Your internal name (e.g. "SUBMENU_TOGGLE_ON")
+        private final String soundKey;      // The string key representing the sound (e.g. "BLOCK_NOTE_BLOCK_HAT")
+        private final float volume;
+        private final float pitch;
+
+        SoundType(String alias, String soundKey, float volume, float pitch) {
+            this.alias = alias;
+            this.soundKey = soundKey;
+            this.volume = volume;
+            this.pitch = pitch;
+        }
+
+        public String getAlias() {
+            return alias;
+        }
+
+        /**
+         * The raw string identifier. On Bukkit, you'll parse this to a Sound.
+         */
+        public String getSoundKey() {
+            return soundKey;
+        }
+
+        public float getVolume() {
+            return volume;
+        }
+
+        public float getPitch() {
+            return pitch;
+        }
+
+        public static SoundType fromString(String name) {
+            for (SoundType st : values()) {
+                if (st.alias.equalsIgnoreCase(name)) {
+                    return st;
+                }
+            }
+            throw new IllegalArgumentException("Unknown SoundType alias: " + name);
+        }
+    }
+
+    public abstract void playSound(SoundType soundType, GenericCommandSender sender);
+
+    /**
      * Returns a SupportedLang obj with nativeLang/langName fields filled out
      *
      * @param code - the language code to search for

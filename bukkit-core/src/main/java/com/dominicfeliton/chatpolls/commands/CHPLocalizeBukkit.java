@@ -48,11 +48,11 @@ public class CHPLocalizeBukkit extends CHPLocalize {
             // Changing our own localization
             if (!locale.equalsIgnoreCase("stop")) {
                 changeLangMsg(bukkitSender, inName, locale);
-                //refs.playSound(CommonRefs.SoundType.SUBMENU_TOGGLE_ON, sender);
+                refs.playSound(CommonRefs.SoundType.SUBMENU_TOGGLE_ON, sender);
             } else {
                 if (!currRecord.getLocalizationCode().isEmpty()) {
                     stopLangMsg(bukkitSender);
-                    //refs.playSound(CommonRefs.SoundType.SUBMENU_TOGGLE_OFF, sender);
+                    refs.playSound(CommonRefs.SoundType.SUBMENU_TOGGLE_OFF, sender);
                 } else {
                     alreadyStoppedMsg(bukkitSender);
                 }
@@ -62,12 +62,12 @@ public class CHPLocalizeBukkit extends CHPLocalize {
             if (!locale.equalsIgnoreCase("stop")) {
                 refs.sendMsg("chplLangChangedOtherPlayerSender", new String[]{"&6" + inName, "&6" + locale}, sender);
                 changeLangMsg(new BukkitCommandSender(inPlayer), inName, locale);
-                //refs.playSound(CommonRefs.SoundType.SUBMENU_TOGGLE_OFF, sender);
+                refs.playSound(CommonRefs.SoundType.SUBMENU_TOGGLE_OFF, sender);
             } else {
                 if (!currRecord.getLocalizationCode().isEmpty()) {
                     refs.sendMsg("chplLangStoppedOtherPlayerSender", "&6" + inName, sender);
                     stopLangMsg(new BukkitCommandSender(inPlayer));
-                    //refs.playSound(CommonRefs.SoundType.SUBMENU_TOGGLE_OFF, sender);
+                    refs.playSound(CommonRefs.SoundType.SUBMENU_TOGGLE_OFF, sender);
                 } else {
                     refs.sendMsg("chplLangAlreadyStoppedOtherPlayerSender", "&6" + inName, sender);
                 }
