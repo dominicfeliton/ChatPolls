@@ -106,14 +106,21 @@ public abstract class PollObject {
     @JsonProperty("maxVotesPerUser")
     private int maxVotesPerUser;
 
+    private final Clock clock;
+
     protected PollObject(String title, List<String> options, String description, long delaySec, long durationSec) {
+        this(title, options, description, delaySec, durationSec, new SystemClock());
+    }
+
+    protected PollObject(String title, List<String> options, String description, long delaySec, long durationSec, Clock clock) {
         // Store basic properties
         this.title = title;
         this.description = description;
         this.options = Collections.unmodifiableList(new ArrayList<>(options));
+        this.clock = clock;
         
         // Set times
-        LocalDateTime now = getCurrentDateTime();
+        LocalDateTime now = clock.getCurrentDateTime();
         this.startTime = now.plusSeconds(delaySec);
         this.endTime = startTime.plusSeconds(durationSec);
         
@@ -309,8 +316,8 @@ public abstract class PollObject {
      * @return The current LocalDateTime.
      */
     @JsonIgnore
-    public LocalDateTime getCurrentDateTime() {
-        return LocalDateTime.now();
+    protected LocalDateTime getCurrentDateTime() {
+        return clock.getCurrentDateTime();
     }
 
     public void setPollType(PollType type) {
