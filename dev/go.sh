@@ -7,5 +7,4 @@ if [ $? -eq 0 ]; then
     ./dev/copy_chp_macos_linux_wsl.sh paper
 else
     echo "Build failed, not copying files"
-    exit 1
 fi

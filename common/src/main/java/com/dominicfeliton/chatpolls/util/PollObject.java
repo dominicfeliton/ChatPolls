@@ -30,12 +30,8 @@ public abstract class PollObject {
     protected final String description;
     @JsonProperty("options")
     protected final List<String> options;
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonProperty("startTime")
     protected final LocalDateTime startTime;
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonProperty("endTime")
     protected final LocalDateTime endTime;
 
@@ -74,8 +70,6 @@ public abstract class PollObject {
     @JsonIgnore // Complex type, handle separately if needed
     private Component endChatMessage;
     
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonProperty("creationDate")
     private LocalDateTime creationDate;
     private String cancellationReason;
@@ -170,14 +164,17 @@ public abstract class PollObject {
         return options;
     }
 
+    @JsonIgnore
     public String getOptionsDisplay() {
         return String.join(", ", options);
     }
 
+    @JsonIgnore
     public String getDateTimeStart() {
         return startTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
 
+    @JsonIgnore
     public String getDateTimeEnd() {
         return endTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
@@ -233,6 +230,7 @@ public abstract class PollObject {
      *
      * @return The current LocalDateTime.
      */
+    @JsonIgnore
     public LocalDateTime getCurrentDateTime() {
         return LocalDateTime.now();
     }

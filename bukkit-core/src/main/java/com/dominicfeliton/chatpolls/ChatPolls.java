@@ -2,11 +2,21 @@ package com.dominicfeliton.chatpolls;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.dominicfeliton.chatpolls.commands.CHPLocalizeBukkit;
 import com.dominicfeliton.chatpolls.commands.CHPPersonalBukkit;
 import com.dominicfeliton.chatpolls.configuration.ConfigurationHandler;
 import com.dominicfeliton.chatpolls.runnables.UpdateChecker;
 import com.dominicfeliton.chatpolls.util.*;
+import com.dominicfeliton.chatpolls.util.BukkitCommandSender;
+import com.dominicfeliton.chatpolls.util.BukkitPollObject;
+import com.dominicfeliton.chatpolls.util.CommonRefs;
+import com.dominicfeliton.chatpolls.util.GenericCommandSender;
+import com.dominicfeliton.chatpolls.util.GenericRunnable;
+import com.dominicfeliton.chatpolls.util.PlayerRecord;
+import com.dominicfeliton.chatpolls.util.PollObject;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
@@ -21,6 +31,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -86,12 +97,14 @@ public class ChatPolls extends JavaPlugin {
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
         
-        // Register module for LocalDateTime serialization
-        com.fasterxml.jackson.databind.module.SimpleModule module = 
-            new com.fasterxml.jackson.databind.module.SimpleModule();
-        module.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer());
-        module.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer());
-        objectMapper.registerModule(module);
+        JavaTimeModule javaTimeModule = new JavaTimeModule();
+
+        // Force serializer/deserializer to use the same format
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        javaTimeModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(formatter));
+        javaTimeModule.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(formatter));
+
+        objectMapper.registerModule(javaTimeModule);
     }
 
     private void setupAutoSave() {
@@ -165,7 +178,12 @@ public class ChatPolls extends JavaPlugin {
             java.io.File[] pollFiles = pollsDir.listFiles((dir, name) -> name.endsWith(".json"));
             if (pollFiles == null) return;
 
+            refs.debugMsg("Loading polls...");
+            refs.debugMsg("Found " + pollFiles.length + " poll files");
+
             for (java.io.File file : pollFiles) {
+                refs.debugMsg("Loading poll file " + file.getName());
+
                 try {
                     String playerId = file.getName().replace(".json", "");
                     UUID playerUUID = UUID.fromString(playerId);
