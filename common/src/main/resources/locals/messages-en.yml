@@ -38,6 +38,8 @@ Messages:
     §6To create a poll:
     §e/chpp create <title> <option1,option2,...> [delay] [duration] [description]
     §7Example: /chpp create "Best Food" "Pizza,Burger,Sushi" 5m 1h "What's your favorite food?"
+    §7For ranked-choice polls, prefix title with [RANKED]:
+    §7Example: /chpp create "[RANKED] Best Food" "Pizza,Burger,Sushi"
     §7You can add 2-5 options, separated by commas
     §7Delay and duration format: ##s (seconds), ##m (minutes), ##h (hours), ##d (days)
   chppCreateSuccess: |
@@ -62,6 +64,8 @@ Messages:
   chppVoteUsage: |
     §6To vote on a poll:
     §e/chpp vote <pollId> [option]
+    §7For ranked polls, provide options in order of preference:
+    §e/chpp vote <pollId> option1,option2,option3
     §7Use /chpp list to see available polls
   chppVoteNotFound: '§cNo poll found with ID {0}. Use §e/chpp list §cto see available polls.'
   chppVoteFail: '§cFailed to cast vote. Please choose a valid option.'
@@ -95,3 +99,8 @@ Messages:
   chppListActions: '§7(Click ID to vote, ✖ to delete)'
   chppSaveSuccess: '§aSuccessfully saved polls'
   chppSaveFail: '§cFailed to save polls: {0}'
+  
+  # Ranked voting messages
+  chppRankedWinner: '§6The winner by ranked-choice voting is: §e{0}'
+  chppRankedVoteInfo: '§7Rank the options in order of preference (comma-separated)'
+  chppListHoverRankedVoted: '§aYour ranking: §f{0}'

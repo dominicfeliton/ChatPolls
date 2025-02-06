@@ -2,10 +2,11 @@ package com.dominicfeliton.chatpolls.commands;
 
 import com.dominicfeliton.chatpolls.ChatPolls;
 import com.dominicfeliton.chatpolls.commands.BasicCommand;
-import com.dominicfeliton.chatpolls.util.BukkitPollObject; // <-- Now referencing your newly-created class
+import com.dominicfeliton.chatpolls.util.BukkitPollObject;
 import com.dominicfeliton.chatpolls.util.CommonRefs;
 import com.dominicfeliton.chatpolls.util.GenericCommandSender;
 import com.dominicfeliton.chatpolls.util.PollObject;
+import com.dominicfeliton.chatpolls.util.PollType;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
@@ -208,6 +209,13 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
                 delaySeconds,
                 durationSeconds
         );
+        
+        // Check if this should be a ranked poll (if title starts with [RANKED])
+        //TODO: Make poll type just a param
+        if (pollTitle.toUpperCase().startsWith("[RANKED]")) {
+            bukkitPoll.setPollType(PollType.RANKED);
+            pollTitle = pollTitle.substring(8).trim(); // Remove [RANKED] prefix
+        }
 
         main.getPersonalPolls().putIfAbsent(playerUuid, new ConcurrentHashMap<>());
         main.getPersonalPolls().get(playerUuid).put(pollId, bukkitPoll);
@@ -331,21 +339,36 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
             hoverText.append(refs.getPlainMsg("chppListHoverOptions", bukkitPoll.getOptionsDisplay(), sender))
                      .append("\n\n");
 
-            String playerVote = bukkitPoll.getPlayerVote(playerUuid);
-            if (playerVote != null) {
-                hoverText.append(refs.getPlainMsg("chppListHoverVoted", playerVote, sender)).append("\n");
-            }
-            hoverText.append(refs.getPlainMsg("chppListHoverVotes", sender)).append("\n");
-            Map<String, Integer> voteMap = bukkitPoll.getOptionVotes();
-            for (Map.Entry<String, Integer> v : voteMap.entrySet()) {
-                hoverText.append(
-                        refs.getPlainMsg(
-                                "chppListHoverVoteLine",
-                                new String[]{v.getKey(), String.valueOf(v.getValue())},
-                                "&r&d",
-                                sender
-                        )
-                ).append("\n");
+            if (bukkitPoll.getPollType() == PollType.RANKED) {
+                // Show user's ranking if they voted
+                List<String> ranking = bukkitPoll.getRankedVotes(playerUuid);
+                if (ranking != null) {
+                    hoverText.append(refs.getPlainMsg("chppListHoverRankedVoted", 
+                        String.join(" > ", ranking), sender)).append("\n");
+                }
+                // Show current winner
+                String winner = bukkitPoll.calculateRankedWinner();
+                if (winner != null) {
+                    hoverText.append(refs.getPlainMsg("chppRankedWinner", winner, sender)).append("\n");
+                }
+            } else {
+                // Regular poll - show user's vote and vote counts
+                String playerVote = bukkitPoll.getPlayerVote(playerUuid);
+                if (playerVote != null) {
+                    hoverText.append(refs.getPlainMsg("chppListHoverVoted", playerVote, sender)).append("\n");
+                }
+                hoverText.append(refs.getPlainMsg("chppListHoverVotes", sender)).append("\n");
+                Map<String, Integer> voteMap = bukkitPoll.getOptionVotes();
+                for (Map.Entry<String, Integer> v : voteMap.entrySet()) {
+                    hoverText.append(
+                            refs.getPlainMsg(
+                                    "chppListHoverVoteLine",
+                                    new String[]{v.getKey(), String.valueOf(v.getValue())},
+                                    "&r&d",
+                                    sender
+                            )
+                    ).append("\n");
+                }
             }
             hoverText.append("\n").append(refs.getPlainMsg("chppListHoverVoteAction", sender));
 
@@ -354,7 +377,7 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
                     .append(Component.text("[" + pollId + "] ", NamedTextColor.AQUA))
                     .append(Component.text(bukkitPoll.getTitle(), NamedTextColor.WHITE))
                     .append(
-                            playerVote != null
+                            bukkitPoll.hasVoted(playerUuid)
                             ? Component.text(" ✓", NamedTextColor.GREEN)
                             : Component.empty()
                     )
@@ -461,47 +484,108 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
                     "&r&d",
                     sender
             );
-            String playerVote = bukkitPoll.getPlayerVote(playerUuid);
-            if (playerVote != null) {
-                refs.sendMsg("chppVoteInfoVoted", playerVote, "&r&d", sender);
+            if (bukkitPoll.getPollType() == PollType.RANKED) {
+                List<String> ranking = bukkitPoll.getRankedVotes(playerUuid);
+                if (ranking != null) {
+                    refs.sendMsg("chppVoteInfoVoted", String.join(" > ", ranking), "&r&d", sender);
+                } else {
+                    refs.sendMsg("chppRankedVoteInfo", sender);
+                    for (String opt : bukkitPoll.getOptions()) {
+                        refs.sendMsg("chppVoteInfoOption", opt, "&r&d", sender);
+                    }
+                }
             } else {
-                for (String opt : bukkitPoll.getOptions()) {
-                    refs.sendMsg("chppVoteInfoOption", opt, "&r&d", sender);
+                String playerVote = bukkitPoll.getPlayerVote(playerUuid);
+                if (playerVote != null) {
+                    refs.sendMsg("chppVoteInfoVoted", playerVote, "&r&d", sender);
+                } else {
+                    for (String opt : bukkitPoll.getOptions()) {
+                        refs.sendMsg("chppVoteInfoOption", opt, "&r&d", sender);
+                    }
                 }
             }
             return true;
         }
 
-        // /chpp vote pollId <option>
-        String option = args[2].trim();
-        if (!bukkitPoll.hasOption(option)) {
-            refs.sendMsg("chppInvalidOption", sender);
-            return true;
-        }
+        // Handle ranked or regular voting
+        if (bukkitPoll.getPollType() == PollType.RANKED) {
+            // Parse comma-separated ranking
+            List<String> ranking = Arrays.stream(args[2].split(","))
+                .map(String::trim)
+                .collect(Collectors.toList());
+                
+            // Validate each option
+            for (String opt : ranking) {
+                if (!bukkitPoll.hasOption(opt)) {
+                    refs.sendMsg("chppInvalidOption", sender);
+                    return true;
+                }
+            }
 
-        if (bukkitPoll.hasVoted(playerUuid)) {
-            refs.sendMsg("chppAlreadyVoted",
-                    new String[]{bukkitPoll.getPlayerVote(playerUuid)},
-                    "&r&d",
-                    sender
+            if (bukkitPoll.hasVoted(playerUuid)) {
+                refs.sendMsg("chppAlreadyVoted",
+                        new String[]{String.join(" > ", ranking)},
+                        "&r&d",
+                        sender
+                );
+                return true;
+            }
+
+            if (!bukkitPoll.castRankedVote(playerUuid, ranking)) {
+                refs.sendMsg("chppVoteFail", sender);
+                return true;
+            }
+
+            // Show the user's ranked choices
+            refs.sendMsg("chppVoteSuccess", 
+                new String[]{String.join(" > ", ranking), pollId}, 
+                "&r&d", 
+                sender
             );
-            return true;
-        }
 
-        if (!bukkitPoll.castVote(playerUuid, option)) {
-            refs.sendMsg("chppVoteFail", sender);
-            return true;
-        }
+            // If poll has ended, calculate and show winner
+            if (bukkitPoll.hasEnded()) {
+                String winner = bukkitPoll.calculateRankedWinner();
+                if (winner != null) {
+                    refs.sendMsg("chppRankedWinner", 
+                        new String[]{winner}, 
+                        "&r&d", 
+                        sender
+                    );
+                }
+            }
+        } else {
+            // Regular single-choice voting
+            String option = args[2].trim();
+            if (!bukkitPoll.hasOption(option)) {
+                refs.sendMsg("chppInvalidOption", sender);
+                return true;
+            }
 
-        // success => show tallies
-        refs.sendMsg("chppVoteSuccess", new String[]{option, pollId}, "&r&d", sender);
-        Map<String, Integer> updatedVotes = bukkitPoll.getOptionVotes();
-        for (Map.Entry<String, Integer> e : updatedVotes.entrySet()) {
-            refs.sendMsg("chppVoteTallyLine",
-                    new String[]{e.getKey(), String.valueOf(e.getValue())},
-                    "&r&d",
-                    sender
-            );
+            if (bukkitPoll.hasVoted(playerUuid)) {
+                refs.sendMsg("chppAlreadyVoted",
+                        new String[]{bukkitPoll.getPlayerVote(playerUuid)},
+                        "&r&d",
+                        sender
+                );
+                return true;
+            }
+
+            if (!bukkitPoll.castVote(playerUuid, option)) {
+                refs.sendMsg("chppVoteFail", sender);
+                return true;
+            }
+
+            // success => show tallies
+            refs.sendMsg("chppVoteSuccess", new String[]{option, pollId}, "&r&d", sender);
+            Map<String, Integer> updatedVotes = bukkitPoll.getOptionVotes();
+            for (Map.Entry<String, Integer> e : updatedVotes.entrySet()) {
+                refs.sendMsg("chppVoteTallyLine",
+                        new String[]{e.getKey(), String.valueOf(e.getValue())},
+                        "&r&d",
+                        sender
+                );
+            }
         }
         return true;
     }

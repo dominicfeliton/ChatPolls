@@ -16,12 +16,6 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
-enum PollType {
-    SINGLE,      // Single-choice poll
-    MULTIPLE,    // Multiple-choice poll
-    RANKED;      // Ranked-choice poll
-}
-
 public abstract class PollObject {
     @JsonProperty("title")
     // Basic poll properties
@@ -41,6 +35,9 @@ public abstract class PollObject {
     
     @JsonProperty("userVotes")
     protected final ConcurrentMap<UUID, String> userVotes = new ConcurrentHashMap<>();
+    
+    @JsonProperty("userRankedVotes")
+    protected final ConcurrentMap<UUID, List<String>> userRankedVotes = new ConcurrentHashMap<>();
 
     // Advanced settings (from original)
     @JsonProperty("active")
@@ -204,6 +201,9 @@ public abstract class PollObject {
     }
 
     public boolean hasVoted(UUID playerUuid) {
+        if (pollType == PollType.RANKED) {
+            return userRankedVotes.containsKey(playerUuid);
+        }
         return userVotes.containsKey(playerUuid);
     }
 
@@ -216,6 +216,7 @@ public abstract class PollObject {
         if (!hasOption(option)) return false;
         if (!hasStarted() || hasEnded()) return false;
         if (hasVoted(playerUuid)) return false;
+        if (pollType == PollType.RANKED) return false; // Ranked polls use castRankedVote
 
         synchronized (this) {
             userVotes.put(playerUuid, option);
@@ -223,6 +224,83 @@ public abstract class PollObject {
             optionVotes.put(option, currentCount + 1);
         }
         return true;
+    }
+
+    public boolean castRankedVote(UUID voter, List<String> ranking) {
+        // Validate
+        if (!hasStarted() || hasEnded()) return false;
+        if (pollType != PollType.RANKED) return false;
+        if (userRankedVotes.containsKey(voter) && !allowVoteUndo) return false;
+
+        // Validate that each option in ranking is allowed and no duplicates
+        Set<String> seen = new HashSet<>();
+        for (String option : ranking) {
+            if (!options.contains(option)) return false;
+            if (!seen.add(option)) return false; // Duplicate found
+        }
+
+        synchronized (this) {
+            userRankedVotes.put(voter, new ArrayList<>(ranking));
+        }
+        return true;
+    }
+
+    public String calculateRankedWinner() {
+        if (pollType != PollType.RANKED) return null;
+
+        // Copy all ballots into a mutable list
+        List<List<String>> ballots = new ArrayList<>(userRankedVotes.values());
+        
+        // While there is more than one candidate remaining:
+        while (true) {
+            // Count first-choice votes:
+            Map<String, Integer> firstChoiceCounts = new HashMap<>();
+            for (List<String> ballot : ballots) {
+                if (!ballot.isEmpty()) {
+                    String firstChoice = ballot.get(0);
+                    firstChoiceCounts.put(firstChoice, 
+                        firstChoiceCounts.getOrDefault(firstChoice, 0) + 1);
+                }
+            }
+            
+            int totalVotes = ballots.size();
+            // Check for majority:
+            for (Map.Entry<String, Integer> entry : firstChoiceCounts.entrySet()) {
+                if (entry.getValue() > totalVotes / 2) {
+                    return entry.getKey(); // Winner found
+                }
+            }
+            
+            // If no votes remain, return null
+            if (firstChoiceCounts.isEmpty()) {
+                return null;
+            }
+            
+            // Identify candidate(s) with the fewest first-choice votes
+            int minVotes = Collections.min(firstChoiceCounts.values());
+            List<String> toEliminate = new ArrayList<>();
+            for (Map.Entry<String, Integer> entry : firstChoiceCounts.entrySet()) {
+                if (entry.getValue() == minVotes) {
+                    toEliminate.add(entry.getKey());
+                }
+            }
+            
+            // Eliminate the candidate(s) from every ballot
+            for (List<String> ballot : ballots) {
+                ballot.removeAll(toEliminate);
+            }
+            
+            // If only one candidate remains across all ballots, return it
+            Set<String> remaining = new HashSet<>();
+            for (List<String> ballot : ballots) {
+                if (!ballot.isEmpty()) {
+                    remaining.add(ballot.get(0));
+                }
+            }
+            if (remaining.size() == 1) {
+                return remaining.iterator().next();
+            }
+        }
     }
 
     /**
@@ -233,5 +311,17 @@ public abstract class PollObject {
     @JsonIgnore
     public LocalDateTime getCurrentDateTime() {
         return LocalDateTime.now();
+    }
+
+    public void setPollType(PollType type) {
+        this.pollType = type;
+    }
+
+    public PollType getPollType() {
+        return this.pollType;
+    }
+
+    public List<String> getRankedVotes(UUID playerUuid) {
+        return userRankedVotes.get(playerUuid);
     }
 }
