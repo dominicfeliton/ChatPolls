@@ -182,6 +182,8 @@ public class ChatPolls extends JavaPlugin {
                             .append((Component.text().content(" " + getPluginVersion())).color(NamedTextColor.LIGHT_PURPLE))
                             .append((Component.text().content(" (Made with love by ")).color(NamedTextColor.GOLD))
                             .append((Component.text().content("Dominic Feliton")).color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD))
+                            .append((Component.text().content(" and with support from ")).color(NamedTextColor.GOLD))
+                            .append((Component.text().content("Hanzen Shou")).color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD))
                             .append((Component.text().content(")").resetStyle()).color(NamedTextColor.GOLD)).build();
                     refs.sendMsg(s, versionNotice, true);
                     refs.playSound(CHP_VERSION, new BukkitCommandSender(sender));
