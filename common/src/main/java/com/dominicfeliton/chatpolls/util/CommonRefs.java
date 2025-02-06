@@ -15,7 +15,7 @@ import java.util.*;
  */
 public abstract class CommonRefs {
     /* Important variables */
-    public static final String messagesConfigVersion = "017124-2";
+    public static final String messagesConfigVersion = "017124-3";
 
     // Supported Minecraft Versions
     public static final String[] supportedMCVersions = {

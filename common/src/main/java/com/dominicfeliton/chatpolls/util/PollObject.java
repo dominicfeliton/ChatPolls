@@ -18,7 +18,18 @@ enum PollType {
 }
 
 public abstract class PollObject {
+    // Basic poll properties
+    protected final String title;
+    protected final String description;
+    protected final List<String> options;
+    protected final LocalDateTime startTime;
+    protected final LocalDateTime endTime;
 
+    // Vote tracking
+    protected final ConcurrentMap<String, Integer> optionVotes = new ConcurrentHashMap<>();
+    protected final ConcurrentMap<UUID, String> userVotes = new ConcurrentHashMap<>();
+
+    // Advanced settings (from original)
     private boolean active;
     private boolean anonymousVoting;
     private boolean allowMultipleChoices;
@@ -30,19 +41,14 @@ public abstract class PollObject {
     private String templateUuid; // null if DNE
     private String creatorUuid;
     private PollType pollType; // e.g., "single", "multiple", "ranked"
-    private Component title;
-    private Component description;
     private Component beginChatMessage;
     private Component endChatMessage;
     private LocalDateTime creationDate;
-    private LocalDateTime dateTimeStart; // accounts for delays etc.
-    private LocalDateTime dateTimeEnd; // will be adjusted if cancelled prematurely (active=false)
     private String cancellationReason;
 
     private boolean sendExpirationWarning;
     private List<Integer> warningThresholdsInSeconds;
 
-    //private SmartInventory gui;
     private Sound onBegin;
     private Sound onVote;
     private Sound onUndoVote;
@@ -53,23 +59,34 @@ public abstract class PollObject {
     private Set<String> recipients; // UUIDs
     private Set<String> tags;
     private List<RewardObject> rewards;
-    private Queue<String> votingLog; // User X performed ACTION !
+    private Queue<String> votingLog;
 
-    private Map<Component, String> cosmeticToInternal; // Cosmetic Name -> Internal Identifier
-    private Map<String, AtomicInteger> votes; // Internal Identifier -> Number of Votes
+    private Map<Component, String> cosmeticToInternal;
+    private Map<String, AtomicInteger> votes;
 
     private int maxVotesPerUser;
 
-    private void initPollObj(String templateUuid, String creatorUuid) {
-        active = false;
+    protected PollObject(String title, List<String> options, String description, long delaySec, long durationSec) {
+        // Store basic properties
+        this.title = title;
+        this.description = description;
+        this.options = Collections.unmodifiableList(new ArrayList<>(options));
+        
+        // Set times
+        LocalDateTime now = getCurrentDateTime();
+        this.startTime = now.plusSeconds(delaySec);
+        this.endTime = startTime.plusSeconds(durationSec);
+        
+        // Initialize vote tracking
+        for (String opt : this.options) {
+            optionVotes.put(opt, 0);
+        }
 
+        // Initialize other fields
+        active = false;
         uuid = UUID.randomUUID().toString();
-        this.templateUuid = templateUuid;
-        this.creatorUuid = creatorUuid;
         pollType = PollType.SINGLE;
-        creationDate = getCurrentDateTime();
-        dateTimeStart = getCurrentDateTime();
-        dateTimeEnd = getCurrentDateTime();
+        creationDate = now;
         cancellationReason = null;
 
         sendExpirationWarning = false;
@@ -91,21 +108,71 @@ public abstract class PollObject {
         votes = new ConcurrentHashMap<>();
     }
 
-    public PollObject() {
-        // New Poll, No Template, No Creator (Console), Very Simple
-        initPollObj(null, null);
+    // Common methods that work for all platforms
+    public String getTitle() {
+        return title;
     }
 
-    public String getCreationDate() {
-       return creationDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    public String getDescription() {
+        return description;
+    }
+
+    public List<String> getOptions() {
+        return options;
+    }
+
+    public String getOptionsDisplay() {
+        return String.join(", ", options);
     }
 
     public String getDateTimeStart() {
-        return dateTimeStart.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        return startTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
 
     public String getDateTimeEnd() {
-        return dateTimeEnd.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        return endTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    }
+
+    public String getCreationDate() {
+        return creationDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    }
+
+    public boolean hasStarted() {
+        return getCurrentDateTime().isAfter(startTime);
+    }
+
+    public boolean hasEnded() {
+        return getCurrentDateTime().isAfter(endTime);
+    }
+
+    public Map<String, Integer> getOptionVotes() {
+        return Collections.unmodifiableMap(optionVotes);
+    }
+
+    public boolean hasOption(String optionKey) {
+        return options.contains(optionKey);
+    }
+
+    public boolean hasVoted(UUID playerUuid) {
+        return userVotes.containsKey(playerUuid);
+    }
+
+    public String getPlayerVote(UUID playerUuid) {
+        return userVotes.get(playerUuid);
+    }
+
+    public boolean castVote(UUID playerUuid, String option) {
+        // Validate
+        if (!hasOption(option)) return false;
+        if (!hasStarted() || hasEnded()) return false;
+        if (hasVoted(playerUuid)) return false;
+
+        synchronized (this) {
+            userVotes.put(playerUuid, option);
+            int currentCount = optionVotes.getOrDefault(option, 0);
+            optionVotes.put(option, currentCount + 1);
+        }
+        return true;
     }
 
     /**
