@@ -1,6 +1,12 @@
 package com.dominicfeliton.chatpolls.util;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.bukkit.entity.Player;
+
+import java.util.List;
 
 /**
  * A concrete "personal poll" class for the Bukkit module.
@@ -18,11 +24,12 @@ public class BukkitPollObject extends PollObject {
      * @param delaySec  Start delay in seconds
      * @param durationSec Duration in seconds
      */
-    public BukkitPollObject(String title,
-                            List<String> options,
-                            String desc,
-                            long delaySec,
-                            long durationSec) {
+    @JsonCreator
+    public BukkitPollObject(@JsonProperty("title") String title,
+                           @JsonProperty("options") List<String> options,
+                           @JsonProperty("description") String desc,
+                           @JsonProperty("delaySeconds") long delaySec,
+                           @JsonProperty("durationSeconds") long durationSec) {
         super(title, options, desc, delaySec, durationSec);
     }
 

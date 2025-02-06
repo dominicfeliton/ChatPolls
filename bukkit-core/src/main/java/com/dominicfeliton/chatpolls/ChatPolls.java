@@ -1,10 +1,22 @@
 package com.dominicfeliton.chatpolls;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.dominicfeliton.chatpolls.commands.CHPLocalizeBukkit;
 import com.dominicfeliton.chatpolls.commands.CHPPersonalBukkit;
 import com.dominicfeliton.chatpolls.configuration.ConfigurationHandler;
 import com.dominicfeliton.chatpolls.runnables.UpdateChecker;
 import com.dominicfeliton.chatpolls.util.*;
+import com.dominicfeliton.chatpolls.util.BukkitCommandSender;
+import com.dominicfeliton.chatpolls.util.BukkitPollObject;
+import com.dominicfeliton.chatpolls.util.CommonRefs;
+import com.dominicfeliton.chatpolls.util.GenericCommandSender;
+import com.dominicfeliton.chatpolls.util.GenericRunnable;
+import com.dominicfeliton.chatpolls.util.PlayerRecord;
+import com.dominicfeliton.chatpolls.util.PollObject;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
@@ -18,6 +30,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -67,12 +81,42 @@ public class ChatPolls extends JavaPlugin {
     private final Map<UUID, Map<String, PollObject>> personalPolls = new ConcurrentHashMap<>();
 
     private volatile String globalState = "Starting";
+    
+    private ObjectMapper objectMapper;
+    private static final String POLLS_SAVE_PATH = "plugins/ChatPolls/polls/";
 
     public @NotNull BukkitAudiences adventure() {
         if (adventure == null) {
             throw new IllegalStateException("Tried to access Adventure when the plugin was disabled!");
         }
         return adventure;
+    }
+
+    private void initObjectMapper() {
+        objectMapper = new ObjectMapper();
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
+        
+        JavaTimeModule javaTimeModule = new JavaTimeModule();
+
+        // Force serializer/deserializer to use the same format
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        javaTimeModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(formatter));
+        javaTimeModule.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(formatter));
+
+        objectMapper.registerModule(javaTimeModule);
+    }
+
+    private void setupAutoSave() {
+        // Auto-save polls every 5 minutes
+        GenericRunnable autoSave = new GenericRunnable() {
+            @Override
+            protected void execute() {
+                savePolls();
+                refs.debugMsg("Auto-saved polls");
+            }
+        };
+        helper.runAsyncRepeating(true, 300 * 20, 300 * 20, autoSave, ASYNC, null);
     }
 
     private void initStableObjs() {
@@ -91,6 +135,76 @@ public class ChatPolls extends JavaPlugin {
 
         // Set config manager
         configurationManager = new ConfigurationHandler();
+    }
+
+    public synchronized void savePolls() {
+        try {
+            // Create directory if it doesn't exist
+            java.nio.file.Files.createDirectories(java.nio.file.Paths.get(POLLS_SAVE_PATH));
+            
+            // Save each player's polls
+            for (Map.Entry<UUID, Map<String, PollObject>> entry : personalPolls.entrySet()) {
+                UUID playerId = entry.getKey();
+                Map<String, PollObject> polls = entry.getValue();
+                
+                String playerFile = POLLS_SAVE_PATH + playerId.toString() + ".json";
+                
+                // Log the JSON content before writing
+                String jsonContent = objectMapper.writerWithDefaultPrettyPrinter()
+                    .writeValueAsString(polls);
+                refs.debugMsg("Writing JSON for player " + playerId + ":\n" + jsonContent);
+                
+                // Write the file
+                objectMapper.writeValue(new java.io.File(playerFile), polls);
+                
+                // Log the file content after writing
+                String writtenContent = new String(
+                    java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(playerFile)),
+                    java.nio.charset.StandardCharsets.UTF_8
+                );
+                refs.debugMsg("File content after write for player " + playerId + ":\n" + writtenContent);
+            }
+        } catch (Exception e) {
+            refs.debugMsg("Error saving polls: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    private void loadPolls() {
+        try {
+            java.io.File pollsDir = new java.io.File(POLLS_SAVE_PATH);
+            if (!pollsDir.exists()) return;
+
+            java.io.File[] pollFiles = pollsDir.listFiles((dir, name) -> name.endsWith(".json"));
+            if (pollFiles == null) return;
+
+            refs.debugMsg("Loading polls...");
+            refs.debugMsg("Found " + pollFiles.length + " poll files");
+
+            for (java.io.File file : pollFiles) {
+                refs.debugMsg("Loading poll file " + file.getName());
+
+                try {
+                    String playerId = file.getName().replace(".json", "");
+                    UUID playerUUID = UUID.fromString(playerId);
+                    
+                    // Use TypeReference to handle the complex map type
+                    Map<String, BukkitPollObject> polls = objectMapper.readValue(file, 
+                        objectMapper.getTypeFactory().constructMapType(
+                            Map.class, 
+                            String.class, 
+                            BukkitPollObject.class
+                        )
+                    );
+                    
+                    personalPolls.put(playerUUID, new ConcurrentHashMap<>(polls));
+                } catch (Exception e) {
+                    refs.debugMsg("Error loading poll file " + file.getName() + ": " + e.getMessage());
+                }
+            }
+        } catch (Exception e) {
+            refs.debugMsg("Error loading polls: " + e.getMessage());
+        }
     }
 
     private void takedownStableObjs() {
@@ -114,7 +228,10 @@ public class ChatPolls extends JavaPlugin {
         // TODO: Move adventure init to ChatPollsHelper, spigot only
         this.adventure = BukkitAudiences.create(this);
 
+        initObjectMapper();
         doStartupTasks();
+        loadPolls();
+        setupAutoSave();
 
         refs.debugMsg(platformType + " | " + platformVersion);
 
@@ -126,6 +243,13 @@ public class ChatPolls extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        refs.debugMsg("Saving polls before shutdown...");
+        try {
+            savePolls();
+            refs.debugMsg("Successfully saved polls");
+        } catch (Exception e) {
+            refs.debugMsg("Failed to save polls: " + e.getMessage());
+        }
         doTakedownTasks();
 
         // TODO: Move to Helper, spigot only
