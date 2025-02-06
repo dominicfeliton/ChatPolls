@@ -3,11 +3,20 @@
 ###################################
 #          EASY CONFIG            #
 ###################################
-# Where to create server folders (e.g., /tmp/spigot_chp_test_server)
-SERVERS_BASE_DIR="/tmp"
+# Load environment variables from .env file
+if [[ -f ".env" ]]; then
+  source .env
+fi
 
-# Where your ChatPolls repo is
-CHATPOLLS_BASE_DIR="/home/dominic/Documents/ChatPolls"
+if [[ -z "$CHATPOLLS_BASE_DIR" ]]; then
+  echo "Error: CHATPOLLS_BASE_DIR not set in .env file" >&2
+  exit 1
+fi
+
+# Set default server base directory if not specified in .env
+if [[ -z "$SERVERS_BASE_DIR" ]]; then
+  SERVERS_BASE_DIR="/tmp"
+fi
 
 # Default MC version if user doesn't specify one
 LATEST_VERSION="1.21.4"
