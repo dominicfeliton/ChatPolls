@@ -21,7 +21,7 @@ commands:
   chpp:
     description: Manage personal polls
     aliases: [ chatpollspersonal ]
-    usage: §4/chpp <create|list|delete|vote>
+    usage: §4/chpp <create|list|delete|vote|end>
     permission: chatpolls.chpp
     permission-message: §4You do not have permission to run this command.
 permissions:

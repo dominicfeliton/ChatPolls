@@ -28,6 +28,8 @@ public abstract class PollObject {
     protected final LocalDateTime startTime;
     @JsonProperty("endTime")
     protected final LocalDateTime endTime;
+    @JsonProperty("forcedEndTime")
+    protected LocalDateTime forcedEndTime;
 
     // Vote tracking
     @JsonProperty("optionVotes")
@@ -123,6 +125,7 @@ public abstract class PollObject {
         LocalDateTime now = clock.getCurrentDateTime();
         this.startTime = now.plusSeconds(delaySec);
         this.endTime = startTime.plusSeconds(durationSec);
+        this.forcedEndTime = null;
         
         // Initialize vote tracking
         for (String opt : this.options) {
@@ -196,7 +199,12 @@ public abstract class PollObject {
     }
 
     public boolean hasEnded() {
-        return getCurrentDateTime().isAfter(endTime);
+        LocalDateTime now = getCurrentDateTime();
+        return now.isAfter(endTime) || (forcedEndTime != null && now.isAfter(forcedEndTime));
+    }
+
+    public void forceEnd() {
+        forcedEndTime = getCurrentDateTime();
     }
 
     public Map<String, Integer> getOptionVotes() {
