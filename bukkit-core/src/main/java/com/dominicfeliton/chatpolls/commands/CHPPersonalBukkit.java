@@ -54,7 +54,7 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
         UUID playerUuid = player.getUniqueId();
 
         if (args.length == 1) {
-            return Arrays.asList("create", "list", "delete", "vote").stream()
+            return Arrays.asList("create", "list", "delete", "vote", "save").stream()
                     .filter(cmd -> cmd.toLowerCase().startsWith(args[0].toLowerCase()))
                     .collect(Collectors.toList());
         }
@@ -122,6 +122,8 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
                 return handleDelete(playerUuid);
             case "vote":
                 return handleVote(playerUuid);
+            case "save":
+                return handleSave(playerUuid);
             default:
                 refs.sendMsg("chppUsage", sender);
                 return true;
@@ -398,10 +400,25 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
         return true;
     }
 
+    
+    // ----------------------------------------------------------------------
+    //  SAVE
+    // ----------------------------------------------------------------------
+    
+    private boolean handleSave(UUID playerUuid) {
+        try {
+            main.savePolls();
+            refs.sendMsg("chppSaveSuccess", sender);
+            return true;
+        } catch (Exception e) {
+            refs.sendMsg("chppSaveFail", e.getMessage(), sender);
+            return false;
+        }
+    }
+    
     // ----------------------------------------------------------------------
     //  VOTE
     // ----------------------------------------------------------------------
-
     private boolean handleVote(UUID playerUuid) {
         if (args.length < 2) {
             refs.sendMsg("chppVoteUsage", sender);

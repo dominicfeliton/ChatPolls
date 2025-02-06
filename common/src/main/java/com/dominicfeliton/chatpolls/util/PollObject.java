@@ -1,5 +1,9 @@
 package com.dominicfeliton.chatpolls.util;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import net.kyori.adventure.sound.Sound;
 import net.kyori.adventure.text.Component;
 
@@ -7,6 +11,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -18,52 +23,96 @@ enum PollType {
 }
 
 public abstract class PollObject {
+    @JsonProperty("title")
     // Basic poll properties
     protected final String title;
+    @JsonProperty("description")
     protected final String description;
+    @JsonProperty("options")
     protected final List<String> options;
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonProperty("startTime")
     protected final LocalDateTime startTime;
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonProperty("endTime")
     protected final LocalDateTime endTime;
 
     // Vote tracking
+    @JsonProperty("optionVotes")
     protected final ConcurrentMap<String, Integer> optionVotes = new ConcurrentHashMap<>();
+    
+    @JsonProperty("userVotes")
     protected final ConcurrentMap<UUID, String> userVotes = new ConcurrentHashMap<>();
 
     // Advanced settings (from original)
+    @JsonProperty("active")
     private boolean active;
+    @JsonProperty("anonymousVoting")
     private boolean anonymousVoting;
+    @JsonProperty("allowMultipleChoices")
     private boolean allowMultipleChoices;
+    @JsonProperty("autoTieBreaker")
     private boolean autoTieBreaker;
+    @JsonProperty("showResultsDuringPoll")
     private boolean showResultsDuringPoll;
+    @JsonProperty("allowVoteUndo")
     private boolean allowVoteUndo;
 
+    @JsonProperty("uuid")
     private String uuid;
-    private String templateUuid; // null if DNE
+    @JsonProperty("templateUuid")
+    private String templateUuid;
+    @JsonProperty("creatorUuid")
     private String creatorUuid;
-    private PollType pollType; // e.g., "single", "multiple", "ranked"
+    @JsonProperty("pollType")
+    private PollType pollType;
+    
+    @JsonIgnore // Complex type, handle separately if needed
     private Component beginChatMessage;
+    @JsonIgnore // Complex type, handle separately if needed
     private Component endChatMessage;
+    
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonProperty("creationDate")
     private LocalDateTime creationDate;
     private String cancellationReason;
 
+    @JsonProperty("sendExpirationWarning")
     private boolean sendExpirationWarning;
+    @JsonProperty("warningThresholdsInSeconds")
     private List<Integer> warningThresholdsInSeconds;
 
+    @JsonIgnore // Complex type, handle separately if needed
     private Sound onBegin;
+    @JsonIgnore
     private Sound onVote;
+    @JsonIgnore
     private Sound onUndoVote;
+    @JsonIgnore
     private Sound onCancel;
+    @JsonIgnore
     private Sound onEnd;
 
+    @JsonProperty("requiredPerms")
     private Set<String> requiredPerms;
-    private Set<String> recipients; // UUIDs
+    @JsonProperty("recipients")
+    private Set<String> recipients;
+    @JsonProperty("tags")
     private Set<String> tags;
+    @JsonProperty("rewards")
     private List<RewardObject> rewards;
+    @JsonProperty("votingLog")
     private Queue<String> votingLog;
 
+    @JsonIgnore // Complex key type (Component)
     private Map<Component, String> cosmeticToInternal;
+    @JsonProperty("votes")
     private Map<String, AtomicInteger> votes;
 
+    @JsonProperty("maxVotesPerUser")
     private int maxVotesPerUser;
 
     protected PollObject(String title, List<String> options, String description, long delaySec, long durationSec) {
@@ -135,6 +184,10 @@ public abstract class PollObject {
 
     public String getCreationDate() {
         return creationDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    }
+
+    public void setCreationDate(LocalDateTime date) {
+        this.creationDate = date;
     }
 
     public boolean hasStarted() {

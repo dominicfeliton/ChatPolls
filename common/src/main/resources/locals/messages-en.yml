@@ -93,3 +93,5 @@ Messages:
   chppListHoverVoteAction: '§7Click to vote on this poll'
   chppListHoverDeleteAction: '§cClick to delete this poll'
   chppListActions: '§7(Click ID to vote, ✖ to delete)'
+  chppSaveSuccess: '§aSuccessfully saved polls'
+  chppSaveFail: '§cFailed to save polls: {0}'
