@@ -10,6 +10,4 @@ public interface GenericCommandSender {
 
     String getName();
 
-
-
 }

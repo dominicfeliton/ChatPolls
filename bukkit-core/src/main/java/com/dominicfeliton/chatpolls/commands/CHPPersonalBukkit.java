@@ -5,6 +5,7 @@ import com.dominicfeliton.chatpolls.commands.BasicCommand;
 import com.dominicfeliton.chatpolls.util.BukkitPollObject;
 import com.dominicfeliton.chatpolls.util.CommonRefs;
 import com.dominicfeliton.chatpolls.util.GenericCommandSender;
+import com.dominicfeliton.chatpolls.util.BukkitCommandSender;
 import com.dominicfeliton.chatpolls.util.PollObject;
 import com.dominicfeliton.chatpolls.util.PollType;
 
@@ -432,6 +433,11 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
     // ----------------------------------------------------------------------
     
     private boolean handleSave(UUID playerUuid) {
+        if (!((BukkitCommandSender) sender).getBukkitSender().hasPermission("chatpolls.chpp.save")) {
+            refs.sendMsg("chpBadPerms", "chatpolls.chpp.save", sender);
+            return true;
+        }
+
         try {
             main.savePolls();
             refs.sendMsg("chppSaveSuccess", sender);

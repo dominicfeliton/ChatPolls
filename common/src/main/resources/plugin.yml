@@ -32,6 +32,7 @@ permissions:
       chatpolls.chpl: true
       chatpolls.chpl.otherplayers: true
       chatpolls.chpp: true
+      chatpolls.chpp.save: true
     default: op
   chatpolls.chp:
     description: Gives access to /chp.
@@ -45,3 +46,6 @@ permissions:
   chatpolls.chpp:
     description: Gives access to personal polls
     default: true
+  chatpolls.chpp.save:
+    description: Saves personal polls
+    default: op
