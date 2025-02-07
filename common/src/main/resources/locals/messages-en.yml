@@ -33,6 +33,7 @@ Messages:
     §e/chpp delete <pollId> §7- Delete a poll
     §e/chpp vote <pollId> [option] §7- Vote on a poll or view options
     §e/chpp end <pollId> §7- End a poll and show results
+    §e/chpp save §7- Save all polls (op only)
   chppConsoleDenied: '§cThis command can only be run by players!'
   chppPlayerNotFound: '§cCould not find that player!'
   chppCreateUsage: |
