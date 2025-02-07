@@ -55,7 +55,7 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
         UUID playerUuid = player.getUniqueId();
 
         if (args.length == 1) {
-            return Arrays.asList("create", "list", "delete", "vote", "save").stream()
+            return Arrays.asList("create", "list", "delete", "vote", "save", "end").stream()
                     .filter(cmd -> cmd.toLowerCase().startsWith(args[0].toLowerCase()))
                     .collect(Collectors.toList());
         }
@@ -64,6 +64,7 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
             switch (args[0].toLowerCase()) {
                 case "vote":
                 case "delete":
+                case "end":
                     Map<String, PollObject> userPolls = main.getPersonalPolls().get(playerUuid);
                     if (userPolls != null) {
                         return userPolls.keySet().stream()
@@ -125,6 +126,8 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
                 return handleVote(playerUuid);
             case "save":
                 return handleSave(playerUuid);
+            case "end":
+                return handleEnd(playerUuid);
             default:
                 refs.sendMsg("chppUsage", sender);
                 return true;
@@ -587,6 +590,72 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
                 );
             }
         }
+        return true;
+    }
+
+    // ----------------------------------------------------------------------
+    //  END
+    // ----------------------------------------------------------------------
+    private boolean handleEnd(UUID playerUuid) {
+        if (args.length < 2) {
+            refs.sendMsg("chppEndUsage", sender);
+            return true;
+        }
+        String pollId = args[1].trim();
+
+        Map<String, PollObject> userPolls = main.getPersonalPolls().get(playerUuid);
+        if (userPolls == null || !userPolls.containsKey(pollId)) {
+            refs.sendMsg("chppEndNotFound", new String[]{pollId}, "&r&d", sender);
+            return true;
+        }
+
+        PollObject poll = userPolls.get(pollId);
+        if (!(poll instanceof BukkitPollObject)) {
+            refs.debugMsg("Poll is not a BukkitPollObject? ID=" + pollId);
+            return true;
+        }
+        BukkitPollObject bukkitPoll = (BukkitPollObject) poll;
+
+        if (bukkitPoll.hasEnded()) {
+            refs.sendMsg("chppEndAlreadyEnded", sender);
+            return true;
+        }
+
+        // Force end the poll by setting endTime to now
+        bukkitPoll.forceEnd();
+
+        // Show results
+        refs.sendMsg("chppEndSuccess", new String[]{pollId}, "&r&d", sender);
+
+        if (bukkitPoll.getPollType() == PollType.RANKED) {
+            String winner = bukkitPoll.calculateRankedWinner();
+            if (winner != null) {
+                refs.sendMsg("chppRankedWinner", winner, "&r&d", sender);
+            } else {
+                refs.sendMsg("chppEndNoVotes", sender);
+            }
+        } else {
+            Map<String, Integer> finalVotes = bukkitPoll.getOptionVotes();
+            if (finalVotes.values().stream().mapToInt(Integer::intValue).sum() == 0) {
+                refs.sendMsg("chppEndNoVotes", sender);
+            } else {
+                for (Map.Entry<String, Integer> e : finalVotes.entrySet()) {
+                    refs.sendMsg("chppVoteTallyLine",
+                            new String[]{e.getKey(), String.valueOf(e.getValue())},
+                            "&r&d",
+                            sender
+                    );
+                }
+            }
+        }
+
+        // Save the polls
+        try {
+            main.savePolls();
+        } catch (Exception e) {
+            refs.debugMsg("Failed to save polls after ending: " + e.getMessage());
+        }
+
         return true;
     }
 }

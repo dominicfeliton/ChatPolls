@@ -32,6 +32,7 @@ Messages:
     §e/chpp list §7- View your polls
     §e/chpp delete <pollId> §7- Delete a poll
     §e/chpp vote <pollId> [option] §7- Vote on a poll or view options
+    §e/chpp end <pollId> §7- End a poll and show results
   chppConsoleDenied: '§cThis command can only be run by players!'
   chppPlayerNotFound: '§cCould not find that player!'
   chppCreateUsage: |
@@ -99,6 +100,15 @@ Messages:
   chppListActions: '§7(Click ID to vote, ✖ to delete)'
   chppSaveSuccess: '§aSuccessfully saved polls'
   chppSaveFail: '§cFailed to save polls: {0}'
+  
+  # End poll messages
+  chppEndUsage: '§6To end a poll: §e/chpp end <pollId>'
+  chppEndNotFound: '§cNo poll found with ID {0}. Use §e/chpp list §cto see your polls.'
+  chppEndAlreadyEnded: '§cThis poll has already ended.'
+  chppEndSuccess: |
+    §aPoll {0} has been ended.
+    §6Final Results:
+  chppEndNoVotes: '§7No votes were cast in this poll.'
   
   # Ranked voting messages
   chppRankedWinner: '§6The winner by ranked-choice voting is: §e{0}'
