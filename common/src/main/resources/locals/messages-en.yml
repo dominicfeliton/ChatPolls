@@ -25,23 +25,23 @@ Messages:
   chplLangStoppedOtherPlayerSender: 'Reset the localization of {0} to the server default.'
   chplLangChangedOtherPlayerSender: 'Changed the localization of {0} to {1}.'
   chplLangAlreadyStoppedOtherPlayerSender: '{0} does not have a localization set.'
-  #------------------- /chpp Messages -------------------
+  #------------------- /chp Poll Commands -------------------
   chppUsage: |
     §6=== ChatPolls Personal Commands ===
-    §e/chpp create <title> <option1,option2,...> [delay] [duration] [description] §7- Create a poll
-    §e/chpp list §7- View your polls
-    §e/chpp delete <pollId> §7- Delete a poll
-    §e/chpp vote <pollId> [option] §7- Vote on a poll or view options
-    §e/chpp end <pollId> §7- End a poll and show results
-    §e/chpp save §7- Save all polls (op only)
+    §e/chp create <title> <option1,option2,...> [delay] [duration] [description] §7- Create a poll
+    §e/chp list §7- View your polls
+    §e/chp delete <pollId> §7- Delete a poll
+    §e/chp vote <pollId> [option] §7- Vote on a poll or view options
+    §e/chp end <pollId> §7- End a poll and show results
+    §e/chp save §7- Save all polls (op only)
   chppConsoleDenied: '§cThis command can only be run by players!'
   chppPlayerNotFound: '§cCould not find that player!'
   chppCreateUsage: |
     §6To create a poll:
-    §e/chpp create <title> <option1,option2,...> [delay] [duration] [description]
-    §7Example: /chpp create "Best Food" "Pizza,Burger,Sushi" 5m 1h "What's your favorite food?"
+    §e/chp create <title> <option1,option2,...> [delay] [duration] [description]
+    §7Example: /chp create "Best Food" "Pizza,Burger,Sushi" 5m 1h "What's your favorite food?"
     §7For ranked-choice polls, prefix title with [RANKED]:
-    §7Example: /chpp create "[RANKED] Best Food" "Pizza,Burger,Sushi"
+    §7Example: /chp create "[RANKED] Best Food" "Pizza,Burger,Sushi"
     §7You can add 2-5 options, separated by commas
     §7Delay and duration format: ##s (seconds), ##m (minutes), ##h (hours), ##d (days)
   chppCreateSuccess: |
@@ -59,17 +59,17 @@ Messages:
   chppListItem: '§b[{0}] §f{1}'
   chppDeleteUsage: |
     §6To delete a poll:
-    §e/chpp delete <pollId>
-    §7Click a poll from /chpp list to select it
-  chppDeleteNotFound: '§cNo poll found with ID {0}. Use §e/chpp list §cto see your polls.'
+    §e/chp delete <pollId>
+    §7Click a poll from /chp list to select it
+  chppDeleteNotFound: '§cNo poll found with ID {0}. Use §e/chp list §cto see your polls.'
   chppDeleteSuccess: '§aPoll {0} deleted successfully.'
   chppVoteUsage: |
     §6To vote on a poll:
-    §e/chpp vote <pollId> [option]
+    §e/chp vote <pollId> [option]
     §7For ranked polls, provide options in order of preference:
-    §e/chpp vote <pollId> option1,option2,option3
-    §7Use /chpp list to see available polls
-  chppVoteNotFound: '§cNo poll found with ID {0}. Use §e/chpp list §cto see available polls.'
+    §e/chp vote <pollId> option1,option2,option3
+    §7Use /chp list to see available polls
+  chppVoteNotFound: '§cNo poll found with ID {0}. Use §e/chp list §cto see available polls.'
   chppVoteFail: '§cFailed to cast vote. Please choose a valid option.'
   chppVoteSuccess: '§aSuccessfully voted for {0} in poll {1}!'
   chppVoteTallyLine: '§6{0}: §b{1} votes'
@@ -103,8 +103,8 @@ Messages:
   chppSaveFail: '§cFailed to save polls: {0}'
   
   # End poll messages
-  chppEndUsage: '§6To end a poll: §e/chpp end <pollId>'
-  chppEndNotFound: '§cNo poll found with ID {0}. Use §e/chpp list §cto see your polls.'
+  chppEndUsage: '§6To end a poll: §e/chp end <pollId>'
+  chppEndNotFound: '§cNo poll found with ID {0}. Use §e/chp list §cto see your polls.'
   chppEndAlreadyEnded: '§cThis poll has already ended.'
   chppEndSuccess: |
     §aPoll {0} has been ended.

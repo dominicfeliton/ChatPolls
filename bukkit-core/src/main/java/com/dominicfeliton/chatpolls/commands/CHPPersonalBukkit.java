@@ -76,7 +76,7 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
             }
         }
 
-        // Option suggestions for "/chpp vote <pollId> <option>"
+        // Option suggestions for vote command
         if (args.length == 3 && args[0].equalsIgnoreCase("vote")) {
             Map<String, PollObject> userPolls = main.getPersonalPolls().get(playerUuid);
             if (userPolls != null && userPolls.containsKey(args[1])) {
@@ -94,12 +94,15 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
     }
 
     /**
-     * Entry point for /chpp command
+     * Entry point for /chp or /chpp command
      */
     @Override
     public boolean processCommand() {
         if (args.length == 0) {
-            refs.sendMsg("chppUsage", sender);
+            // Reuse message key but change the displayed command
+            String usageMsg = refs.getPlainMsg("chppUsage", sender)
+                    .replace("/chpp", "/chp");
+            refs.sendMsg(sender, usageMsg, false);
             return true;
         }
 
@@ -141,20 +144,26 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
 
     private boolean handleCreate(UUID playerUuid) {
         if (args.length < 2) {
-            refs.sendMsg("chppCreateUsage", sender);
+            String usageMsg = refs.getPlainMsg("chppCreateUsage", sender)
+                    .replace("/chpp", "/chp");
+            refs.sendMsg(sender, usageMsg, false);
             return true;
         }
 
         // parse arguments from index=1 onward
         List<String> parsedArgs = parseQuotedArgs(args, 1);
         if (parsedArgs.isEmpty()) {
-            refs.sendMsg("chppCreateUsage", sender);
+            String usageMsg = refs.getPlainMsg("chppCreateUsage", sender)
+                    .replace("/chpp", "/chp");
+            refs.sendMsg(sender, usageMsg, false);
             return true;
         }
 
         // Must have [title, options]
         if (parsedArgs.size() < 2) {
-            refs.sendMsg("chppCreateUsage", sender);
+            String usageMsg = refs.getPlainMsg("chppCreateUsage", sender)
+                    .replace("/chpp", "/chp");
+            refs.sendMsg(sender, usageMsg, false);
             return true;
         }
 
@@ -385,13 +394,13 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
                             ? Component.text(" ✓", NamedTextColor.GREEN)
                             : Component.empty()
                     )
-                    .clickEvent(ClickEvent.suggestCommand("/chpp vote " + pollId + " "))
-                    .hoverEvent(HoverEvent.showText(Component.text(hoverText.toString())))
+                    .clickEvent(ClickEvent.suggestCommand("/chp vote " + pollId + " "))
+                    .hoverEvent(HoverEvent.showText(Component.text(hoverText.toString().replace("/chpp", "/chp"))))
                     .build();
 
             Component deleteButton = Component.text()
                     .append(Component.text(" [✖]", NamedTextColor.RED, TextDecoration.BOLD))
-                    .clickEvent(ClickEvent.suggestCommand("/chpp delete " + pollId))
+                    .clickEvent(ClickEvent.suggestCommand("/chp delete " + pollId))
                     .hoverEvent(HoverEvent.showText(Component.text(refs.getPlainMsg("chppListHoverDeleteAction", sender))))
                     .build();
 
@@ -412,7 +421,9 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
 
     private boolean handleDelete(UUID playerUuid) {
         if (args.length < 2) {
-            refs.sendMsg("chppDeleteUsage", sender);
+            String usageMsg = refs.getPlainMsg("chppDeleteUsage", sender)
+                    .replace("/chpp", "/chp");
+            refs.sendMsg(sender, usageMsg, false);
             return true;
         }
         String pollId = args[1].trim();
@@ -433,8 +444,8 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
     // ----------------------------------------------------------------------
     
     private boolean handleSave(UUID playerUuid) {
-        if (!((BukkitCommandSender) sender).getBukkitSender().hasPermission("chatpolls.chpp.save")) {
-            refs.sendMsg("chpBadPerms", "chatpolls.chpp.save", sender);
+        if (!((BukkitCommandSender) sender).getBukkitSender().hasPermission("chatpolls.chp.polls.save")) {
+            refs.sendMsg("chpBadPerms", "chatpolls.chp.polls.save", sender);
             return true;
         }
 
@@ -453,7 +464,9 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
     // ----------------------------------------------------------------------
     private boolean handleVote(UUID playerUuid) {
         if (args.length < 2) {
-            refs.sendMsg("chppVoteUsage", sender);
+            String usageMsg = refs.getPlainMsg("chppVoteUsage", sender)
+                    .replace("/chpp", "/chp");
+            refs.sendMsg(sender, usageMsg, false);
             return true;
         }
         String pollId = args[1].trim();
@@ -604,7 +617,9 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
     // ----------------------------------------------------------------------
     private boolean handleEnd(UUID playerUuid) {
         if (args.length < 2) {
-            refs.sendMsg("chppEndUsage", sender);
+            String usageMsg = refs.getPlainMsg("chppEndUsage", sender)
+                    .replace("/chpp", "/chp");
+            refs.sendMsg(sender, usageMsg, false);
             return true;
         }
         String pollId = args[1].trim();

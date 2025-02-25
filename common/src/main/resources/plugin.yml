@@ -7,9 +7,9 @@ main: com.dominicfeliton.chatpolls.ChatPolls
 folia-supported: false
 commands:
   chp:
-    description: Prints ChatPolls version.
+    description: Main ChatPolls command. Without arguments, prints version info.
     aliases: [ chatpolls ]
-    usage: §4/chp
+    usage: §4/chp [create|list|delete|vote|end]
     permission: chatpolls.chp
     permission-message: §4You do not have permission to run this command.
   chpl:
@@ -18,12 +18,6 @@ commands:
     usage: §4/chpl (playerName) (languageName)
     permission: chatpolls.chpl
     permission-message: §4You do not have permission to run this command.
-  chpp:
-    description: Manage personal polls
-    aliases: [ chatpollspersonal ]
-    usage: §4/chpp <create|list|delete|vote|end>
-    permission: chatpolls.chpp
-    permission-message: §4You do not have permission to run this command.
 permissions:
   chatpolls.*:
     description: Gives access to all ChatPolls commands.
@@ -31,11 +25,11 @@ permissions:
       chatpolls.chp: true
       chatpolls.chpl: true
       chatpolls.chpl.otherplayers: true
-      chatpolls.chpp: true
-      chatpolls.chpp.save: true
+      chatpolls.chp.polls: true
+      chatpolls.chp.polls.save: true
     default: op
   chatpolls.chp:
-    description: Gives access to /chp.
+    description: Gives access to /chp version info.
     default: true
   chatpolls.chpl:
     description: Gives access to /chpl.
@@ -43,9 +37,9 @@ permissions:
   chatpolls.chpl.otherplayers:
     description: Gives access to /chpl on other players.
     default: op
-  chatpolls.chpp:
-    description: Gives access to personal polls
+  chatpolls.chp.polls:
+    description: Gives access to personal polls with /chp
     default: true
-  chatpolls.chpp.save:
+  chatpolls.chp.polls.save:
     description: Saves personal polls
     default: op
