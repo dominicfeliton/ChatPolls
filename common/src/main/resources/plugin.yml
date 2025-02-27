@@ -7,9 +7,9 @@ main: com.dominicfeliton.chatpolls.ChatPolls
 folia-supported: false
 commands:
   chp:
-    description: Main ChatPolls command. Without arguments, prints version info.
+    description: Main ChatPolls command for creating and managing polls
     aliases: [ chatpolls ]
-    usage: §4/chp [create|list|delete|vote|end]
+    usage: §4/chp [create|list|delete|vote|end|version]
     permission: chatpolls.chp
     permission-message: §4You do not have permission to run this command.
   chpl:

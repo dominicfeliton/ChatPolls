@@ -293,6 +293,7 @@ public class ChatPolls extends JavaPlugin {
     }
 
     /* Init all commands */
+    /* Init all commands */
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         /* Commands that run regardless of translator settings, but not during restarts */
@@ -300,30 +301,22 @@ public class ChatPolls extends JavaPlugin {
             BukkitCommandSender s = new BukkitCommandSender(sender);
             switch (command.getName()) {
                 case "chp":
-                    // If no arguments, show version. Otherwise, handle as a poll command
-                    if (args.length == 0) {
-                        // ChP version
-                        final TextComponent versionNotice = Component.text()
-                                .content(refs.getPlainMsg("chpVersion", s)).color(NamedTextColor.RED)
-                                .append((Component.text().content(" " + getPluginVersion())).color(NamedTextColor.LIGHT_PURPLE))
-                                .append((Component.text().content(" (Made with love by ")).color(NamedTextColor.GOLD))
-                                .append((Component.text().content("Dominic Feliton")).color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD))
-                                .append((Component.text().content(" and with support from ")).color(NamedTextColor.GOLD))
-                                .append((Component.text().content("Hanzen Shou")).color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD))
-                                .append((Component.text().content(")").resetStyle()).color(NamedTextColor.GOLD)).build();
-                        refs.sendMsg(s, versionNotice, true);
-                        refs.playSound(CHP_VERSION, new BukkitCommandSender(sender));
+                    // Handle both version info and poll commands within the CHPPersonalBukkit class
+                    if (!sender.hasPermission("chatpolls.chp")) {
+                        refs.sendMsg("chpBadPerms", "chatpolls.chp", s);
                         return true;
-                    } else {
-                        // Handle as a poll command
-                        if (!sender.hasPermission("chatpolls.chp.polls")) {
-                            refs.sendMsg("chpBadPerms", "chatpolls.chp.polls", s);
-                            return true;
-                        }
-                        // Personal polls
-                        CHPPersonalBukkit personalCmd = new CHPPersonalBukkit(s, label, args, refs);
-                        return personalCmd.processCommand();
                     }
+                    
+                    // For all poll-related commands, check additional permission
+                    if (args.length > 0 && !args[0].equalsIgnoreCase("version") && !sender.hasPermission("chatpolls.chp.polls")) {
+                        refs.sendMsg("chpBadPerms", "chatpolls.chp.polls", s);
+                        return true;
+                    }
+                    
+                    // Handle command in CHPPersonalBukkit
+                    CHPPersonalBukkit personalCmd = new CHPPersonalBukkit(s, label, args, refs);
+                    return personalCmd.processCommand();
+                    
                 case "chpl":
                     // Change localization
                     CHPLocalizeBukkit c = new CHPLocalizeBukkit(s, label, args, refs);

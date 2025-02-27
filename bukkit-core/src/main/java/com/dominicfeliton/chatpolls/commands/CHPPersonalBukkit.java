@@ -8,6 +8,7 @@ import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
+import net.kyori.adventure.text.TextComponent;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -18,7 +19,6 @@ import org.bukkit.entity.Player;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -26,8 +26,8 @@ import java.util.stream.Collectors;
 import static com.dominicfeliton.chatpolls.ChatPollsHelper.SchedulerType.SYNC;
 
 /**
- * An updated command for creating, listing, deleting, voting on, and rewarding personal polls.
- * This class extends the original with reward functionality.
+ * Command handler for the /chp command
+ * Handles poll creation, listing, voting, and management
  */
 public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
 
@@ -99,42 +99,47 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
     }
 
     /**
-     * Entry point for /chp or /chpp command with reward support
+     * Entry point for /chp command
      */
     @Override
     public boolean processCommand() {
         if (args.length == 0) {
-            // Properly convert usage message to component
+            // Show poll usage instead of version info (which is now displayed with /chp version)
             String usageMsg = refs.getPlainMsg("chppUsage", sender);
-            Component usageComponent = refs.deserial(usageMsg.replace("/chpp", "/chp"));
+            Component usageComponent = refs.deserial(usageMsg);
             refs.sendMsg(sender, usageComponent, false);
             return true;
         }
 
+        // Version command is a special case
+        if (args.length == 1 && args[0].equalsIgnoreCase("version")) {
+            final TextComponent versionNotice = Component.text()
+                .content(refs.getPlainMsg("chpVersion", sender)).color(NamedTextColor.RED)
+                .append((Component.text().content(" " + main.getPluginVersion())).color(NamedTextColor.LIGHT_PURPLE))
+                .append((Component.text().content(" (Made with love by ")).color(NamedTextColor.GOLD))
+                .append((Component.text().content("Dominic Feliton")).color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD))
+                .append((Component.text().content(" and with support from ")).color(NamedTextColor.GOLD))
+                .append((Component.text().content("Hanzen Shou")).color(NamedTextColor.GOLD).decorate(TextDecoration.BOLD))
+                .append((Component.text().content(")").resetStyle()).color(NamedTextColor.GOLD)).build();
+            refs.sendMsg(sender, versionNotice, true);
+            refs.playSound(CommonRefs.SoundType.CHP_VERSION, sender);
+            return true;
+        }
+
+        // Check if sender is console
         if (sender.getName() == null) {
             refs.sendMsg("chppConsoleDenied", sender);
             return true;
         }
 
-        // Safely get player using our scheduler to run on the main thread
-        final ChatPollsHelper helper = main.getHelper();
-        final AtomicReference<UUID> playerUuidRef = new AtomicReference<>(null);
-        
-        helper.runSync(new GenericRunnable() {
-            @Override
-            protected void execute() {
-                Player bukkitPlayer = main.getServer().getPlayerExact(sender.getName());
-                if (bukkitPlayer != null && bukkitPlayer.isOnline()) {
-                    playerUuidRef.set(bukkitPlayer.getUniqueId());
-                }
-            }
-        }, SYNC, null);
-        
-        UUID playerUuid = playerUuidRef.get();
-        if (playerUuid == null) {
+        // Get player directly instead of using async task
+        Player bukkitPlayer = Bukkit.getPlayerExact(sender.getName());
+        if (bukkitPlayer == null || !bukkitPlayer.isOnline()) {
             refs.sendMsg("chppPlayerNotFound", sender);
             return true;
         }
+        
+        UUID playerUuid = bukkitPlayer.getUniqueId();
 
         switch (args[0].toLowerCase()) {
             case "create":
@@ -164,7 +169,7 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
     private boolean handleCreate(UUID playerUuid) {
         if (args.length < 2) {
             String usageMsg = refs.getPlainMsg("chppCreateUsage", sender);
-            Component usageComponent = refs.deserial(usageMsg.replace("/chpp", "/chp"));
+            Component usageComponent = refs.deserial(usageMsg);
             refs.sendMsg(sender, usageComponent, false);
             return true;
         }
@@ -173,7 +178,7 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
         List<String> parsedArgs = parseQuotedArgs(args, 1);
         if (parsedArgs.isEmpty()) {
             String usageMsg = refs.getPlainMsg("chppCreateUsage", sender);
-            Component usageComponent = refs.deserial(usageMsg.replace("/chpp", "/chp"));
+            Component usageComponent = refs.deserial(usageMsg);
             refs.sendMsg(sender, usageComponent, false);
             return true;
         }
@@ -181,7 +186,7 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
         // Must have [title, options]
         if (parsedArgs.size() < 2) {
             String usageMsg = refs.getPlainMsg("chppCreateUsage", sender);
-            Component usageComponent = refs.deserial(usageMsg.replace("/chpp", "/chp"));
+            Component usageComponent = refs.deserial(usageMsg);
             refs.sendMsg(sender, usageComponent, false);
             return true;
         }
@@ -243,7 +248,6 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
         );
         
         // Check if this should be a ranked poll (if title starts with [RANKED])
-        //TODO: Make poll type just a param
         if (pollTitle.toUpperCase().startsWith("[RANKED]")) {
             bukkitPoll.setPollType(PollType.RANKED);
             pollTitle = pollTitle.substring(8).trim(); // Remove [RANKED] prefix
@@ -341,6 +345,10 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
         return -1;
     }
 
+    // Rest of the methods remain the same...
+    // For brevity, I'm not including them all here, but they would be copied as-is
+    // from the original CHPPersonalBukkit.java file.
+
     // ----------------------------------------------------------------------
     //  LIST
     // ----------------------------------------------------------------------
@@ -421,8 +429,7 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
             }
             
             hoverComponent = hoverComponent.append(
-                Component.text("\n" + refs.getPlainMsg("chppListHoverVoteAction", sender)
-                    .replace("/chpp", "/chp"))
+                Component.text("\n" + refs.getPlainMsg("chppListHoverVoteAction", sender))
             );
 
             // Clickable text => "[123456] Title"
@@ -462,8 +469,7 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
                     .append(deleteButton)
                     .append(rewardButton)
                     .append(Component.text(" "))
-                    .append(Component.text(refs.getPlainMsg("chppListActions", sender)
-                        .replace("/chpp", "/chp"), NamedTextColor.GRAY));
+                    .append(Component.text(refs.getPlainMsg("chppListActions", sender), NamedTextColor.GRAY));
 
             refs.sendMsg(sender, msgLine, true);
         }
@@ -477,7 +483,7 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
     private boolean handleDelete(UUID playerUuid) {
         if (args.length < 2) {
             String usageMsg = refs.getPlainMsg("chppDeleteUsage", sender);
-            Component usageComponent = refs.deserial(usageMsg.replace("/chpp", "/chp"));
+            Component usageComponent = refs.deserial(usageMsg);
             refs.sendMsg(sender, usageComponent, false);
             return true;
         }
@@ -493,7 +499,6 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
         return true;
     }
 
-    
     // ----------------------------------------------------------------------
     //  SAVE
     // ----------------------------------------------------------------------
@@ -520,7 +525,7 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
     private boolean handleVote(UUID playerUuid) {
         if (args.length < 2) {
             String usageMsg = refs.getPlainMsg("chppVoteUsage", sender);
-            Component usageComponent = refs.deserial(usageMsg.replace("/chpp", "/chp"));
+            Component usageComponent = refs.deserial(usageMsg);
             refs.sendMsg(sender, usageComponent, false);
             return true;
         }
@@ -559,7 +564,7 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
                     .append(Component.text(bukkitPoll.getDateTimeStart() + "\n", NamedTextColor.YELLOW)))
                 .append(Component.text("Ends: ", NamedTextColor.GOLD)
                     .append(Component.text(bukkitPoll.getDateTimeEnd() + "\n", NamedTextColor.YELLOW)))
-                .build();  // Added .build() here to fix the compilation error
+                .build();
                 
             refs.sendMsg(sender, infoComponent, true);
 
@@ -676,7 +681,7 @@ public class CHPPersonalBukkit extends BasicCommand implements TabCompleter {
     private boolean handleEnd(UUID playerUuid) {
         if (args.length < 2) {
             String usageMsg = refs.getPlainMsg("chppEndUsage", sender);
-            Component usageComponent = refs.deserial(usageMsg.replace("/chpp", "/chp"));
+            Component usageComponent = refs.deserial(usageMsg);
             refs.sendMsg(sender, usageComponent, false);
             return true;
         }

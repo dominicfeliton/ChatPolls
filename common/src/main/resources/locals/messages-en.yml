@@ -29,7 +29,7 @@ Messages:
   
   #------------------- /chp Poll Commands -------------------
   chppUsage: |
-    §6=== ChatPolls Personal Commands ===
+    §6=== ChatPolls Commands ===
     §e/chp create <title> <option1,option2,...> [delay] [duration] [description] §7- Create a poll
     §e/chp list §7- View your polls
     §e/chp delete <pollId> §7- Delete a poll
@@ -37,8 +37,7 @@ Messages:
     §e/chp end <pollId> §7- End a poll and show results
     §e/chp reward <pollId> ... §7- Manage rewards for a poll
     §e/chp save §7- Save all polls (op only)
-  chppConsoleDenied: '§cThis command can only be run by players!'
-  chppPlayerNotFound: '§cCould not find that player!'
+    §e/chp version §7- Display version information
   
   # Create messages
   chppCreateUsage: |
