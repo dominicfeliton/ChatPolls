@@ -11,6 +11,7 @@ public abstract class ChatPollsHelper {
         GLOBAL,
         REGION,
         ENTITY,
+        SYNC,
         ASYNC;
     }
 

@@ -14,6 +14,7 @@ Messages:
   chpBadPerms: 'You do not have the required permissions to execute this command: {0}'
   chpInvalidArgs: 'Invalid arguments provided!'
   chpLangNotLoadedConsole: 'The language {0} is not functioning properly with this plugin. Please report this issue to the developer.'
+  
   #------------------- /chpl Messages -------------------
   chplLangStopped: 'Your localization was reset to the server default.'
   chplLangChanged: 'Your localization was changed to {0}.'
@@ -25,6 +26,7 @@ Messages:
   chplLangStoppedOtherPlayerSender: 'Reset the localization of {0} to the server default.'
   chplLangChangedOtherPlayerSender: 'Changed the localization of {0} to {1}.'
   chplLangAlreadyStoppedOtherPlayerSender: '{0} does not have a localization set.'
+  
   #------------------- /chp Poll Commands -------------------
   chppUsage: |
     §6=== ChatPolls Personal Commands ===
@@ -33,9 +35,12 @@ Messages:
     §e/chp delete <pollId> §7- Delete a poll
     §e/chp vote <pollId> [option] §7- Vote on a poll or view options
     §e/chp end <pollId> §7- End a poll and show results
+    §e/chp reward <pollId> ... §7- Manage rewards for a poll
     §e/chp save §7- Save all polls (op only)
   chppConsoleDenied: '§cThis command can only be run by players!'
   chppPlayerNotFound: '§cCould not find that player!'
+  
+  # Create messages
   chppCreateUsage: |
     §6To create a poll:
     §e/chp create <title> <option1,option2,...> [delay] [duration] [description]
@@ -52,17 +57,36 @@ Messages:
     §fStarts: §e{3}
     §fEnds: §e{4}
     §fDescription: §7{5}
+  chppTooFewOptions: '§cYou must provide at least 2 options.'
+  chppTooManyOptions: '§cYou can only have up to 5 options.'
+  chppInvalidTime: '§cInvalid time format. Use ##s (seconds), ##m (minutes), ##h (hours), ##d (days)'
+  
+  # List messages
   chppListEmpty: '§cYou have no personal polls.'
   chppListHeader: |
     §6=== Your Personal Polls ===
     §7Click a poll to copy its ID to your command
   chppListItem: '§b[{0}] §f{1}'
+  chppListHoverPoll: '§bPoll: §f{0}'
+  chppListHoverDesc: '§7Description: §f{0}'
+  chppListHoverOptions: '§eOptions: §f{0}'
+  chppListHoverVoted: '§aYou voted: §f{0}'
+  chppListHoverRankedVoted: '§aYour ranking: §f{0}'
+  chppListHoverVotes: '§6Current Votes:'
+  chppListHoverVoteLine: '§e{0}: §b{1}'
+  chppListHoverVoteAction: '§7Click to vote on this poll'
+  chppListHoverDeleteAction: '§cClick to delete this poll'
+  chppListActions: '§7(Click ID to vote, ✖ to delete)'
+  
+  # Delete messages
   chppDeleteUsage: |
     §6To delete a poll:
     §e/chp delete <pollId>
     §7Click a poll from /chp list to select it
   chppDeleteNotFound: '§cNo poll found with ID {0}. Use §e/chp list §cto see your polls.'
   chppDeleteSuccess: '§aPoll {0} deleted successfully.'
+  
+  # Vote messages
   chppVoteUsage: |
     §6To vote on a poll:
     §e/chp vote <pollId> [option]
@@ -75,9 +99,6 @@ Messages:
   chppVoteTallyLine: '§6{0}: §b{1} votes'
   chppAlreadyVoted: '§cYou have already voted for {0} in this poll!'
   chppInvalidOption: '§cInvalid option. Please choose from the available options.'
-  chppTooFewOptions: '§cYou must provide at least 2 options.'
-  chppTooManyOptions: '§cYou can only have up to 5 options.'
-  chppInvalidTime: '§cInvalid time format. Use ##s (seconds), ##m (minutes), ##h (hours), ##d (days)'
   chppPollNotStarted: '§cThis poll has not started yet. Starts at: {0}'
   chppPollEnded: '§cThis poll has ended. Ended at: {0}'
   chppVoteInfo: |
@@ -89,20 +110,8 @@ Messages:
     §fOptions:
   chppVoteInfoOption: '§e{0}'
   chppVoteInfoVoted: '§aYou voted for: §f{0}'
-  # Poll list hover text
-  chppListHoverPoll: '§bPoll: §f{0}'
-  chppListHoverDesc: '§7Description: §f{0}'
-  chppListHoverOptions: '§eOptions: §f{0}'
-  chppListHoverVoted: '§aYou voted: §f{0}'
-  chppListHoverVotes: '§6Current Votes:'
-  chppListHoverVoteLine: '§e{0}: §b{1}'
-  chppListHoverVoteAction: '§7Click to vote on this poll'
-  chppListHoverDeleteAction: '§cClick to delete this poll'
-  chppListActions: '§7(Click ID to vote, ✖ to delete)'
-  chppSaveSuccess: '§aSuccessfully saved polls'
-  chppSaveFail: '§cFailed to save polls: {0}'
   
-  # End poll messages
+  # End messages
   chppEndUsage: '§6To end a poll: §e/chp end <pollId>'
   chppEndNotFound: '§cNo poll found with ID {0}. Use §e/chp list §cto see your polls.'
   chppEndAlreadyEnded: '§cThis poll has already ended.'
@@ -111,7 +120,55 @@ Messages:
     §6Final Results:
   chppEndNoVotes: '§7No votes were cast in this poll.'
   
+  # Save messages
+  chppSaveSuccess: '§aSuccessfully saved polls'
+  chppSaveFail: '§cFailed to save polls: {0}'
+  
   # Ranked voting messages
   chppRankedWinner: '§6The winner by ranked-choice voting is: §e{0}'
   chppRankedVoteInfo: '§7Rank the options in order of preference (comma-separated)'
-  chppListHoverRankedVoted: '§aYour ranking: §f{0}'
+  
+  # Reward command messages
+  chppRewardUsage: |
+    §6=== ChatPolls Reward Commands ===
+    §e/chp reward <pollId> add <type> [options] §7- Add a reward
+    §e/chp reward <pollId> remove <index> §7- Remove a reward
+    §e/chp reward <pollId> list §7- List all rewards
+    §e/chp reward <pollId> distribute §7- Distribute rewards
+    §e/chp reward <pollId> winners <true/false> §7- Set winners-only mode
+    
+    §7Available reward types:
+    §7- item: Gives the item in your hand
+    §7- xp/experience: Gives experience points
+    §7- command: Runs a command with placeholders
+  chppRewardPollNotFound: '§cNo poll found with ID {0}. Use §e/chp list §cto see your polls.'
+  chppRewardInvalidAction: '§cInvalid reward action "§e{0}§c". Use §e/chp reward §cfor help.'
+  chppRewardAddUsage: |
+    §6To add a reward:
+    §e/chp reward <pollId> add item [amount] §7- Add item from your hand
+    §e/chp reward <pollId> add xp <amount> §7- Add XP reward
+    §e/chp reward <pollId> add command <command> §7- Add command reward
+  chppRewardRemoveUsage: '§6To remove a reward: §e/chp reward <pollId> remove <index>'
+  chppRewardNoItem: '§cYou must hold an item in your main hand to add it as a reward.'
+  chppRewardInvalidAmount: '§cInvalid amount. Please specify a positive number.'
+  chppRewardExpUsage: '§6To add an experience reward: §e/chp reward <pollId> add xp <amount>'
+  chppRewardCommandUsage: '§6To add a command reward: §e/chp reward <pollId> add command <command>'
+  chppRewardInvalidType: '§cInvalid reward type "§e{0}§c". Use §e/chp reward §cfor help.'
+  chppRewardAdded: '§aSuccessfully added §e{0} §areward to poll §e{1}§a!'
+  chppRewardRemoved: '§aSuccessfully removed reward §e#{0} §afrom poll §e{1}§a!'
+  chppRewardInvalidIndex: '§cInvalid reward index §e{0}§c. Use §e/chp reward <pollId> list §cto see available rewards.'
+  chppRewardListEmpty: '§cPoll §e{0} §chas no rewards configured.'
+  chppRewardListHeader: '§6=== Rewards for Poll: §e{0} §6(§7{1}§6) ==='
+  chppRewardList: '§f{0}'
+  chppRewardDistributePollActive: '§cThis poll is still active. Rewards can only be distributed after the poll ends.'
+  chppRewardNoRewards: '§cThis poll has no rewards configured.'
+  chppRewardNoRecipients: '§cNo eligible recipients found for rewards.'
+  chppRewardDistributed: '§aRewarded §e{0} §aplayers: §f{1}'
+  chppRewardWinnersUsage: '§6To configure reward distribution: §e/chp reward <pollId> winners <true/false>'
+  chppRewardWinnersOnly: '§aRewarding winning voters only for poll §e{0}§a.'
+  chppRewardAllVoters: '§aRewarding all voters for poll §e{0}§a.'
+  chppRewardItemsDropped: '§6Some reward items were dropped because your inventory is full!'
+  chppRewardCurrencyNotImplemented: '§cCurrency reward not implemented yet!'
+  chppRewardCurrencyConverted: '§6Currency reward converted to {0} XP!'
+  chppRewardButtonHover: 'Click to manage rewards'
+  chppRewardSkippingDistribution: '§7Skipping reward distribution as requested'

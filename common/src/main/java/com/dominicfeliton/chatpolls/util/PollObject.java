@@ -96,7 +96,7 @@ public abstract class PollObject {
     @JsonProperty("tags")
     private Set<String> tags;
     @JsonProperty("rewards")
-    private List<RewardObject> rewards;
+    protected List<RewardObject> rewards; // Changed from private to protected
     @JsonProperty("votingLog")
     private Queue<String> votingLog;
 
